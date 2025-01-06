@@ -90,8 +90,7 @@ const VerifyOtp = ({ navigation, route }) => {
 
   // console.log("fcmToken from login", fcmToken)
   const icon = useSelector(state => state.apptheme.icon)
-    ? useSelector(state => state.apptheme.icon)
-    : require('../../../assets/images/demoIcon.png');
+    
 
   // ------------------------------------------------
   const currentVersion = useSelector((state)=>state.appusers.app_version)

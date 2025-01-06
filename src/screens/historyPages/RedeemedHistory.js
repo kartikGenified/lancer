@@ -346,7 +346,7 @@ const RedeemedHistory = ({ navigation }) => {
         </View>
   } 
         {userPointData && <TouchableOpacity onPress={() => {
-          handleRedeemButtonPress()
+          navigation.navigate('RedeemGifts',{schemeType : "yearly"})
         }} style={{ borderRadius: 2, height: 40, width: 100, backgroundColor: "#FFD11E", alignItems: "center", justifyContent: "center", marginLeft: 20 }}>
           <PoppinsTextMedium style={{ color: 'black' }} content={t("redeem")}></PoppinsTextMedium>
         </TouchableOpacity>}

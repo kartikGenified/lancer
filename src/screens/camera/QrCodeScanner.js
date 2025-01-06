@@ -135,7 +135,7 @@ const QrCodeScanner = ({ navigation, route }) => {
     ? useSelector((state) => state.apptheme.ternaryThemeColor)
     : "grey";
   const gifUriLoading = Image.resolveAssetSource(
-    require("../../../assets/gif/loader2.gif")
+    require("../../../assets/gif/loader.gif")
   ).uri;
 
   const gifUriCheck = Image.resolveAssetSource(
@@ -372,7 +372,7 @@ const QrCodeScanner = ({ navigation, route }) => {
           // console.log("productdata",body)
           dispatch(setProductData(productDataData?.body?.products[0]));
 
-          workflowProgram.includes("Warranty") &&
+          workflowProgram?.includes("Warranty") &&
             checkWarrantyFunc({ form_type, token, body });
           setTimeout(() => {
             setShowProceed(true);
@@ -475,40 +475,6 @@ const QrCodeScanner = ({ navigation, route }) => {
       setIsLoading(false);
       dispatch(setProductMrp(verifyQrData?.body?.qr));
 
-      // let qrStatus,statusCode;
-
-      // if(verifyQrData?.body?.qr!==undefined)
-      // {
-      //   qrStatus = verifyQrData.body?.qr?.qr_status == undefined
-      //   statusCode = verifyQrData?.status;
-
-      //  if (qrStatus === "1") {
-      //    addQrDataToList(verifyQrData.body.qr);
-      //  }
-      // }
-      // else{
-      //   dispatch(setProductMrp(verifyQrData?.body))
-      //   qrStatus = verifyQrData.body?.qr_status == undefined
-      //   statusCode = verifyQrData?.status;
-
-      //  if (qrStatus === "1") {
-      //    addQrDataToList(verifyQrData.body);
-      //  }
-      // }
-
-      // if (qrStatus === "2") {
-      //   if (statusCode === 201) {
-      //     setError(true);
-      //     setMessage(verifyQrData.message);
-      //   } else if (statusCode === 202) {
-      //     setIsReportable(true);
-      //     setError(true);
-      //     setMessage(verifyQrData.message);
-      //   } else if (statusCode === 200) {
-      //     setError(true);
-      //     setMessage(verifyQrData.message);
-      //   }
-      // }
     } else if (verifyQrError) {
       setIsLoading(false);
       if (verifyQrError === undefined) {
@@ -603,7 +569,7 @@ const QrCodeScanner = ({ navigation, route }) => {
               const token = credentials?.username;
 
               const response = await verifyQrFunc({ token, data });
-              console.log("verifyQrFunc", response);
+              console.log("verifyQrFunc", JSON.stringify(response));
               if (response?.data) {
                 console.log("Verify qr data", JSON.stringify(response));
                 if (response?.data?.body == null) {
@@ -621,7 +587,12 @@ const QrCodeScanner = ({ navigation, route }) => {
                   response?.data.body.qr == undefined
                     ? response?.data.body
                     : response?.data.body.qr;
-                if (qrStatus === "1") {
+
+
+
+                    console.log("qrstatus isasjhdahjshdas",qrStatus)
+                if (qrStatus == "1") {
+                  console.log("qrstatus is one")
                   await addQrDataToList(verifiedQrData);
                 }
 
@@ -699,6 +670,9 @@ const QrCodeScanner = ({ navigation, route }) => {
   // add qr to the list of qr--------------------------------------
 
   const addQrDataToList = async (data) => {
+
+    console.log("addQrDataToList is",data)
+
     setIsLoading(false);
     const qrId = data.id;
     setQr_id(qrId);
@@ -707,17 +681,17 @@ const QrCodeScanner = ({ navigation, route }) => {
 
     const credentials = await Keychain.getGenericPassword();
     if (credentials) {
-      // console.log(
-      //   'Credentials successfully loaded for user ' + credentials?.username, data
-      // );
+      console.log(
+        'Credentials successfully loaded for user ' + credentials?.username, data
+      );
       const token = credentials?.username;
 
-      workflowProgram.includes("Genuinity" || "Genuinity+") &&
+      workflowProgram?.includes("Genuinity" || "Genuinity+") &&
         checkGenuinityFunc({ qrId, token });
       productDataFunc({ productCode, userType, token });
     }
     addedqr = addedQrList;
-    // console.log("addQrDataToList",addedqr,data)
+    console.log("addQrDataToListqwerty",addedqr,data)
 
     if (addedqr.length === 0) {
       //  setAddedQrList([...addedqr, data]);
@@ -742,6 +716,7 @@ const QrCodeScanner = ({ navigation, route }) => {
       isDuplicateQr
     );
     setAddedQrList(addedqr);
+    console.log("setAddedQrList",addedqr)
     return addedqr;
   };
   // --------------------------------------------------------

@@ -70,7 +70,7 @@ const TextInputAadhar = (props) => {
       }
       if(value.length<12)
       {
-        props.notVerified(true)
+        props.verified(false)
       }
       else{
         setShowOtp(false)
@@ -94,7 +94,7 @@ const TextInputAadhar = (props) => {
             }
             else
             {
-              props.notVerified(true)
+              props.verified(false)
             }
         }
      },[otp])

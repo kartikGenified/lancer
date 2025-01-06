@@ -1,2 +1,2 @@
 // export default hideUserFromLogin = ["distributor"]
-export default hideUserFromLogin = []
+export default hideUserFromLogin = ["plant"]

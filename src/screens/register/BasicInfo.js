@@ -375,7 +375,7 @@ const BasicInfo = ({ navigation, route }) => {
       console.log("data after submitting form", registerUserData)
       if (registerUserData.success) {
         setSuccess(true)
-        setMessage(t("Thank you for joining OZOSTARS Loyalty program, we will get back to you within 1-2 working days"))
+        setMessage(t("Thank you for joining Calcutta Knit Wear Loyalty program, we will get back to you within 1-2 working days"))
         setModalTitle(t("Greetings"))
       }
       setHideButton(false)
@@ -637,12 +637,12 @@ const BasicInfo = ({ navigation, route }) => {
   const addharVerified = (bool)=>{
     console.log("aadhar text input status", bool)
     
-      setAadhaarVerified(false)
+      setAadhaarVerified(bool)
       
     
   }
 
-//   const handleRegistrationFormSubmission = () => {
+
 //     console.log("handleRegistrationFormSubmission", registrationForm)
 //     const inputFormData = {};
 //     let isFormValid = true; 
@@ -835,6 +835,11 @@ console.log("responseMap",responseMap)
                           alert("gstin is not verified")
                           }
                           else{
+                            console.log("aadhar fields required, verified",aadhaarRequired,aadhaarVerified )
+                            console.log("pan fields required, verified",panRequired,pansVerified )
+                            console.log("gstin fields required, verified",gstinRequired,gstVerified )
+
+
                           registerUserFunc(body);
                           }
                           
@@ -888,7 +893,10 @@ console.log("responseMap",responseMap)
                           alert("gstin is not verified")
                           }
                           else{
-                          registerUserFunc(body);
+                            console.log("aadhar fields required, verified",aadhaarRequired,aadhaarVerified )
+                            console.log("pan fields required, verified",panRequired,pansVerified )
+                            console.log("gstin fields required, verified",gstinRequired,gstVerified )
+                            registerUserFunc(body);
                           }
                           
   
@@ -1021,7 +1029,7 @@ console.log("responseMap",responseMap)
                             value={userMobile}
                             displayText ={item.name}
                             label={item.label}
-                            isEditable={false}
+                            isEditable={true}
                           >
                             {' '}
                           </TextInputNumericRectangle>}
@@ -1110,7 +1118,7 @@ console.log("responseMap",responseMap)
                       displayText = {t(item.name.toLowerCase().trim())}
                       value={userName}
                       label={item.label}
-                      isEditable={false}
+                      isEditable={true}
                  
                     ></PrefilledTextInput>
                   )
@@ -1139,7 +1147,7 @@ console.log("responseMap",responseMap)
                       required={item.required}
                       jsonData={item}
                       key={index}
-                      notVerified={addharVerified}
+                      verified={addharVerified}
                       handleData={handleChildComponentData}
                       placeHolder={item.name}
                       displayText = {t(item.name.toLowerCase().trim())}

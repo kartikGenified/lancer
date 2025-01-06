@@ -114,7 +114,7 @@ const OtpLogin = ({ navigation, route }) => {
   console.log("navigationParams", navigationParams);
   
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loader2.gif")
+    require("../../../assets/gif/loader.gif")
   ).uri;
 
   useEffect(() => {
@@ -314,7 +314,7 @@ const OtpLogin = ({ navigation, route }) => {
           >
             <Image
               style={{ height: 20, width: 20, resizeMode: "contain" }}
-              source={{uri:icon}}
+              source={require("../../../assets/images/blackBack.png")}
             ></Image>
           </TouchableOpacity>
 

@@ -77,7 +77,7 @@ const Notification = ({ navigation }) => {
                 </TouchableOpacity>
                 <Text style={{ color: 'white', marginLeft: 10, fontWeight: '500' }}>{t("Notification")}</Text>
             </View>
-            <ScrollView style={{ height: '90%', backgroundColor: buttonThemeColor, width:'100%' }}>
+            <ScrollView style={{ backgroundColor: buttonThemeColor, width:'100%' }}>
             
             <View style={{ paddingBottom: 120, height: height, backgroundColor: 'white', width: '100%', borderTopLeftRadius: 30, borderTopRightRadius: 30, marginTop: 20,alignItems:'center',justifyContent:'center' }}>
                 {

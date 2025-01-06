@@ -30,7 +30,7 @@ const ProductCatalogue = ({navigation}) => {
     ? useSelector(state => state.apptheme.ternaryThemeColor)
     : 'grey';
 
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader2.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
 
 
   const [
@@ -189,7 +189,7 @@ const height = Dimensions.get('window').height
                 })
             }
 
-              {!catalogueData &&
+              {productCatalogueIsLoading &&
               <FastImage
                    style={{ width: 100, height: 100, alignSelf: 'center',justifyContent:'center', marginTop: '50%', marginLeft:'40%' }}
                    source={{

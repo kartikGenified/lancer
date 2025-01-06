@@ -133,7 +133,7 @@ const Splash = ({ navigation }) => {
     console.log("current version check", currentVersion);
     dispatch(setAppVersion(currentVersion));
   }
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/SplashGenefied.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/Splash-myro.gif')).uri;
   // generating functions and constants for API use cases---------------------
   const [
     getAppTheme,
@@ -1370,7 +1370,8 @@ const Splash = ({ navigation }) => {
       )}
       {/* <Image  style={{ width: 200, height: 200,  }}  source={require('../../../assets/gif/ozonegif.gif')} /> */}
       {
-        <View style={{ position: "absolute", bottom: 30, height: 40 }}>
+        <View style={{width:'100%',alignItems:'center',justifyContent:'center', paddingBottom:10}}>
+        <View style={{ position: "absolute", bottom: 60, height: 40 }}>
           <View>
             {/* {loading ? (
         <Text>Loading...</Text>
@@ -1385,9 +1386,10 @@ const Splash = ({ navigation }) => {
             color={MD2Colors.yellow800}
           />
           <PoppinsTextMedium
-            style={{ color: "white", marginTop: 4 }}
+            style={{ color: "white", marginTop: 4,fontWeight:'800',fontSize:20 }}
             content="Please Wait"
           ></PoppinsTextMedium>
+        </View>
         </View>
       }
     </View>

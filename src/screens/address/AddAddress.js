@@ -221,6 +221,7 @@ const AddAddress = ({ navigation }) => {
         backgroundColor: "white",
       }}
     >
+      
       {/* Navigator */}
       <View
         style={{
@@ -252,22 +253,7 @@ const AddAddress = ({ navigation }) => {
         ></PoppinsTextMedium>
       </View>
       {/* navigator */}
-      {error && (
-        <ErrorModal
-          modalClose={modalClose}
-          message={message}
-          openModal={error}
-        ></ErrorModal>
-      )}
-      {success && (
-        <MessageModal
-          modalClose={modalClose}
-          title={"Thanks"}
-          message={message}
-          openModal={success}
-          navigateTo="ListAddress"
-        ></MessageModal>
-      )}
+      
       {
         <View style={{ marginTop: 20, alignItems: "center" }}>
           <PrefilledTextInput
@@ -383,6 +369,22 @@ const AddAddress = ({ navigation }) => {
           )}
         </View>
       }
+      {error && (
+        <ErrorModal
+          modalClose={modalClose}
+          message={message}
+          openModal={error}
+        ></ErrorModal>
+      )}
+      {success && (
+        <MessageModal
+          modalClose={modalClose}
+          title={"Thanks"}
+          message={message}
+          openModal={success}
+          navigateTo="ListAddress"
+        ></MessageModal>
+      )}
     </View>
   );
 };

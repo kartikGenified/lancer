@@ -34,7 +34,7 @@ const ProductCategory = ({navigation}) => {
   }] = useGetProductLevelMutation()
 
     const gifUri = Image.resolveAssetSource(
-      require("../../../assets/gif/loader2.gif")
+      require("../../../assets/gif/loader.gif")
     ).uri;
 
     useEffect(()=>{

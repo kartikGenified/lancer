@@ -59,9 +59,8 @@ const MpinSetupScreen = (params) => {
 
   const navigation = useNavigation();
 
-  const icon = useSelector((state) => state.apptheme.icon1)
-    ? useSelector((state) => state.apptheme.icon1)
-    : require("../../../assets/images/demoIcon.png");
+  const icon = useSelector((state) => state.apptheme.icon)
+   
 
   async function updateToken(newToken) {
     const jsonValue = await AsyncStorage.getItem("loginData");
@@ -179,23 +178,16 @@ const MpinSetupScreen = (params) => {
         ></Image>
       </TouchableOpacity> */}
 
-      <View
-        style={{
-          backgroundColor: ternaryThemeColor,
-          padding: 10,
-          marginTop: "35%",
-          marginBottom: 100,
-        }}
-      >
+        
         <Image
           style={{
-            height: 50,
-            width: 100,
+            height: 120,
+            width: 200,
             resizeMode: "contain",
+            marginTop:80,marginBottom:50,marginLeft:20
           }}
-          source={appIcon}
+          source={{uri:icon}}
         />
-      </View>
 
       <Text style={{ ...styles.title, color: ternaryThemeColor }}>
         Create Your MPIN

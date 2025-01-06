@@ -8,10 +8,10 @@ export const baseUrl = "http://saas-api-dev.genefied.in/"  // "http://saas-api-d
 
 //icons and images
 export const appIcon = require("../../assets/images/genefiedLogo.jpg");
-export const splash = require("../../assets/gif/SplashGenefied.gif");
+export const splash = require("../../assets/gif/Splash-myro.gif");
 
 export const descriptionImages = [
-  require("../../assets/images/Step1.png"),
+  // require("../../assets/images/Step1.png"),
   require("../../assets/images/Step2.png"),
   // require("../../assets/images/Step3.png"),
   // require("../../assets/images/Step4.png"),
@@ -36,11 +36,7 @@ export const neededHistory = [
   "points",
   "scanned",
   "redeemed",
-  "cashback",
   "coupon",
-  "warranty",
-  "shared",
-  "previous",
 ];
 
 export const showEditProfile = true;
