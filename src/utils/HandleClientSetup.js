@@ -1,9 +1,9 @@
 //Thanks to Karik for this Setup (The Half Blood Prince)
 
 //clint ID's
-export const clientName = "genefied";
-export const clientID = 28;
-
+export const clientName = "calkn";
+export const clientID = 29;
+export const clientOfficialName = "Calcutta Knit Wear"
 export const baseUrl = "http://sales-saas-api.genefied.in/"  // "http://saas-api-dev.genefied.in/""
 
 //icons and images
@@ -21,8 +21,8 @@ export const descriptionImages = [
 //Change Loader Manually By Simply Replacing images
 
 //Registration
-export const RegistrationMessage = `Thank you for joining ${clientName} Loyalty program`;
-export const permissionMessage = `To scan the QR code, the ${clientName} app must have access permissions. Please grant access to the camera`
+export const RegistrationMessage = `Thank you for joining ${clientOfficialName} Loyalty program`;
+export const permissionMessage = `To scan the QR code, the ${clientOfficialName} app must have access permissions. Please grant access to the camera`
 export const eKyc = true;  // send true if you want to call aadhar gst and pan api else false
 
 

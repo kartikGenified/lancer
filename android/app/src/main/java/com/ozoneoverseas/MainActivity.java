@@ -1,4 +1,4 @@
-package com.genefied.expolo;
+package com.genefied.calcuttaKnitWear;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "expolo";
+    return "calcuttaKnitWear";
   }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
