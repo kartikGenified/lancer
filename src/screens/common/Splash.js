@@ -949,7 +949,7 @@ const Splash = ({ navigation }) => {
 
   useEffect(async() => {
     getUsers();
-    console.log("unwrapping resolved and rejected status",await getAppTheme(clientName));
+    console.log("unwrapping resolved and rejected status", clientName ,await getAppTheme(clientName));
     const checkToken = async () => {
       const fcmToken = await messaging().getToken();
       if (fcmToken) {

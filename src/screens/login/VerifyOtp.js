@@ -603,7 +603,7 @@ const VerifyOtp = ({ navigation, route }) => {
 
 
             }}
-            source={appIcon}></Image>
+            source={{uri:icon}}></Image>
         </View>
         <View
           style={{

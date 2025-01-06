@@ -62,15 +62,15 @@ const TextInputAadhar = (props) => {
       {
         if(value.length===12)
       {
-        
-        
         const data = {
           "aadhaar_number":value
       }
       setShowLoading(true)
       sendAadharOtpFunc(data)
-        
-       
+      }
+      if(value.length<12)
+      {
+        props.notVerified(true)
       }
       else{
         setShowOtp(false)
@@ -109,7 +109,6 @@ const TextInputAadhar = (props) => {
           setOtpSent(true)
           setShowOtp(true)
           setShowLoading(false)
-          props.notVerified(true)
         }
         }
         else if(sendAadharOtpError)
@@ -117,7 +116,6 @@ const TextInputAadhar = (props) => {
         console.log("sendAadharOtpError",sendAadharOtpError)
           setShowLoading(false)
           setAadharExists(true)
-          props.notVerified(true)
         
         }
         
@@ -132,12 +130,11 @@ const TextInputAadhar = (props) => {
               setModalVisible(true)
               setShowLoading(false)
               setAadharVerified(true)
-              props.notVerified(false)
+              props.verified(true)
               }
             }
             else if(verifyAadharError){
               console.log("verifyAadharError",verifyAadharError)
-              props.notVerified(true)
               setShowLoading(false)
 
             }

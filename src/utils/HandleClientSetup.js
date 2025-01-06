@@ -4,7 +4,7 @@
 export const clientName = "calkn";
 export const clientID = 29;
 export const clientOfficialName = "Calcutta Knit Wear"
-export const baseUrl = "http://sales-saas-api.genefied.in/"  // "http://saas-api-dev.genefied.in/""
+export const baseUrl = "http://saas-api-dev.genefied.in/"  // "http://saas-api-dev.genefied.in/""
 
 //icons and images
 export const appIcon = require("../../assets/images/genefiedLogo.jpg");
@@ -13,9 +13,9 @@ export const splash = require("../../assets/gif/SplashGenefied.gif");
 export const descriptionImages = [
   require("../../assets/images/Step1.png"),
   require("../../assets/images/Step2.png"),
-  require("../../assets/images/Step3.png"),
-  require("../../assets/images/Step4.png"),
-  require("../../assets/images/Step5.png")
+  // require("../../assets/images/Step3.png"),
+  // require("../../assets/images/Step4.png"),
+  // require("../../assets/images/Step5.png")
 ];
 
 //Change Loader Manually By Simply Replacing images

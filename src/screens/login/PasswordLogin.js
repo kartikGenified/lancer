@@ -38,6 +38,7 @@ import { setPolicy,setTerms } from '../../../redux/slices/termsPolicySlice';
 import { useGetAppMenuDataMutation } from '../../apiServices/dashboard/AppUserDashboardMenuAPi.js';
 import { setDrawerData } from '../../../redux/slices/drawerDataSlice';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { splash } from '../../utils/HandleClientSetup';
 
 
 // import * as Keychain from 'react-native-keychain';  
@@ -557,7 +558,7 @@ const PasswordLogin = ({ navigation, route }) => {
 
 
             }}
-            source={require('../../../assets/images/ozoneWhiteLogo.png')}></Image>
+            source={{uri:splash}}></Image>
           {/* ozone change */}
          
 
