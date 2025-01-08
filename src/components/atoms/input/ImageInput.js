@@ -6,7 +6,7 @@ import * as Keychain from "react-native-keychain";
 import { useUploadSingleFileMutation } from "../../../apiServices/imageApi/imageApi";
 import FastImage from "react-native-fast-image";
 import { gifUri } from "../../../utils/GifUrl";
-import { loader } from "../../../utils/HandleClientSetup";
+import { loaderNew } from "../../../utils/HandleClientSetup";
 import { Image as RNCompressor } from "react-native-compressor"; // Import for compression
 
 const ImageInput = (props) => {
@@ -15,7 +15,7 @@ const ImageInput = (props) => {
   const data = props.data;
   const action = props.action;
 
-  const gifUri = Image.resolveAssetSource(loader).uri;
+  const gifUri = Image.resolveAssetSource(loaderNew).uri;
 
   const [
     uploadImageFunc,

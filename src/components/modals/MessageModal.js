@@ -32,6 +32,7 @@ const MessageModal = (props) => {
     setModalVisible(false)
     props.modalClose()
     navigateTo && navigation.replace(navigateTo,params)
+    // navigateTo && navigation.reset({ index: '0', routes: [{ name: navigateTo }] })
   }
    
 
@@ -46,7 +47,10 @@ const MessageModal = (props) => {
         onRequestClose={() => {
             props.modalClose()
           setModalVisible(!modalVisible);
-         navigateTo &&  navigation.replace(navigateTo)
+          // navigateTo && navigation.reset({ index: '0', routes: [{ name: navigateTo }] })
+          navigateTo && navigation.replace(navigateTo,params)
+
+
         }}>
         <View style={styles.centeredView}>
           <View style={{...styles.modalView,borderWidth:3,borderColor:'#2FBA7E'}}>

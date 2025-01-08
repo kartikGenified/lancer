@@ -621,7 +621,7 @@
 			baseConfigurationReference = 79D654BA924B1589326AA749 /* Pods-calcuttaKnitWear-calcuttaKnitWearTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_loaderNew = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9D932R2PWR;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -632,7 +632,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
+					"@loaderNew_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -650,7 +650,7 @@
 			baseConfigurationReference = DA5C77B66CA720F9A6FF74E6 /* Pods-calcuttaKnitWear-calcuttaKnitWearTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_loaderNew = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 9D932R2PWR;
 				INFOPLIST_FILE = "calcuttaKnitWearTests/Info.plist";
@@ -658,7 +658,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
+					"@loaderNew_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

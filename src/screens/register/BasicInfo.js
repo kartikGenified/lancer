@@ -103,6 +103,7 @@ const BasicInfo = ({ navigation, route }) => {
   const userData = useSelector(state => state.appusersdata.userData);
   const appUsers = useSelector(state => state.appusers.value)
   const manualApproval = useSelector(state => state.appusers.manualApproval)
+  const appVersion = useSelector(state=>state.appusers.app_version)
   const userType = route.params.userType
   const userTypeId = route.params.userId
   const needsApproval = route.params.needsApproval
@@ -119,7 +120,7 @@ const BasicInfo = ({ navigation, route }) => {
   const height = Dimensions.get('window').height
   const {t} = useTranslation()
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loader.gif")
+    require("../../../assets/gif/loaderNew.gif")
   ).uri;
 
   let timeoutId;
@@ -375,7 +376,7 @@ const BasicInfo = ({ navigation, route }) => {
       console.log("data after submitting form", registerUserData)
       if (registerUserData.success) {
         setSuccess(true)
-        setMessage(t("Thank you for joining Calcutta Knit Wear Loyalty program, we will get back to you within 1-2 working days"))
+        setMessage(t("Thank you for joining Calcutta Knitwear Loyalty program"))
         setModalTitle(t("Greetings"))
       }
       setHideButton(false)
@@ -787,6 +788,7 @@ console.log("responseMap",responseMap)
   }
   inputFormData["login_type"] = navigatingFrom == "OtpLogin" ? "otp" : 'uidp'
   inputFormData["language"] = preferedLanguage
+  inputFormData["app_version"] = appVersion
   const body = inputFormData;
   console.log("registration output", body);
 
@@ -1029,7 +1031,7 @@ console.log("responseMap",responseMap)
                             value={userMobile}
                             displayText ={item.name}
                             label={item.label}
-                            isEditable={true}
+                            isEditable={otpVisible ? false : true}
                           >
                             {' '}
                           </TextInputNumericRectangle>}
@@ -1306,6 +1308,21 @@ console.log("responseMap",responseMap)
                   ></DropDownRegistration>
                 )
               }
+              // else if (item.name.trim().toLowerCase() === "dealer_name") {
+              //   return (
+              //     <View style={{ width: "90%" }}>
+              //       <DropDownForDistributor
+              //         title={"Select Distrbutor"}
+              //         header={"Select Distrbutor"}
+              //         jsonData={{label:item.name,name:item.name}}
+              //         searchEnable={true}
+              //         data={[]}
+              //         handleData={handleChildComponentData}
+              //       ></DropDownForDistributor>
+                
+              //     </View>
+              //   );
+              // } 
               else if (item.type === 'date') {
                 return (
                   <InputDate

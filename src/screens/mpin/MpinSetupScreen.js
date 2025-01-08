@@ -139,16 +139,16 @@ const MpinSetupScreen = (params) => {
       console.log("Full Mpin", fullMpin);
 
       await AsyncStorage.setItem("userMpin", fullMpin);
-      if(userData.user_type == "distributor"){
-        navigation.reset({ index: "0", routes: [{ name: "UpdatePassword",params: { 
-          /* Your parameters here */
-          type: "login"
-        } }] });
-      }
-      else{
+      // if(userData.user_type == "distributor"){
+      //   navigation.reset({ index: "0", routes: [{ name: "UpdatePassword",params: { 
+      //     /* Your parameters here */
+      //     type: "login"
+      //   } }] });
+      // }
+      // else{
       navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
 
-      }
+      // }
     } else {
       // Alert.alert("Error", "Please enter all 4 digits of your MPIN.");
       setError(true);

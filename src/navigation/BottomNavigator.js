@@ -124,6 +124,7 @@ function BottomNavigator({ navigation }) {
             }}
           >
             {  console.log("workflow", workflow, )}
+            {(userData?.user_type).toLowerCase() !== "distributor" &&
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("GiftCatalogue");
@@ -140,10 +141,10 @@ function BottomNavigator({ navigation }) {
                 }}
                 content={t("Gift Catalogue")}
               ></PoppinsTextMedium>
-            </TouchableOpacity>
+            </TouchableOpacity>}
             {/* ozone change */}
-            {(userData?.user_type).toLowerCase() !== "dealer" &&
-            (userData?.user_type).toLowerCase() !== "sales" ? (
+            {(userData?.user_type).toLowerCase() !== "distributor" &&
+            
               <TouchableOpacity
                 onPress={() => {
                   Platform.OS == "android"
@@ -231,32 +232,8 @@ function BottomNavigator({ navigation }) {
                   
                 </Tooltip>
               </TouchableOpacity>
-            ) : (
-              workflow?.includes("Genuinity") && (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("ScanAndRedirectToGenuinity");
-                  }}
-                  style={{ alignItems: "center", justifyContent: "center" }}
-                >
-                  {/* <Qrcode name="qrcode" size={24} color={ternaryThemeColor}></Qrcode> */}
-                  <FlipAnimation
-                    direction="horizontal"
-                    duration={1400}
-                    comp={() => {
-                      return (
-                        <Qrcode
-                          name="qrcode"
-                          size={24}
-                          color={ternaryThemeColor}
-                        ></Qrcode>
-                      );
-                    }}
-                  />
-                   <PoppinsTextMedium style={{marginTop:4,fontSize:12,fontWeight:platformFontWeight,color:'black'}} content={t("Check Genuinity")}></PoppinsTextMedium>
-                </TouchableOpacity>
-              )
-            )}
+            
+                  }
             {(userData?.user_type).toLowerCase() !== "sales" && (
               <TouchableOpacity
                 onPress={() => {
@@ -265,8 +242,7 @@ function BottomNavigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  position: "absolute",
-                  right: 30,
+                  
                 }}
               >
                   <Book name="book" size={24} color={ternaryThemeColor}></Book>

@@ -20,7 +20,7 @@ const VideoGallery = ({ navigation }) => {
     : 'grey';
   const height = Dimensions.get('window').height
 
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
   
   const {t} = useTranslation()
 

@@ -135,7 +135,7 @@ const QrCodeScanner = ({ navigation, route }) => {
     ? useSelector((state) => state.apptheme.ternaryThemeColor)
     : "grey";
   const gifUriLoading = Image.resolveAssetSource(
-    require("../../../assets/gif/loader.gif")
+    require("../../../assets/gif/loaderNew.gif")
   ).uri;
 
   const gifUriCheck = Image.resolveAssetSource(
@@ -637,13 +637,19 @@ const QrCodeScanner = ({ navigation, route }) => {
       let requestData = {};
 
       if (qrData?.split("-").length === 1) {
-        requestData["unique_code"] = `ozone-${qrData}`;
-        qrData = `ozone-${qrData}`;
+        requestData["unique_code"] = `Culcutta Knitewear-${qrData}`;
+        qrData = `Culcutta Knitewear-${qrData}`;
       } else if (qrData?.split("-").length === 2) {
         requestData["unique_code"] = qrData;
       }
 
       console.log("onSuccess qrData", qrData);
+      if(qrData == undefined)
+      {
+        qrData = e?.split('-')[1]
+        qrData = `Culcutta Knitewear-${qrData}`;
+        requestData["unique_code"] = qrData;
+      }
       // Check for duplicate QR code
 
       if (isDuplicateQr.has(qrData)) {

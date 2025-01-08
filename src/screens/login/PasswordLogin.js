@@ -451,7 +451,7 @@ const PasswordLogin = ({ navigation, route }) => {
   //function to handle Modal
   const modalWithBorderClose = () => {
     setModalWithBorder(false);
-   getAppMenuData &&  navigation.reset({ index: '0', routes: [{ name: 'Dashboard' }] })
+   getAppMenuData &&  navigation.reset({ index: '0', routes: [{ name: 'MpinSetupScreen' }] })
 
 
   };
@@ -524,7 +524,7 @@ const PasswordLogin = ({ navigation, route }) => {
       <View style={{
         width: '100%', alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: ternaryThemeColor,
+        backgroundColor: "white",
       }}>
         <View
           style={{
@@ -532,7 +532,7 @@ const PasswordLogin = ({ navigation, route }) => {
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: ternaryThemeColor,
+            backgroundColor: "white",
             flexDirection: 'row',
 
           }}>
@@ -558,7 +558,7 @@ const PasswordLogin = ({ navigation, route }) => {
 
 
             }}
-            source={{uri:splash}}></Image>
+            source={{uri:icon}}></Image>
           {/* ozone change */}
          
 
@@ -600,7 +600,7 @@ const PasswordLogin = ({ navigation, route }) => {
             width: '90%'
           }}>
           <PoppinsText
-            style={{ color: 'white', fontSize: 28 }}
+            style={{ color: 'black', fontSize: 28 }}
             content={t("Login To Your Account")}></PoppinsText>
 
         </View>

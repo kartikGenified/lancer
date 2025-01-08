@@ -244,7 +244,7 @@ const [uid, setUid] = useState("")
       <View style={{
         width: '100%', alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: ternaryThemeColor,
+        backgroundColor: "white",
       }}>
         <View
           style={{
@@ -252,7 +252,7 @@ const [uid, setUid] = useState("")
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: ternaryThemeColor,
+            backgroundColor: "white",
             flexDirection: 'row',
 
           }}>
@@ -278,7 +278,7 @@ const [uid, setUid] = useState("")
 
 
             }}
-            source={require('../../../assets/images/ozoneWhiteLogo.png')}></Image>
+            source={{uri:icon}}></Image>
 
 
         </View>
@@ -290,30 +290,30 @@ const [uid, setUid] = useState("")
             width: '90%'
           }}>
           <PoppinsText
-            style={{ color: 'white', fontSize: 24 }}
+            style={{ color: 'black', fontSize: 24 }}
             content={t("Please select any one option to reset your password")}>
           </PoppinsText>
           <View style={{flexDirection:"row",width:'100%',alignItems:'center',justifyContent:'flex-start'}}>
           <RadioButton
-          color='white'
-          uncheckedColor='white'
+          color='black'
+          uncheckedColor='black'
         value="first"
         status={ checked === 'first' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('first')}
       />
       <PoppinsText
-            style={{ color: 'white', fontSize: 14,marginRight:20 }}
+            style={{ color: 'black', fontSize: 14,marginRight:20 }}
             content={t("Via UserName")}>
           </PoppinsText>
       <RadioButton
-        color='white'
-        uncheckedColor='white'
+        color='black'
+        uncheckedColor='black'
         value="second"
         status={ checked === 'second' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('second')}
       />
       <PoppinsText
-            style={{ color: 'white', fontSize: 14 }}
+            style={{ color: 'black', fontSize: 14 }}
             content={t("Via Mobile Number")}>
           </PoppinsText>
           </View>

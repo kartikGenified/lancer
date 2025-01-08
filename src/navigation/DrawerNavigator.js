@@ -66,7 +66,7 @@ const CustomDrawer = () => {
   const userData = useSelector((state) => state.appusersdata.userData);
   const kycData = useSelector((state) => state.kycDataSlice.kycData);
 
-  console.log("drawer data tabs", drawerData);
+  console.log("drawer data tabs", drawerData,kycData);
 
   const [
     getFAQ,
@@ -625,7 +625,7 @@ const CustomDrawer = () => {
             );
           })}
 
-    {
+    {/* {
       userData?.user_type == "distributor" &&
       <DrawerItems
           // key={index}
@@ -635,7 +635,7 @@ const CustomDrawer = () => {
           eye={true}
         ></DrawerItems>
 
-    }
+    } */}
   
         {/* My Program Starting */}
         {/* <View

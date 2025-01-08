@@ -10,11 +10,11 @@ import { useTranslation } from 'react-i18next';
 const RewardBox = () => {
     const workflow = useSelector(state => state.appWorkflow.program)
     const id = useSelector(state => state.appusersdata.id);
-
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
+    const userData = useSelector(state => state.appusersdata.userData)
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
     const {t} = useTranslation();
 
-
+    console.log("asbfhjsahjvchjashvhhavshj",userData)
     const [userPointFunc, {
         data: userPointData,
         error: userPointError,
@@ -80,16 +80,22 @@ const RewardBox = () => {
                     workflow?.includes("Points On Product") && userPointData && <RewardSquare amount={userPointData.body.point_earned} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("earned points")}></RewardSquare>
                 }
                 {
+                    userData && (userData?.user_type)?.toLowerCase() == 'distributor' && userPointData  && <RewardSquare amount={userPointData.body.point_earned} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("earned points")}></RewardSquare>
+                }
+                {
                     workflow?.includes("Points On Product") && userPointData && <RewardSquare amount={userPointData.body.point_redeemed} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("redeemed points")}></RewardSquare>
                 }
                 {
                     workflow?.includes("Points On Product") && userPointData && <RewardSquare amount={userPointData.body.point_balance} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("balance points")}></RewardSquare>
                 }
                 {
-                    workflow?.includes("Points On Product") && userPointData && <RewardSquare amount={userPointData.body.point_reserved} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("reserved points")}></RewardSquare>
+                    // workflow?.includes("Points On Product") && userPointData && <RewardSquare amount={userPointData.body.point_reserved} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("reserved points")}></RewardSquare>
                 }
                 {
                     workflow?.includes("Points On Product") && userPointData && <RewardSquare amount={((Number(userPointData.body.point_reserved) + Number(userPointData.body.point_balance)).toFixed(2))} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("Total Points")}></RewardSquare>
+                }
+                {
+                   userData && (userData?.user_type)?.toLowerCase() == 'distributor' &&  userPointData && <RewardSquare amount={((Number(userPointData.body.point_reserved) + Number(userPointData.body.point_balance)).toFixed(2))} color="#DCFCE7" image={require('../../../assets/images/points.png')} title={t("Total Points")}></RewardSquare>
                 }
             </ScrollView>
 

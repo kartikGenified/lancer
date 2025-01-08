@@ -129,7 +129,7 @@ const Dashboard = ({ navigation }) => {
     : "#FFB533";
 
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loader.gif")
+    require("../../../assets/gif/loaderNew.gif")
   ).uri;
   // console.log("pointSharingData", JSON.stringify(pointSharingData), userData)
   // console.log("user id is from dashboard", userId)
@@ -647,17 +647,11 @@ const Dashboard = ({ navigation }) => {
             }} />}
           </View>
           {/* Ozone specific change do not show for sales */}
-          {userData?.user_type_id !== 13 && userData && !userPointIsLoading && (
+          {/* {userData?.user_type_id !== 13 && userData && !userPointIsLoading && (
             <View
               style={{ width: "90%", alignItems: "center", justifyContent: "" }}
             >
-              {/* <PointBox pointBalance ={Math.trunc(Number(userPointData?.body?.point_balance)) } ></PointBox> */}
-              {/* <PointBox pointBalance ={Math.trunc(0)} ></PointBox> */}
-              {console.log(
-                "firstdkdkd",
-                Math.trunc(Number(userPointData?.body?.point_balance))
-              )}
-              {/* <PointBox pointBalance ={Math.trunc(Number(userPointData?.body?.point_balance)) } ></PointBox>  */}
+              
               {needRandomRedeemPoint ?
                 <PointBox pointBalance ={Math.trunc(Number(userPointData?.body?.point_balance)) } ></PointBox> 
             :
@@ -718,7 +712,6 @@ const Dashboard = ({ navigation }) => {
                   justifyContent: "",
                 }}
               >
-                {/* <PointBox pointBalance ={Math.trunc(Number(userPointData?.body?.point_balance)) } ></PointBox> */}
               </View>
             </View>
 
@@ -811,7 +804,7 @@ const Dashboard = ({ navigation }) => {
 
 
             </View>
-          )}
+          )} */}
           {(userData?.user_type).toLowerCase() !== "dealer" ? (
             (userData?.user_type).toLowerCase() !== "sales" ? (
               scanningDetails &&
@@ -852,6 +845,7 @@ const Dashboard = ({ navigation }) => {
               source={{
                 uri: gifUri, // Update the path to your GIF
                 priority: FastImage.priority.normal,
+                
               }}
               resizeMode={FastImage.resizeMode.contain}
             />
@@ -879,7 +873,7 @@ const Dashboard = ({ navigation }) => {
               justifyContent: "space-evenly",
             }}
           >
-            {userData.user_type.toLowerCase() !== "sales" && (
+            {userData.user_type.toLowerCase() !== "distributor" && (
               <DashboardSupportBox
                 title={t("rewards")}
                 text="Rewards"

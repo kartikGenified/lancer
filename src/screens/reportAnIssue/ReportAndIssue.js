@@ -25,6 +25,7 @@ import ModalWithBorder from "../../components/modals/ModalWithBorder";
 import Icon from "react-native-vector-icons/Feather";
 import ErrorModal from "../../components/modals/ErrorModal";
 import Close from "react-native-vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 
 const ReportAndIssue = ({ navigation, route }) => {
   const [description, setDescription] = useState("");
@@ -35,7 +36,7 @@ const ReportAndIssue = ({ navigation, route }) => {
 
   const userData = useSelector((state) => state.appusersdata.userData);
   const slug = slug;
-
+  const {t} = useTranslation()
   const dispatch = useDispatch();
 
   const ternaryThemeColor = useSelector(

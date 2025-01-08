@@ -108,6 +108,7 @@ import handleLocationPermissionAndFetch from "../../utils/handleLocationPermissi
 const Splash = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
+  const [currentAppVersion, setCurrentAppVersion] = useState()
   const [connected, setConnected] = useState(true);
   const [isSlowInternet, setIsSlowInternet] = useState(false);
   const [locationStatusChecked, setLocationCheckVisited] = useState(false);
@@ -127,12 +128,8 @@ const Splash = ({ navigation }) => {
   // const [gotLoginData, setGotLoginData] = useState()
   const isConnected = useSelector((state) => state.internet.isConnected);
   let lastFetchedApiOn;
-  let currentVersion;
-  if (isConnected?.isConnected) {
-    currentVersion = VersionCheck.getCurrentVersion();
-    console.log("current version check", currentVersion);
-    dispatch(setAppVersion(currentVersion));
-  }
+  
+ 
   const gifUri = Image.resolveAssetSource(require('../../../assets/gif/Splash-myro.gif')).uri;
   // generating functions and constants for API use cases---------------------
   const [
@@ -235,6 +232,15 @@ const Splash = ({ navigation }) => {
     },
   ] = useFetchLegalsMutation();
 
+
+  useEffect(()=>{
+    
+      const currentVersion = VersionCheck.getCurrentVersion();
+      setCurrentAppVersion(currentVersion)
+      console.log("current version check", currentVersion);
+      dispatch(setAppVersion(currentVersion));
+  },[])
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -252,9 +258,11 @@ const Splash = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    console.log("currentVersion", currentVersion);
-    if (isConnected.isConnected) {
-      getMinVersionSupportFunc(currentVersion);
+    if(currentAppVersion)
+    {
+      console.log("currentVersiongetMinVersionSupportFunc", currentAppVersion);
+
+      getMinVersionSupportFunc(currentAppVersion);
 
       const fetchTerms = async () => {
         // const credentials = await Keychain.getGenericPassword();
@@ -276,7 +284,9 @@ const Splash = ({ navigation }) => {
       };
       fetchPolicies();
     }
-  }, []);
+   
+    
+  }, [currentAppVersion]);
 
   useEffect(() => {
     const FinalNavigation = async () => {
@@ -548,12 +558,7 @@ const Splash = ({ navigation }) => {
                   
                     }
                     
-                    // setTimeout(()=>{
-                    //   navigation.reset({
-                    //     index: "0",
-                    //     routes: [{ name: "Dashboard" }],
-                    //   });
-                    // },2000)
+                
 
 
                 }
@@ -952,6 +957,7 @@ const Splash = ({ navigation }) => {
     console.log("unwrapping resolved and rejected status", clientName ,await getAppTheme(clientName));
     const checkToken = async () => {
       const fcmToken = await messaging().getToken();
+      console.log("fcmToken",fcmToken)
       if (fcmToken) {
         dispatch(setFcmToken(fcmToken));
       }
@@ -1024,7 +1030,7 @@ const Splash = ({ navigation }) => {
         }
       }
     } else if (getMinVersionSupportError) {
-      // console.log("getMinVersionSupportError", getMinVersionSupportError)
+      console.log("getMinVersionSupportError", getMinVersionSupportError)
       Alert.alert(
         t("Error"),
         t("An error occurred while fetching minimum version support."),
@@ -1072,9 +1078,8 @@ const Splash = ({ navigation }) => {
       }
     };
     getData();
-    dispatch(setAppVersion(currentVersion));
+    dispatch(setAppVersion(currentAppVersion));
 
-    getMinVersionSupportFunc(currentVersion);
     getAppTheme(clientName);
     getData();
   }, [isConnected, locationStatusChecked]);

@@ -7,7 +7,7 @@ export const clientOfficialName = "Calcutta Knit Wear"
 export const baseUrl = "http://saas-api-dev.genefied.in/"  // "http://saas-api-dev.genefied.in/""
 
 //icons and images
-export const appIcon = require("../../assets/images/genefiedLogo.jpg");
+export const appIcon = require("../../assets/images/Logo.png");
 export const splash = require("../../assets/gif/Splash-myro.gif");
 
 export const descriptionImages = [
@@ -18,7 +18,7 @@ export const descriptionImages = [
   // require("../../assets/images/Step5.png")
 ];
 
-//Change Loader Manually By Simply Replacing images
+//Change loaderNew Manually By Simply Replacing images
 
 //Registration
 export const RegistrationMessage = `Thank you for joining ${clientOfficialName} Loyalty program`;

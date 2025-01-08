@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import {View, StyleSheet, SafeAreaView,Alert,Linking, Platform} from 'react-native';
+import {View, StyleSheet,Alert,Linking, Platform} from 'react-native';
 import StackNavigator from './src/navigation/StackNavigator';
 import { store } from './redux/store';
 import { Provider } from 'react-redux'
@@ -10,6 +10,8 @@ import ModalWithBorder from './src/components/modals/ModalWithBorder';
 import NetInfo from "@react-native-community/netinfo";
 import { PaperProvider } from 'react-native-paper';
 import { InternetSpeedProvider } from './src/Contexts/useInternetSpeedContext';
+import GlobalErrorHandler from './src/utils/GlobalErrorHandler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const App = () => {
   const [notifModal, setNotifModal] = useState(false)
   const [notifData, setNotifData] = useState(null)
@@ -106,9 +108,11 @@ const App = () => {
         <Provider store={store}>
           <PaperProvider>
             <InternetSpeedProvider>
+             
         <SafeAreaView style={{flex:1}}>
           
             <StackNavigator>
+            <GlobalErrorHandler>
             {notifModal &&  <ModalWithBorder
             modalClose={() => {
               setNotifModal(false)
@@ -116,10 +120,12 @@ const App = () => {
             message={"message"}
             openModal={notifModal}
             comp={notifModalFunc}></ModalWithBorder>}
-           
+           </GlobalErrorHandler>
             </StackNavigator>
         </SafeAreaView>
+        
         </InternetSpeedProvider>
+       
         </PaperProvider>
         </Provider>
     );

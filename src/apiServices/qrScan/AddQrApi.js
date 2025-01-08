@@ -32,9 +32,42 @@ export const AddQrApi = baseApi.injectEndpoints({
               };
             },
           }),
+
+          fetchDistributorBySearch: builder.mutation({
+            query: (body) => {
+              console.log("fetch body", body)
+              return {
+                method: "get",
+                url: `api/tenant/aqualite/distributor/search/${body.type}/${body.value}`,
+                headers: {
+                  "Content-Type": "application/json",
+                  slug: slug,
+                },
+
+              };
+            },
+          }),
+
+          fetchDistributorQrScanedList: builder.mutation({
+            query: (body) => {
+              console.log("dis body", body)
+              return {
+                method: "post",
+                url: `api/tenant/aqualite/distributor/scan/${body.user_id}/?${body.query_params}`,
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + body.token,
+                  slug: slug,
+                },
+                body:JSON.stringify({})
+              };
+            },
+          }),
+
+  
     })
 });
 
 
-export const {useAddQrMutation,useFetchAllQrScanedListMutation} = AddQrApi
+export const {useAddQrMutation,useFetchAllQrScanedListMutation, useFetchDistributorQrScanedListMutation, useFetchDistributorBySearchMutation} = AddQrApi
 

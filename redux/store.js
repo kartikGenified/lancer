@@ -27,6 +27,8 @@ import drawerDataSlice from './slices/drawerDataSlice';
 import cameraStatusSlice from './slices/cameraStatusSlice';
 import appLanguageSlice from './slices/appLanguageSlice';
 import walkThroughSlice from './slices/walkThroughSlice';
+import errorMiddleware from './middleware/errorMiddleware';
+import errorSlice from './slices/errorSlice';
 
 export const store = configureStore({
   reducer: {
@@ -56,7 +58,8 @@ export const store = configureStore({
     termsPolicy:termsPolicySlice,
     drawerData: drawerDataSlice,
     cameraStatus:cameraStatusSlice,
-    appLanguage:appLanguageSlice
+    appLanguage:appLanguageSlice,
+    
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(baseApi.middleware, internetMiddleware), // Include networkMiddleware

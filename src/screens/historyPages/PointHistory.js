@@ -54,7 +54,7 @@ const PointHistory = ({ navigation }) => {
 
 
 
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
     const noData = Image.resolveAssetSource(require('../../../assets/gif/noData.gif')).uri;
     let startDate,endDate
     useEffect(() => {
@@ -79,11 +79,14 @@ const PointHistory = ({ navigation }) => {
         (async () => {
           const credentials = await Keychain.getGenericPassword();
           const token = credentials.username;
-          const startDate = moment(start).format(
-            "YYYY-MM-DD"
-          )
-          const endDate = moment(end).format("YYYY-MM-DD")
-          console.log("Start End",startDate,endDate)
+        //   const startDate = moment(start).format(
+        //     "YYYY-MM-DD"
+        //   )
+        //   const endDate = moment(end).format("YYYY-MM-DD")
+          console.log("fetching point history data by date filter",{startDate:startDate,
+          endDate:endDate,
+          token: token,
+          userId:userId})
     
           fetchUserPointsHistoryFunc({
             startDate:startDate,
@@ -320,7 +323,7 @@ const PointHistory = ({ navigation }) => {
                         handleFilter={onFilter}
                         comp={ModalContent}></FilterModal>} */}
 
-<PoppinsTextMedium style={{ marginLeft: 20, fontSize: 16, position: "absolute", left: 10,color:'black' }} content={t("Date Filter")}></PoppinsTextMedium>
+<PoppinsTextMedium style={{ marginLeft: 20, fontSize: 16,color:'black',marginTop:20 }} content={t("Date Filter")}></PoppinsTextMedium>
                     <TouchableOpacity onPress={()=>{setOpenBottomModal(false)}} style={{height:40,width:40,alignItems:'center',justifyContent:'center',position:'absolute',top:10,right:10}}>
                     <Image style={{height:30,width:30,resizeMode:'contain'}} source={require('../../../assets/images/cancel.png')}></Image>
                     </TouchableOpacity>
@@ -395,7 +398,7 @@ const PointHistory = ({ navigation }) => {
         return (
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", margin: 8, borderBottomWidth: 1, borderColor: '#DDDDDD', paddingBottom: 10,width:'100%',height:120,backgroundColor:'white' }}>
                 <View style={{ height: 60, width: '14%', alignItems: "center", justifyContent: "center", borderRadius: 10, borderWidth: 1, borderColor: '#DDDDDD',position:'absolute',left:10,}}>
-                    {image ? <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={{uri:image}}></Image>: <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={require('../../../assets/images/logoOzone.png')}></Image>}
+                    {image ? <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={{uri:image}}></Image>: <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={require('../../../assets/images/Logo.png')}></Image>}
                 </View>
                 <View style={{ alignItems: "flex-start", justifyContent: "center",position:'absolute',left:80,width:'60%' }}>
                 {type!=="registration_bonus" && <PoppinsTextMedium style={{ fontWeight: '700', fontSize: 14, color: 'black' }} content={description}></PoppinsTextMedium>}
@@ -453,7 +456,7 @@ const PointHistory = ({ navigation }) => {
            
             <DisplayEarnings></DisplayEarnings>
             <Header></Header>
-            <PointCategoryTab></PointCategoryTab>
+            {/* <PointCategoryTab></PointCategoryTab> */}
 
             {
                 displayList.length==0 && !isLoading &&

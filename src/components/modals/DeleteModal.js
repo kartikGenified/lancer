@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import FastImage from "react-native-fast-image";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 const DeleteModal = (props) => {
   const [modalVisible, setModalVisible] = useState();
@@ -13,12 +14,11 @@ const DeleteModal = (props) => {
   const ternaryThemeColor = useSelector(
     (state) => state.apptheme.ternaryThemeColor
   )
-    ? useSelector((state) => state.apptheme.ternaryThemeColor)
-    : "grey";
+   const {t} = useTranslation()
     const userData = useSelector(state => state.appusersdata.userData)
     console.log("userdata",userData)
 
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
     const [deleteDataFunc, {
         data: deleteDataData,
         error: deleteDataError,

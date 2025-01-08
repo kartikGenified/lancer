@@ -499,7 +499,7 @@ const ListAddress = ({ navigation ,route}) => {
       >
         <TouchableOpacity style={{height:40,width:120,backgroundColor:ternaryThemeColor,alignItems:'center',justifyContent:'center',borderRadius:4,position:'absolute',left:20}} onPress={()=>{
           if(selectedAddress){
-            navigation.navigate('OtpVerification',{type:"Gift",schemeType:schemeType,schemeID:schemeID})
+            navigation.replace('OtpVerification',{type:"Gift",schemeType:schemeType,schemeID:schemeID})
           }
           else{
             alert(t("Please select an address first"))

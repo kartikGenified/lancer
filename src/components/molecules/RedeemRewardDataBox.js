@@ -35,7 +35,7 @@ const RedeemRewardDataBox = (props) => {
             </View>
             <View style={{width:'70%',alignItems:"center",justifyContent:"center",marginTop:10}}>
                 <Text style={{color:"black",fontSize:12,fontWeight:'400'}}>{header}</Text>
-                <PoppinsText style={{fontSize:18,fontWeight:'600',color:'black'}} content={data}></PoppinsText>
+                <PoppinsText style={{fontSize:16,fontWeight:'600',color:'black'}} content={data}></PoppinsText>
             </View>
         </TouchableOpacity>
     );
