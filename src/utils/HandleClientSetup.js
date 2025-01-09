@@ -4,8 +4,9 @@
 export const clientName = "calkn";
 export const clientID = 29;
 export const clientOfficialName = "Calcutta Knit Wear"
-export const baseUrl = "http://saas-api-dev.genefied.in/"  // "http://saas-api-dev.genefied.in/""
-
+export const baseUrl =  "http://saas-api-dev.genefied.in/"
+// "https://saas.genefied.in/"
+// "http://saas-api-dev.genefied.in/"
 //icons and images
 export const appIcon = require("../../assets/images/Logo.png");
 export const splash = require("../../assets/gif/Splash-myro.gif");

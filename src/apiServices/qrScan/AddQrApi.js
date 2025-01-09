@@ -37,12 +37,14 @@ export const AddQrApi = baseApi.injectEndpoints({
             query: (body) => {
               console.log("fetch body", body)
               return {
-                method: "get",
-                url: `api/tenant/aqualite/distributor/search/${body.type}/${body.value}`,
+                method: "post",
+                url: `/api/tenant/appUserType/search-tagging`,
                 headers: {
                   "Content-Type": "application/json",
                   slug: slug,
+                  Authorization: "Bearer " + body.token,
                 },
+                body:body
 
               };
             },

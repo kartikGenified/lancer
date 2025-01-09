@@ -242,7 +242,8 @@ function BottomNavigator({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  
+                  position:userData?.user_type == 'distributor' ? 'relative' : 'absolute',
+                  right:userData?.user_type == 'distributor' ? 0 : 30
                 }}
               >
                   <Book name="book" size={24} color={ternaryThemeColor}></Book>

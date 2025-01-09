@@ -45,7 +45,7 @@ const DropDownForDistributor = (props) => {
   }, [fetchDistributorListData, fetchDistributorListError]);
 
   const handleSelect = (data, mobile, id) => {
-    console.log("dataaaaaa selecteddddd", data);
+    console.log("dataaaaaa selecteddddd", data,mobile,id);
     if (data == "Other") {
       setShowDistributorInput(true);
     } else {
@@ -76,9 +76,10 @@ const DropDownForDistributor = (props) => {
       let response = [];
       if (text.length > 2) {
         response = await fetchDistributorList({
-          value: text,
+          user_type:"distributor",
+          mobile: text,
+          name:text,
           token: credentials.username,
-          type: "name",
         }); // Call the API with the text
       }
       console.log("Responseeee", response);
@@ -215,7 +216,7 @@ const DropDownForDistributor = (props) => {
                     key={index}
                     mobile={item.mobile}
                     id={item.user_id}
-                    title={item.distributor_name}
+                    title={item.name}
                   />
                 );
               })}

@@ -230,17 +230,16 @@ const PointHistory = ({ navigation }) => {
                 </TouchableOpacity>
                 
                 }
-                 {registrationRequired.includes(userData.user_type) && 
+                 {/* {registrationRequired.includes(userData.user_type) && 
                 <TouchableOpacity onPress={()=>{
                     getRegistrationPoints("points_sharing")
                     setType("extra")
                 }} style={{height:'100%',width:120,alignItems:"center",justifyContent:'center',borderLeftWidth:1,borderRightWidth:1,borderColor:'#DDDDDD',backgroundColor:type==="extra" ? "#DDDDDD":"white"}}>
-                    {/* <PoppinsTextMedium content="Extra Points" style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium> */}
                     <PoppinsTextMedium content={t("extra points")} style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium>
 
                 </TouchableOpacity>
                 
-                }
+                } */}
                  {registrationRequired.includes(userData.user_type) && 
                 <TouchableOpacity onPress={()=>{
                     getRegistrationPoints("registration_bonus")
@@ -252,16 +251,15 @@ const PointHistory = ({ navigation }) => {
                 </TouchableOpacity>    
                 }
 
-                {registrationRequired.includes(userData.user_type) && 
+                {/* {registrationRequired.includes(userData.user_type) && 
                 <TouchableOpacity onPress={()=>{
                     getRegistrationPoints("annual_kitty_2024_25")
                     setType("Annual Kitty")
                 }} style={{height:'100%',width:120,alignItems:"center",justifyContent:'center',backgroundColor:type==="Annual Kitty" ? "#DDDDDD":"white"}}>
-                    {/* <PoppinsTextMedium content="Registration Bonus" style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium> */}
                     <PoppinsTextMedium content={t("Annual Kitty")} style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium>
 
                 </TouchableOpacity>    
-                }
+                } */}
 
                 <TouchableOpacity onPress={()=>{
                     getRegistrationPoints("tds_deducted_2024_25")
@@ -456,7 +454,7 @@ const PointHistory = ({ navigation }) => {
            
             <DisplayEarnings></DisplayEarnings>
             <Header></Header>
-            {/* <PointCategoryTab></PointCategoryTab> */}
+            <PointCategoryTab></PointCategoryTab>
 
             {
                 displayList.length==0 && !isLoading &&

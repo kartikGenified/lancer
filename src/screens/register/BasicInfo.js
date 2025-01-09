@@ -47,6 +47,7 @@ import FastImage from 'react-native-fast-image';
 import {GoogleMapsKey} from "@env"
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DropDownForDistributor from '../../components/atoms/dropdown/DropDownForDistributor';
 
 const BasicInfo = ({ navigation, route }) => {
   const [userName, setUserName] = useState(route.params.name)
@@ -79,7 +80,10 @@ const BasicInfo = ({ navigation, route }) => {
   const [gstVerified, setGstVerified] = useState(true)
   const [gstEntered, setGstEntered] = useState(false)
   const [gstinRequired, setGstinRequired] = useState(false)
-
+  const [distributorName, setDistributorName] = useState("");
+  const [distributorMobile, setDistributorMobile] = useState("");
+  const [distributorId, setDistributorId] = useState("");
+  const [showDistributorInput, setShowDistributorInput] = useState(false);
   const [mobileVerified, setMobileVerified] = useState()
   const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
   const focused = useIsFocused()
@@ -376,7 +380,7 @@ const BasicInfo = ({ navigation, route }) => {
       console.log("data after submitting form", registerUserData)
       if (registerUserData.success) {
         setSuccess(true)
-        setMessage(t("Thank you for joining Calcutta Knitwear Loyalty program"))
+        setMessage(t("Thank you for joining Shiba World Loyalty program"))
         setModalTitle(t("Greetings"))
       }
       setHideButton(false)
@@ -547,6 +551,21 @@ const BasicInfo = ({ navigation, route }) => {
     }
 
     }
+
+    if (data.name == "dealer_name") {
+      if(data.value =="Other"){
+        setShowDistributorInput(true);
+      }
+      else{
+        setShowDistributorInput(false);
+        setDistributorName(data.value);
+        setDistributorId(data.id)
+        setDistributorMobile(data.mobile)
+        console.log("Data dis", data);
+      }
+      
+    }
+
     // Update the responseArray state with the new data
     setResponseArray(prevArray => {
       const existingIndex = prevArray.findIndex(
@@ -789,6 +808,9 @@ console.log("responseMap",responseMap)
   inputFormData["login_type"] = navigatingFrom == "OtpLogin" ? "otp" : 'uidp'
   inputFormData["language"] = preferedLanguage
   inputFormData["app_version"] = appVersion
+  inputFormData["distributor_name"] = String(distributorName);
+  inputFormData["distributor_mobile"] = distributorMobile!= undefined ? String(distributorMobile) : null;
+  inputFormData["distributor_user_id"] = distributorId!= undefined  ? String(distributorId) : null
   const body = inputFormData;
   console.log("registration output", body);
 
@@ -1273,6 +1295,21 @@ console.log("responseMap",responseMap)
 
 
                 }
+                else if (item.name.trim().toLowerCase() === "dealer_name") {
+                  return (
+                    <View style={{ width: "90%" }}>
+                      <DropDownForDistributor
+                        title={"Select Distrbutor"}
+                        header={"Select Distrbutor"}
+                        jsonData={{label:item.name,name:item.name}}
+                        searchEnable={true}
+                        data={[]}
+                        handleData={handleChildComponentData}
+                      ></DropDownForDistributor>
+                  
+                    </View>
+                  );
+                } 
                 else {
                   return (
                     <TextInputRectangle
@@ -1308,21 +1345,7 @@ console.log("responseMap",responseMap)
                   ></DropDownRegistration>
                 )
               }
-              // else if (item.name.trim().toLowerCase() === "dealer_name") {
-              //   return (
-              //     <View style={{ width: "90%" }}>
-              //       <DropDownForDistributor
-              //         title={"Select Distrbutor"}
-              //         header={"Select Distrbutor"}
-              //         jsonData={{label:item.name,name:item.name}}
-              //         searchEnable={true}
-              //         data={[]}
-              //         handleData={handleChildComponentData}
-              //       ></DropDownForDistributor>
-                
-              //     </View>
-              //   );
-              // } 
+              
               else if (item.type === 'date') {
                 return (
                   <InputDate

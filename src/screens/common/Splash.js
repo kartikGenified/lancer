@@ -262,7 +262,7 @@ const Splash = ({ navigation }) => {
     {
       console.log("currentVersiongetMinVersionSupportFunc", currentAppVersion);
 
-      getMinVersionSupportFunc(currentAppVersion);
+      getMinVersionSupportFunc(String(currentAppVersion));
 
       const fetchTerms = async () => {
         // const credentials = await Keychain.getGenericPassword();

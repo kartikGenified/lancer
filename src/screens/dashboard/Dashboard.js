@@ -336,7 +336,7 @@ const Dashboard = ({ navigation }) => {
 
   useEffect(() => {
     if (getKycStatusData) {
-      // console.log("getKycStatusData", getKycStatusData)
+      console.log("getKycStatusData", getKycStatusData)
       if (getKycStatusData?.success) {
         const tempStatus = Object.values(getKycStatusData?.body);
 
@@ -647,7 +647,7 @@ const Dashboard = ({ navigation }) => {
             }} />}
           </View>
           {/* Ozone specific change do not show for sales */}
-          {/* {userData?.user_type_id !== 13 && userData && !userPointIsLoading && (
+          {userData?.user_type!== 'distributor' && userData && !userPointIsLoading && (
             <View
               style={{ width: "90%", alignItems: "center", justifyContent: "" }}
             >
@@ -804,7 +804,7 @@ const Dashboard = ({ navigation }) => {
 
 
             </View>
-          )} */}
+          )}
           {(userData?.user_type).toLowerCase() !== "dealer" ? (
             (userData?.user_type).toLowerCase() !== "sales" ? (
               scanningDetails &&
