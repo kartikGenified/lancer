@@ -12,12 +12,12 @@
 		0B5E7FD736894E34B199C899 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEAC1C540BDA408D917124E6 /* Poppins-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2F76B06CB1F470A9FC767B6A /* Pods_OzoneOverseas_OzoneOverseasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E245633C7E561AF902E4B366 /* Pods_OzoneOverseas_OzoneOverseasTests.framework */; };
 		3CA1566E5C7B4EE1A2F7AC75 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CD9F36D1CDD42B4A722D9A1 /* Poppins-Black.ttf */; };
 		40BDB3C1D0D44A55A379A967 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 326D221C36044A949EBE9EFB /* Poppins-SemiBoldItalic.ttf */; };
 		4EFCF9E930664BFA94C8D88A /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2621FF15BCC64D26969A75F2 /* Poppins-Light.ttf */; };
 		52BE06121C0C407690BF4A90 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B8BF0838049D291ECD299 /* Poppins-Regular.ttf */; };
 		6236900152AB4189B2E322BD /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7146FCA9701416BBB4981A0 /* Poppins-ThinItalic.ttf */; };
+		6C0348899BA1D6A6BF23B2C0 /* Pods_calcuttaKnitWear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D19DFBBDD5BDAF76FB9F0A /* Pods_calcuttaKnitWear.framework */; };
 		6EE2AB2C70474C17B24BDBD3 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF597A940C684E27BC749E32 /* Poppins-ExtraBoldItalic.ttf */; };
 		7F92F55755B3473DB222E5E7 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 884A6DE7592C4EE0B1A9E605 /* Poppins-Thin.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -25,13 +25,13 @@
 		94361D8AB0374353B9361C1C /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F97B41FC45544F1C852F0A14 /* Poppins-SemiBold.ttf */; };
 		975670F7D8CD47F0B4038FD0 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E3DA997340647E68B5EABD5 /* Poppins-Italic.ttf */; };
 		977B36C0E3DD43CDA831AA98 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C93A058ABAA46E7A057FA77 /* Poppins-ExtraBold.ttf */; };
-		98116914B14A2FF2AA287B5D /* Pods_OzoneOverseas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268BA22897B696BB1F242873 /* Pods_OzoneOverseas.framework */; };
 		9C16CD0F339C46A18C6854C9 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5109BE1CC45D4D228F5905C8 /* Poppins-MediumItalic.ttf */; };
 		A871D86CD7B2423EA0C6BBF3 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AE6820C23DE453CAB52F952 /* Poppins-Medium.ttf */; };
+		AC87A8379FD11E60C6EF33D9 /* Pods_calcuttaKnitWear_calcuttaKnitWearTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C662A03048F37A818B91DFB /* Pods_calcuttaKnitWear_calcuttaKnitWearTests.framework */; };
 		D6E44A13696D485083EFABC2 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DB51198E9EA4355BC888C2C /* Poppins-ExtraLight.ttf */; };
 		DA5D18081DF44D2E90FAD56A /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DDCCDBC21DE445887EF6F40 /* Poppins-LightItalic.ttf */; };
-		E9222AD82BA4338E006B4478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9222AD72BA4338E006B4478 /* GoogleService-Info.plist */; };
 		E92EE8EA2B4156DE00162902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92EE8E92B4156DE00162902 /* Assets.xcassets */; };
+		E989CCFA2D311F250005A53B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E989CCF92D311F250005A53B /* GoogleService-Info.plist */; };
 		E9A31A912C3802DA00346EF5 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E9A31A8F2C3802DA00346EF5 /* assets */; };
 		E9B14AB22A8CDED1004DE909 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B14A9F2A8CDED1004DE909 /* Fontisto.ttf */; };
 		E9B14AB32A8CDED1004DE909 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B14AA02A8CDED1004DE909 /* Octicons.ttf */; };
@@ -62,34 +62,35 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = "calcuttaKnitWear";
+			remoteInfo = calcuttaKnitWear;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* calcuttaKnitWearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "calcuttaKnitWearTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* Shiba WorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shiba WorldTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* calcuttaKnitWearTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "calcuttaKnitWearTests.m"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* calcuttaKnitWearTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = calcuttaKnitWearTests.m; sourceTree = "<group>"; };
 		0E1B8BF0838049D291ECD299 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* calcuttaKnitWear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "calcuttaKnitWear.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "calcuttaKnitWear/AppDelegate.h"; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "calcuttaKnitWear/AppDelegate.mm"; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "calcuttaKnitWear/Images.xcassets"; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "calcuttaKnitWear/Info.plist"; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "calcuttaKnitWear/main.m"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Shiba World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shiba World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = calcuttaKnitWear/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = calcuttaKnitWear/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = calcuttaKnitWear/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = calcuttaKnitWear/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = calcuttaKnitWear/main.m; sourceTree = "<group>"; };
 		1AE6820C23DE453CAB52F952 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		1E3DA997340647E68B5EABD5 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Italic.ttf"; path = "../assets/fonts/Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		2621FF15BCC64D26969A75F2 /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
-		268BA22897B696BB1F242873 /* Pods_OzoneOverseas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OzoneOverseas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDCCDBC21DE445887EF6F40 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-LightItalic.ttf"; path = "../assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
 		326D221C36044A949EBE9EFB /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		4C662A03048F37A818B91DFB /* Pods_calcuttaKnitWear_calcuttaKnitWearTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_calcuttaKnitWear_calcuttaKnitWearTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C93A058ABAA46E7A057FA77 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		4ECDB724FABA4B5C8ABD00FD /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		50D19DFBBDD5BDAF76FB9F0A /* Pods_calcuttaKnitWear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_calcuttaKnitWear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5109BE1CC45D4D228F5905C8 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		6ADA9E2354B743C393570BC0 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BoldItalic.ttf"; path = "../assets/fonts/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		79D654BA924B1589326AA749 /* Pods-calcuttaKnitWear-calcuttaKnitWearTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calcuttaKnitWear-calcuttaKnitWearTests.debug.xcconfig"; path = "Target Support Files/Pods-calcuttaKnitWear-calcuttaKnitWearTests/Pods-calcuttaKnitWear-calcuttaKnitWearTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7CD9F36D1CDD42B4A722D9A1 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "calcuttaKnitWear/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = calcuttaKnitWear/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		884A6DE7592C4EE0B1A9E605 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Thin.ttf"; path = "../assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		8DB51198E9EA4355BC888C2C /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		93F16DC083E939C0851E0128 /* Pods-calcuttaKnitWear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calcuttaKnitWear.debug.xcconfig"; path = "Target Support Files/Pods-calcuttaKnitWear/Pods-calcuttaKnitWear.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,13 +99,12 @@
 		BF597A940C684E27BC749E32 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBoldItalic.ttf"; path = "../assets/fonts/Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		C3989FDBA78A1976B0B2A19A /* Pods-calcuttaKnitWear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calcuttaKnitWear.release.xcconfig"; path = "Target Support Files/Pods-calcuttaKnitWear/Pods-calcuttaKnitWear.release.xcconfig"; sourceTree = "<group>"; };
 		DA5C77B66CA720F9A6FF74E6 /* Pods-calcuttaKnitWear-calcuttaKnitWearTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calcuttaKnitWear-calcuttaKnitWearTests.release.xcconfig"; path = "Target Support Files/Pods-calcuttaKnitWear-calcuttaKnitWearTests/Pods-calcuttaKnitWear-calcuttaKnitWearTests.release.xcconfig"; sourceTree = "<group>"; };
-		E245633C7E561AF902E4B366 /* Pods_OzoneOverseas_OzoneOverseasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OzoneOverseas_OzoneOverseasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9222AD72BA4338E006B4478 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E92D73692B3B5093009D7BC1 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		E92D736B2B3B50B3009D7BC1 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92D736D2B3B549D009D7BC1 /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		E92EE8E92B4156DE00162902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E97F37B52B3AE9B500D662DB /* calcuttaKnitWear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = calcuttaKnitWear.entitlements; path = calcuttaKnitWear/calcuttaKnitWear.entitlements; sourceTree = "<group>"; };
+		E989CCF92D311F250005A53B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E99B6EA22B3CA8A600D14E1F /* reacthermes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = reacthermes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A31A8F2C3802DA00346EF5 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		E9B14A9F2A8CDED1004DE909 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F76B06CB1F470A9FC767B6A /* Pods_OzoneOverseas_OzoneOverseasTests.framework in Frameworks */,
+				AC87A8379FD11E60C6EF33D9 /* Pods_calcuttaKnitWear_calcuttaKnitWearTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98116914B14A2FF2AA287B5D /* Pods_OzoneOverseas.framework in Frameworks */,
+				6C0348899BA1D6A6BF23B2C0 /* Pods_calcuttaKnitWear.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +159,7 @@
 				00E356F21AD99517003FC87E /* calcuttaKnitWearTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = "calcuttaKnitWearTests";
+			path = calcuttaKnitWearTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -198,6 +198,7 @@
 		13B07FAE1A68108700A75B9A /* calcuttaKnitWear */ = {
 			isa = PBXGroup;
 			children = (
+				E989CCF92D311F250005A53B /* GoogleService-Info.plist */,
 				E97F37B52B3AE9B500D662DB /* calcuttaKnitWear.entitlements */,
 				E9B14A9E2A8CDED1004DE909 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -207,7 +208,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = "calcuttaKnitWear";
+			name = calcuttaKnitWear;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -218,8 +219,8 @@
 				E92D736B2B3B50B3009D7BC1 /* libReact-hermes.a */,
 				E92D73692B3B5093009D7BC1 /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				268BA22897B696BB1F242873 /* Pods_OzoneOverseas.framework */,
-				E245633C7E561AF902E4B366 /* Pods_OzoneOverseas_OzoneOverseasTests.framework */,
+				50D19DFBBDD5BDAF76FB9F0A /* Pods_calcuttaKnitWear.framework */,
+				4C662A03048F37A818B91DFB /* Pods_calcuttaKnitWear_calcuttaKnitWearTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				E9A31A8F2C3802DA00346EF5 /* assets */,
-				E9222AD72BA4338E006B4478 /* GoogleService-Info.plist */,
 				E92EE8E92B4156DE00162902 /* Assets.xcassets */,
 				13B07FAE1A68108700A75B9A /* calcuttaKnitWear */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -255,8 +255,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* calcuttaKnitWear.app */,
-				00E356EE1AD99517003FC87E /* calcuttaKnitWearTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Shiba World.app */,
+				00E356EE1AD99517003FC87E /* Shiba WorldTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,29 +302,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* calcuttaKnitWearTests */ = {
+		00E356ED1AD99517003FC87E /* Shiba WorldTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "calcuttaKnitWearTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Shiba WorldTests" */;
 			buildPhases = (
 				45964017E8ED779BD5CF69DC /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				A6F9CB31B8D5F4F1D2BFDFDD /* [CP] Copy Pods Resources */,
+				5B6CC1F5B3BCC1E46D162DD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "calcuttaKnitWearTests";
-			productname = "calcuttaKnitWearTests";
-			productReference = 00E356EE1AD99517003FC87E /* calcuttaKnitWearTests.xctest */;
+			name = "Shiba WorldTests";
+			productName = calcuttaKnitWearTests;
+			productReference = 00E356EE1AD99517003FC87E /* Shiba WorldTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* calcuttaKnitWear */ = {
+		13B07F861A680F5B00A75B9A /* Shiba World */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "calcuttaKnitWear" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Shiba World" */;
 			buildPhases = (
 				FFE6915D2E55942CDE375804 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -335,14 +336,15 @@
 				ED3865848094D4E18ACC3214 /* [CP] Copy Pods Resources */,
 				19048D34051629539C566489 /* [CP-User] [RNFB] Core Configuration */,
 				C92962A1440377EB4C8E017A /* [CP-User] [RNFB] Crashlytics Configuration */,
+				5256765E76186A456C9FFE4D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "calcuttaKnitWear";
-			productName = "calcuttaKnitWear";
-			productReference = 13B07F961A680F5B00A75B9A /* calcuttaKnitWear.app */;
+			name = "Shiba World";
+			productName = calcuttaKnitWear;
+			productReference = 13B07F961A680F5B00A75B9A /* Shiba World.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -363,7 +365,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "calcuttaKnitWear" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Shiba World" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -379,8 +381,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* calcuttaKnitWear */,
-				00E356ED1AD99517003FC87E /* calcuttaKnitWearTests */,
+				13B07F861A680F5B00A75B9A /* Shiba World */,
+				00E356ED1AD99517003FC87E /* Shiba WorldTests */,
 			);
 		};
 /* End PBXProject section */
@@ -410,6 +412,7 @@
 				E9B14AB72A8CDED1004DE909 /* FontAwesome5_Brands.ttf in Resources */,
 				0B5E7FD736894E34B199C899 /* Poppins-Bold.ttf in Resources */,
 				92FB11AB443D412D9C96DA74 /* Poppins-BoldItalic.ttf in Resources */,
+				E989CCFA2D311F250005A53B /* GoogleService-Info.plist in Resources */,
 				E9B14AB22A8CDED1004DE909 /* Fontisto.ttf in Resources */,
 				977B36C0E3DD43CDA831AA98 /* Poppins-ExtraBold.ttf in Resources */,
 				6EE2AB2C70474C17B24BDBD3 /* Poppins-ExtraBoldItalic.ttf in Resources */,
@@ -437,7 +440,6 @@
 				E9B14ABF2A8CDED1004DE909 /* Zocial.ttf in Resources */,
 				E9B14AC12A8CDED1004DE909 /* FontAwesome6_Solid.ttf in Resources */,
 				6236900152AB4189B2E322BD /* Poppins-ThinItalic.ttf in Resources */,
-				E9222AD82BA4338E006B4478 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +448,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -456,7 +458,7 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
@@ -493,6 +495,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5256765E76186A456C9FFE4D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-calcuttaKnitWear/Pods-calcuttaKnitWear-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-calcuttaKnitWear/Pods-calcuttaKnitWear-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-calcuttaKnitWear/Pods-calcuttaKnitWear-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B6CC1F5B3BCC1E46D162DD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-calcuttaKnitWear-calcuttaKnitWearTests/Pods-calcuttaKnitWear-calcuttaKnitWearTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-calcuttaKnitWear-calcuttaKnitWearTests/Pods-calcuttaKnitWear-calcuttaKnitWearTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-calcuttaKnitWear-calcuttaKnitWearTests/Pods-calcuttaKnitWear-calcuttaKnitWearTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A6F9CB31B8D5F4F1D2BFDFDD /* [CP] Copy Pods Resources */ = {
@@ -610,7 +646,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* calcuttaKnitWear */;
+			target = 13B07F861A680F5B00A75B9A /* Shiba World */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -627,7 +663,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "calcuttaKnitWearTests/Info.plist";
+				INFOPLIST_FILE = calcuttaKnitWearTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,9 +675,9 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.genefied.calcuttaKnitWear";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/calcuttaKnitWear.app/calcuttaKnitWear";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiba World.app/Shiba World";
 			};
 			name = Debug;
 		};
@@ -653,7 +689,7 @@
 				BUNDLE_loaderNew = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 9D932R2PWR;
-				INFOPLIST_FILE = "calcuttaKnitWearTests/Info.plist";
+				INFOPLIST_FILE = calcuttaKnitWearTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -665,9 +701,9 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.genefied.calcuttaKnitWear";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/calcuttaKnitWear.app/calcuttaKnitWear";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiba World.app/Shiba World";
 			};
 			name = Release;
 		};
@@ -682,11 +718,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RAW3WGCVCZ;
+				DEVELOPMENT_TEAM = 9D932R2PWR;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "calcuttaKnitWear/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "calcuttaKnitWear";
+				INFOPLIST_FILE = calcuttaKnitWear/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = calcuttaKnitWear;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -694,14 +729,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 70022;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.genefied.calcuttaKnitWear";
-				PRODUCT_NAME = "calcuttaKnitWear";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear.myro;
+				PRODUCT_NAME = "Shiba World";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -722,10 +757,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RAW3WGCVCZ;
+				DEVELOPMENT_TEAM = 9D932R2PWR;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "calcuttaKnitWear/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "calcuttaKnitWear";
+				INFOPLIST_FILE = calcuttaKnitWear/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = calcuttaKnitWear;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -733,14 +767,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 70022;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.genefied.calcuttaKnitWear";
-				PRODUCT_NAME = "calcuttaKnitWear";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear.myro;
+				PRODUCT_NAME = "Shiba World";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -783,7 +817,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -865,7 +899,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -910,7 +944,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "calcuttaKnitWearTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Shiba WorldTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -919,7 +953,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "calcuttaKnitWear" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Shiba World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -928,7 +962,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "calcuttaKnitWear" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Shiba World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

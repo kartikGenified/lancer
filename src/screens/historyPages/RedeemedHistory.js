@@ -346,7 +346,49 @@ const RedeemedHistory = ({ navigation }) => {
         </View>
   } 
         {userPointData && <TouchableOpacity onPress={() => {
-          navigation.navigate('RedeemGifts',{schemeType : "yearly"})
+          if (Number(userPointData.body.point_balance) <= 0 ) {
+            setError(true)
+            setMessage(t("Sorry you don't have enough points."))
+            setNavigateTo("RedeemedHistory")
+          }
+        
+          else if(Number(minRedemptionPoints)>Number(pointBalance))
+          {
+            console.log("Minimum Point required to redeem is",minRedemptionPoints)
+            setError(true)
+            setMessage(`${t("Minimum Point required to redeem is")} ${minRedemptionPoints}`)
+            setNavigateTo("RedeemedHistory")
+    
+          }
+          else {
+            
+            if((Number(new Date(redemptionStartData).getTime()) <= Number(new Date().getTime()) ) &&  ( Number(new Date().getTime()) <= Number(new Date(redemptionEndDate).getTime())) )
+            {
+              
+            if(!showKyc)
+            {
+    
+              navigation.navigate('RedeemGifts',{schemeType : "yearly"})
+
+            }
+            else{
+              console.log("correct redemption date sadghasgd",new Date().getTime(),new Date(redemptionStartData).getTime(),new Date(redemptionEndDate).getTime())
+    
+              setError(true)
+              setMessage(t("KYC not completed yet"))
+              setNavigateTo("Verification")
+            }
+            }
+            else{
+              console.log("correct redemption date",new Date().getTime(),new Date(redemptionStartData).getTime(),new Date(redemptionEndDate).getTime(),"hello")
+    
+              setError(true)
+            setMessage(`${t("Redemption window starts from ")} ${moment(redemptionStartData).format("DD-MMM-YYYY")}  ${t(" and ends on ")}  ${moment(redemptionEndDate).format("DD-MMM-YYYY")}`)
+            // setMessage("hello")
+            // setNavigateTo("RedeemedHistory")
+    
+            }
+          }
         }} style={{ borderRadius: 2, height: 40, width: 100, backgroundColor: "#FFD11E", alignItems: "center", justifyContent: "center", marginLeft: 20 }}>
           <PoppinsTextMedium style={{ color: 'black' }} content={t("redeem")}></PoppinsTextMedium>
         </TouchableOpacity>}

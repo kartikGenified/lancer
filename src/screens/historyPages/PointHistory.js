@@ -230,7 +230,7 @@ const PointHistory = ({ navigation }) => {
                 </TouchableOpacity>
                 
                 }
-                 {/* {registrationRequired.includes(userData.user_type) && 
+                 {registrationRequired.includes(userData.user_type) && 
                 <TouchableOpacity onPress={()=>{
                     getRegistrationPoints("points_sharing")
                     setType("extra")
@@ -239,7 +239,7 @@ const PointHistory = ({ navigation }) => {
 
                 </TouchableOpacity>
                 
-                } */}
+                }
                  {registrationRequired.includes(userData.user_type) && 
                 <TouchableOpacity onPress={()=>{
                     getRegistrationPoints("registration_bonus")
