@@ -646,8 +646,8 @@ const QrCodeScanner = ({ navigation, route }) => {
       console.log("onSuccess qrData", qrData);
       if(qrData == undefined)
       {
-        qrData = e?.split('-')[1]
-        qrData = `Culcutta Knitewear-${qrData}`;
+        qrData = e?.split('?')[1]
+        qrData = qrData;
         requestData["unique_code"] = qrData;
       }
       // Check for duplicate QR code

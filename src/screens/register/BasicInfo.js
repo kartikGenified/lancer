@@ -48,6 +48,7 @@ import {GoogleMapsKey} from "@env"
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownForDistributor from '../../components/atoms/dropdown/DropDownForDistributor';
+import { useCreateUserMappingMutation, useCreateUserMappingOpenMutation } from '../../apiServices/userMapping/userMappingApi';
 
 const BasicInfo = ({ navigation, route }) => {
   const [userName, setUserName] = useState(route.params.name)
@@ -76,13 +77,14 @@ const BasicInfo = ({ navigation, route }) => {
   const [pansVerified, setPansVerified] = useState(true)
   const [panEntered, setPanEntered] = useState(false)
   const [panRequired, setPanRequired] = useState(false)
-
+  const [mappedUserType, setMappedUserType] = useState()
   const [gstVerified, setGstVerified] = useState(true)
   const [gstEntered, setGstEntered] = useState(false)
   const [gstinRequired, setGstinRequired] = useState(false)
   const [distributorName, setDistributorName] = useState("");
   const [distributorMobile, setDistributorMobile] = useState("");
   const [distributorId, setDistributorId] = useState("");
+  const [mappedUserData, setMappedUserData] = useState();
   const [showDistributorInput, setShowDistributorInput] = useState(false);
   const [mobileVerified, setMobileVerified] = useState()
   const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
@@ -153,6 +155,13 @@ const BasicInfo = ({ navigation, route }) => {
     }
   ] = useUpdateProfileAtRegistrationMutation()
 
+  const [createUserMapping, {
+    data: getUserMappingPincodeData,
+    error: getuserMappingError,
+    isLoading: getuserMappingIsLoading,
+    isError: getUserMappingIsError
+  }] = useCreateUserMappingOpenMutation()
+
   const [getLocationFromPincodeFunc, {
     data: getLocationFormPincodeData,
     error: getLocationFormPincodeError,
@@ -190,7 +199,16 @@ const BasicInfo = ({ navigation, route }) => {
     return () => clearTimeout(timeoutId);
   }, [timer, timeOutCallback,otpVerified]);
 
+  useEffect(() => {
+    if (getUserMappingPincodeData) {
+      console.log("getUserMappingPincodeData", getUserMappingPincodeData)
 
+    }
+    else if(getuserMappingError) {
+      console.log("getuserMappingError", getuserMappingError)
+      alert("Unable to map the selected user, please contact the customer care")
+    }
+  }, [getUserMappingPincodeData, getuserMappingError])
 
   useEffect(() => {
     setUserName(route.params.name)
@@ -377,8 +395,32 @@ const BasicInfo = ({ navigation, route }) => {
 
   useEffect(() => {
     if (registerUserData) {
-      console.log("data after submitting form", registerUserData)
-      if (registerUserData.success) {
+      console.log("data after submitting form", registerUserData,mappedUserData)
+      if (registerUserData.success && mappedUserData) {
+
+          const body = {
+            user_type: registerUserData.body.user_type,
+            user_type_id: registerUserData.body.user_type_id,
+            app_user_id: registerUserData.body.id,
+            app_user_name: registerUserData.body.name,
+            app_user_mobile: registerUserData.body.mobile,
+            mapped_user_type: mappedUserData.user_type,
+            mapped_user_type_id: Number(mappedUserData.user_type_id),
+            mapped_app_user_id: mappedUserData.id,
+            mapped_app_user_name: mappedUserData.name,
+            mapped_app_user_mobile: mappedUserData.mobile,
+          };
+  
+          console.log("the body", body)
+         
+            
+  
+            let params = {
+              body: { "rows": [body] }
+            }
+            console.log("createusermapping", JSON.stringify(params))
+            createUserMapping(params)
+          
         setSuccess(true)
         setMessage(t("Thank you for joining Shiba World Loyalty program"))
         setModalTitle(t("Greetings"))
@@ -486,8 +528,17 @@ const BasicInfo = ({ navigation, route }) => {
   getData()
 
   const handleChildComponentData = data => {
-   
+   console.log("handleChildComponentData data",data)
     // setOtpVisible(true)
+    if(data.label == "dealer_name")
+    {
+      setMappedUserData(data.data)
+    }
+    if(data.label === "map_user_type")
+    {
+      setMappedUserType(data.value)
+      
+    }
     if (data?.name === "name") {
       setUserName(data?.value)
     }
@@ -1298,14 +1349,15 @@ console.log("responseMap",responseMap)
                 else if (item.name.trim().toLowerCase() === "dealer_name") {
                   return (
                     <View style={{ width: "90%" }}>
-                      <DropDownForDistributor
-                        title={"Select Distrbutor"}
-                        header={"Select Distrbutor"}
+                      {mappedUserType && <DropDownForDistributor
+                        title={`Select ${mappedUserType}`}
+                        header={`Select ${mappedUserType}`}
                         jsonData={{label:item.name,name:item.name}}
                         searchEnable={true}
                         data={[]}
+                        type ={mappedUserType}
                         handleData={handleChildComponentData}
-                      ></DropDownForDistributor>
+                      ></DropDownForDistributor>}
                   
                     </View>
                   );
@@ -1338,7 +1390,7 @@ console.log("responseMap",responseMap)
                   <DropDownRegistration
 
                     title={item.name}
-                    header={item.options[0]}
+                    header={"Select user to map"}
                     jsonData={item}
                     data={item.options}
                     handleData={handleChildComponentData}

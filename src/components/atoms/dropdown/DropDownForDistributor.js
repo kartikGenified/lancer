@@ -23,7 +23,9 @@ const DropDownForDistributor = (props) => {
   const [showDistributorInput, setShowDistributorInput] = useState(false);
 
   let enableSearch = props.searchEnable ? props.searchEnable : false;
-
+  const type = props.type
+  const header = props.header
+  console.log("jhhjshdhjcvhjvshjavchsvhavghcvghavvscjvhjasbcb",header)
   const [
     fetchDistributorList,
     {
@@ -44,7 +46,11 @@ const DropDownForDistributor = (props) => {
     }
   }, [fetchDistributorListData, fetchDistributorListError]);
 
-  const handleSelect = (data, mobile, id) => {
+  useEffect(()=>{
+    setSelected(type)
+  },[type])
+
+  const handleSelect = (data, mobile, id,jsonData) => {
     console.log("dataaaaaa selecteddddd", data,mobile,id);
     if (data == "Other") {
       setShowDistributorInput(true);
@@ -55,6 +61,7 @@ const DropDownForDistributor = (props) => {
         ...props.jsonData,
         value: data,
         mobile: mobile,
+        data:jsonData,
         id: id,
       };
       props.handleData(tempJsonData);
@@ -76,7 +83,7 @@ const DropDownForDistributor = (props) => {
       let response = [];
       if (text.length > 2) {
         response = await fetchDistributorList({
-          user_type:"distributor",
+          user_type:type.toLowerCase(),
           mobile: text,
           name:text,
           token: credentials.username,
@@ -96,11 +103,11 @@ const DropDownForDistributor = (props) => {
     const title = props.title;
     const mobile = props.mobile;
     const id = props.id;
-
+    const data = props.data
     return (
       <TouchableOpacity
         onPress={() => {
-          handleSelect(title, mobile, id);
+          handleSelect(title, mobile, id,data);
         }}
         style={{
           alignItems: "flex-start",
@@ -203,7 +210,7 @@ const DropDownForDistributor = (props) => {
                 }}
                 
                 placeholderTextColor={'#808080'}
-                placeholder="Type Distributor Name"
+                placeholder={`Type ${selected} Name`}
                 value={searchQuery}
                 onChangeText={handleSearchChange} // Call handleSearchChange on text change
               />
@@ -217,6 +224,7 @@ const DropDownForDistributor = (props) => {
                     mobile={item.mobile}
                     id={item.user_id}
                     title={item.name}
+                    data = {item}
                   />
                 );
               })}
@@ -234,7 +242,7 @@ const DropDownForDistributor = (props) => {
                   color:'black'
                 }}
                 placeholderTextColor={'#808080'}
-                placeholder="Please Enter The Distributor Name"
+                placeholder="Please Enter The User Name To Map"
                 value={otherName}
                 onChangeText={(text) => {
                   setOtherName(text.toUpperCase());

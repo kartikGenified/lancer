@@ -5,12 +5,29 @@ export const userMappingApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     createUserMapping: builder.mutation({
         query: (params) => {
+          console.log("createUserMappingAPI", params)
           return {
             method: "POST",
             url: `/api/tenant/user-mapping/add`,
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + params.token,
+              slug: slug,
+            },
+            body: params.body,
+          };
+        },
+      }),
+
+      // open route for creating user mapping 
+      createUserMappingOpen: builder.mutation({
+        query: (params) => {
+          console.log("createUserMappingAPIOPEN", params)
+          return {
+            method: "POST",
+            url: `/api/open/user-mapping/add`,
+            headers: {
+              "Content-Type": "application/json",
               slug: slug,
             },
             body: params.body,
@@ -76,4 +93,4 @@ export const userMappingApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {useCreateUserMappingMutation,useDeleteUserMappingMutation,useFetchUserMappingByAppUserIdAndMappedUserTypeMutation,useFetchUserMappingByUserTypeAndMappedUserTypeMutation,useGetMappingDetailsByAppUserIdMutation} = userMappingApi;
+export const {useCreateUserMappingOpenMutation ,useCreateUserMappingMutation,useDeleteUserMappingMutation,useFetchUserMappingByAppUserIdAndMappedUserTypeMutation,useFetchUserMappingByUserTypeAndMappedUserTypeMutation,useGetMappingDetailsByAppUserIdMutation} = userMappingApi;
