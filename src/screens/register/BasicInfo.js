@@ -399,18 +399,17 @@ const BasicInfo = ({ navigation, route }) => {
       if (registerUserData.success && mappedUserData) {
 
           const body = {
-            user_type: registerUserData.body.user_type,
-            user_type_id: registerUserData.body.user_type_id,
-            app_user_id: registerUserData.body.id,
-            app_user_name: registerUserData.body.name,
-            app_user_mobile: registerUserData.body.mobile,
-            mapped_user_type: mappedUserData.user_type,
-            mapped_user_type_id: Number(mappedUserData.user_type_id),
-            mapped_app_user_id: mappedUserData.id,
-            mapped_app_user_name: mappedUserData.name,
-            mapped_app_user_mobile: mappedUserData.mobile,
+            user_type: mappedUserData.user_type,
+            user_type_id: Number(mappedUserData.user_type_id),
+            app_user_id: mappedUserData.id,
+            app_user_name: mappedUserData.name,
+            app_user_mobile: mappedUserData.mobile,
+            mapped_user_type: registerUserData.body.user_type,
+            mapped_user_type_id: registerUserData.body.user_type_id,
+            mapped_app_user_id: registerUserData.body.id,
+            mapped_app_user_name: registerUserData.body.name,
+            mapped_app_user_mobile: registerUserData.body.mobile,
           };
-  
           console.log("the body", body)
          
             
