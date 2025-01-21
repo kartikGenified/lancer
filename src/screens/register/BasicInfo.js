@@ -1349,6 +1349,7 @@ console.log("responseMap",responseMap)
                   return (
                     <View style={{ width: "90%" }}>
                       {mappedUserType && <DropDownForDistributor
+                        state = {location?.state}
                         title={`Select ${mappedUserType}`}
                         header={`Select ${mappedUserType}`}
                         jsonData={{label:item.name,name:item.name}}

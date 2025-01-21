@@ -10,6 +10,7 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import PoppinsTextLeftMedium from '../../components/electrons/customFonts/PoppinsTextLeftMedium';
 import Plus from 'react-native-vector-icons/AntDesign';
 import PoppinsText from '../../components/electrons/customFonts/PoppinsText';
+import { useIsFocused } from '@react-navigation/native';
 // create a component
 const QueryList = ({ navigation }) => {
     const ternaryThemeColor = useSelector(
@@ -17,7 +18,7 @@ const QueryList = ({ navigation }) => {
     )
         ? useSelector(state => state.apptheme.ternaryThemeColor)
         : 'grey';
-
+    const focused = useIsFocused()
     const userData = useSelector(state => state.appusersdata.userData)
     console.log("Userdata", userData)
 
@@ -41,7 +42,7 @@ const QueryList = ({ navigation }) => {
 
     useEffect(() => {
         fetchQueries();
-    }, [])
+    }, [focused])
 
     useEffect(() => {
         if (getQueryData) {

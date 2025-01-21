@@ -411,7 +411,7 @@ const PointHistory = ({ navigation }) => {
                 <View style={{ alignItems: "center", justifyContent: "center",position:'absolute',right:10,width:'26%' }}>
                     <View style={{flexDirection:'row'}}>
                     <Image style={{ height: 20, width: 20, resizeMode: "contain" }} source={  (status == 0  && is_reverted == true)?  require('../../../assets/images/minus_wallet.png') :  require('../../../assets/images/wallet.png')}></Image>
-                    <PoppinsTextMedium style={{ color: "#91B406", fontSize: 14, color: (status == 0  && is_reverted == true) ? "red" :'black' }} content={`${status == "1" ? " +" : status == "2" ? ' -' : ""} ${amount}`}></PoppinsTextMedium>    
+                    <PoppinsTextMedium style={{ textDecorationLine: is_reverted ? 'line-through':'', color: "#91B406", fontSize: 14, color: (status == 0  && is_reverted == true) ? "red" :'black' }} content={`${status == "1" ? " +" : status == "2" ? ' -' : ""} ${amount}`}></PoppinsTextMedium>    
             
                     </View>
                    {is_reverted &&  <PoppinsTextMedium style={{color:'red'}} content ="reverted"></PoppinsTextMedium>}

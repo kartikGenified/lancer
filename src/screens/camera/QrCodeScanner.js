@@ -637,8 +637,8 @@ const QrCodeScanner = ({ navigation, route }) => {
       let requestData = {};
 
       if (qrData?.split("-").length === 1) {
-        requestData["unique_code"] = `Culcutta Knitewear-${qrData}`;
-        qrData = `Culcutta Knitewear-${qrData}`;
+        requestData["unique_code"] = `calkn-${qrData}`;
+        qrData = `calkn-${qrData}`;
       } else if (qrData?.split("-").length === 2) {
         requestData["unique_code"] = qrData;
       }

@@ -115,8 +115,8 @@ export default function GiftCatalogue({ navigation }) {
       >
         <View
           style={{
-            width: "100%",
-            height: "75%",
+            width: "90%",
+            height: "50%",
             borderBottomWidth: 1,
             borderColor: "#DDDDDD",
           }}
@@ -126,6 +126,7 @@ export default function GiftCatalogue({ navigation }) {
             source={{ uri: image }}
           ></Image>
         </View>
+
         <View
           style={{
             width: "90%",

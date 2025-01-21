@@ -15,7 +15,7 @@ import * as Keychain from "react-native-keychain";
 
 const DropDownForDistributor = (props) => {
   const [selected, setSelected] = useState(props.header);
-  const [showList, setShowList] = useState(false);
+  const [showList, setShowList] = useState(true);
   const [data, setData] = useState(props.data);
   const [searchQuery, setSearchQuery] = useState("");
   const [otherName, setOtherName] = useState("");
@@ -24,6 +24,7 @@ const DropDownForDistributor = (props) => {
 
   let enableSearch = props.searchEnable ? props.searchEnable : false;
   const type = props.type
+  const state = props.state
   const header = props.header
   console.log("jhhjshdhjcvhjvshjavchsvhavghcvghavvscjvhjasbcb",header)
   const [
@@ -84,6 +85,7 @@ const DropDownForDistributor = (props) => {
       if (text.length > 2) {
         response = await fetchDistributorList({
           user_type:type.toLowerCase(),
+          state:state,
           mobile: text,
           name:text,
           token: credentials.username,
