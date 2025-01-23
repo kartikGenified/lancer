@@ -279,6 +279,7 @@ const Splash = ({ navigation }) => {
   }, [currentAppVersion]);
 
   useEffect(() => {
+    let timeout1, timeout2, timeout3;
     const FinalNavigation = async () => {
       const jsonValue = await AsyncStorage.getItem("loginData");
 
@@ -345,20 +346,22 @@ const Splash = ({ navigation }) => {
                       //   routes: [{ name: "Dashboard" }],
                       // });
                     
-                  } else {
-                    getFormData &&
-                      minVersionSupport &&
-                      jsonValue &&
-                      getDashboardData &&
-                      getWorkflowData &&
-                      !parsedJsonValue &&
-                      setTimeout(() => {
-                        navigation.reset({
-                          index: "0",
-                          routes: [{ name: "SelectUser" }],
-                        });
-                      }, 3000);
-                  }
+                  } else if(getFormData &&
+                    minVersionSupport &&
+                    jsonValue &&
+                    getDashboardData &&
+                    getWorkflowData &&
+                    !parsedJsonValue) 
+                     {
+                        timeout3 = setTimeout(() => {
+                          navigation.reset({
+                            index: "0",
+                            routes: [{ name: "SelectUser" }],
+                          });
+                        }, 3000)
+                      }
+                       
+                  
                 }
               } else {
                 console.log("JsonValue is null", parsedJsonValue);
@@ -413,18 +416,21 @@ const Splash = ({ navigation }) => {
             minVersionSupport && navigation.navigate("Introduction");
           }
         } else {
+          
           console.log("idhar se 409", parsedJsonValue)
           if (minVersionSupport && !parsedJsonValue && !jsonValue) {
             if (value === "Yes") {
-              minVersionSupport && !jsonValue &&
-                setTimeout(() => {
+              if (minVersionSupport && !jsonValue) {
+                timeout1 = setTimeout(() => {
                   navigation.navigate("SelectUser");
                 }, 5000);
+              }
             } else {
-              minVersionSupport &&
-                setTimeout(() => {
+              if (minVersionSupport) {
+                timeout2 = setTimeout(() => {
                   navigation.navigate("Introduction");
                 }, 5000);
+              }
             }
           }
         }
@@ -447,6 +453,23 @@ const Splash = ({ navigation }) => {
     );
 
     FinalNavigation();
+    if(timeout1 || timeout2 || timeout3)
+    {
+    return()=>{
+      try{
+          console.log("cleaning up timeout functions", timeout1, timeout2,timeout3)
+          clearTimeout(timeout1);
+          clearTimeout(timeout2)
+          clearTimeout(timeout3)
+        }
+       
+      catch(e){
+        console.log("error in clearing timeouts", e)
+      }
+      
+    }
+  }
+
   }, [
     getPolicyData,
     getMinVersionSupportData,
@@ -531,29 +554,22 @@ const Splash = ({ navigation }) => {
                   getWorkflowData ){
 
                     if (mPin != "" && mPin != undefined && mPin != null) {
-                      setTimeout(()=>{
+
+                      console.log("navigating after getting dashboard data")
+                      
                         navigation.reset({
                           index: "0",
                           routes: [{ name: "MpinValidationScreen" }],
                         });
-                      },2000)
                 
                     } else {
-                      setTimeout(()=>{
+                     
                         navigation.reset({
                           index: "0",
                           routes: [{ name: "SelectUser" }],
                         });
-                      },2000)
-                  
                     }
-                    
-                
-
-
-                }
-             
-              
+                }  
               }
             } else {
               console.log("JsonValue is null", parsedJsonValue);
@@ -588,9 +604,24 @@ const Splash = ({ navigation }) => {
         removerTokenData();
       }
     }
+  //   if(timeout1 && timeout2)
+  //   {
+  //     return()=>{
+  //     try{
+  //       console.log("trying to remove timeouts from ue", timeout1,timeout2)
+  //       clearTimeout(timeout1);
+  //       clearTimeout(timeout2)
+  //     }
+  //     catch(e){
+  //       console.log("error in clearing timeouts", e)
+  //     }
+  //   }
+  // }
+    
   }, [getDashboardData, getDashboardError]);
 
   useEffect(() => {
+
     if (getAppMenuData) {
       console.log("getAppMenuData", JSON.stringify(getAppMenuData));
       let mPin ;
@@ -626,7 +657,6 @@ const Splash = ({ navigation }) => {
           getDashboardData &&
           getWorkflowData 
         ){
-          
           if (mPin != "" && mPin != undefined && mPin != null) {
             navigation.reset({
               index: "0",
@@ -648,6 +678,8 @@ const Splash = ({ navigation }) => {
     } else if (getAppMenuError) {
       console.log("getAppMenuError", getAppMenuError);
     }
+
+    
   }, [getAppMenuData, getAppMenuError]);
 
   useEffect(() => {
@@ -720,10 +752,6 @@ const Splash = ({ navigation }) => {
                           jsonValue &&
                             jsonValue &&
                             getWorkflowData ){
-                              // navigation.reset({
-                              //   index: "0",
-                              //   routes: [{ name: "Dashboard" }],
-                              // });
 
                           if (mPin != "" && mPin != undefined && mPin != null) {
                             navigation.reset({
@@ -738,11 +766,7 @@ const Splash = ({ navigation }) => {
                           }
 
                             }
-                      
-                  
-                       
-                      }
-              
+                      }          
                     } else {
                       console.log("JsonValue is null", parsedJsonValue);
                       dispatch(setAppUserId(parsedJsonValue.user_type_id));
@@ -862,10 +886,19 @@ const Splash = ({ navigation }) => {
       backAction
     );
 
-    return () => backHandler.remove();
+    return () => {
+      console.log("removing backhandler at cleanup", backHandler)
+      try{
+         backHandler.remove()
+      }
+      catch(e)
+      {
+        console.log("error in removing backhandler",e)
+      }
+    };
   }, []);
 
-  // const openSettings = () => {
+  
   //   if (Platform.OS === "android") {
   //     Linking.openSettings();
   //   } else {
@@ -1110,6 +1143,7 @@ const Splash = ({ navigation }) => {
   }, [getUsersData, getUsersError]);
 
   const getData = async () => {
+    let timeout1, timeout2;
     const jsonValue = await AsyncStorage.getItem("loginData");
 
     const parsedJsonValues = JSON.parse(jsonValue);
@@ -1180,16 +1214,21 @@ const Splash = ({ navigation }) => {
      
 
       if (value === "Yes" && !jsonValue) {
-        setTimeout(()=>{
+        timeout1 = setTimeout(()=>{
           navigation.navigate("SelectUser");
         },2000)
       } else {
-        setTimeout(()=>{
+        timeout2 = setTimeout(()=>{
           navigation.navigate("Introduction");
         
         },2000)
       }
       // console.log("isAlreadyIntroduced",isAlreadyIntroduced,gotLoginData)
+    }
+    if(timeout1 || timeout2)
+    return()=>{
+      clearTimeout(timeout1);
+      clearTimeout(timeout2)
     }
   };
 

@@ -201,12 +201,23 @@ const MpinValidationScreen = (params) => {
 
   //modal close
   useEffect(() => {
+    let timeout;
     console.log("running");
     if (openModalWithBorder == true)
-      setTimeout(() => {
+    timeout= setTimeout(() => {
         console.log("running2");
         modalWithBorderClose();
       }, 2000);
+
+      return(()=>{
+        try{
+          clearTimeout(timeout)
+        }
+        catch(e)
+        {
+          console.log("error in clearing the timeout", e)
+        }
+      }) 
   }, [success, openModalWithBorder]);
 
   useEffect(() => {
