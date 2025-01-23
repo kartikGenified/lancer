@@ -31,7 +31,8 @@ const MessageModal = (props) => {
   const closeModal=()=>{
     setModalVisible(false)
     props.modalClose()
-    navigateTo && navigation.replace(navigateTo,params)
+   
+    navigateTo && navigation.navigate(navigateTo,params)
     // navigateTo && navigation.reset({ index: '0', routes: [{ name: navigateTo }] })
   }
    

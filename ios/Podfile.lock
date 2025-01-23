@@ -48,7 +48,7 @@ PODS:
     - GoogleUtilities/Logger (~> 7.12)
   - FirebaseCoreExtension (10.20.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.27.0):
+  - FirebaseCoreInternal (10.29.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - FirebaseCrashlytics (10.20.0):
     - FirebaseCore (~> 10.5)
@@ -58,7 +58,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (~> 2.1)
-  - FirebaseInstallations (10.27.0):
+  - FirebaseInstallations (10.29.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
@@ -72,7 +72,7 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseSessions (10.27.0):
+  - FirebaseSessions (10.29.0):
     - FirebaseCore (~> 10.5)
     - FirebaseCoreExtension (~> 10.0)
     - FirebaseInstallations (~> 10.0)
@@ -459,7 +459,7 @@ PODS:
   - React-jsinspector (0.72.3)
   - React-logger (0.72.3):
     - glog
-  - react-native-blob-util (0.19.9):
+  - react-native-blob-util (0.19.11):
     - React-Core
   - react-native-camera (4.2.1):
     - React-Core
@@ -474,20 +474,20 @@ PODS:
     - React-Core
   - react-native-date-picker (4.4.2):
     - React-Core
-  - react-native-geolocation (3.2.1):
+  - react-native-geolocation (3.4.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - react-native-geolocation-service (5.3.1):
     - React
   - react-native-image-picker (4.10.3):
     - React-Core
-  - react-native-netinfo (11.3.2):
+  - react-native-netinfo (11.4.1):
     - React-Core
   - react-native-notifications (5.1.0):
     - React-Core
-  - react-native-pdf (6.7.5):
+  - react-native-pdf (6.7.6):
     - React-Core
-  - react-native-safe-area-context (4.10.3):
+  - react-native-safe-area-context (4.14.1):
     - React-Core
   - react-native-version-check (3.4.7):
     - React-Core
@@ -496,7 +496,7 @@ PODS:
     - react-native-video/Video (= 5.2.1)
   - react-native-video/Video (5.2.1):
     - React-Core
-  - react-native-webview (13.10.2):
+  - react-native-webview (13.13.1):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - react-native-worklets-core (1.3.3):
@@ -628,9 +628,9 @@ PODS:
     - React-jsi (= 0.72.3)
     - React-logger (= 0.72.3)
     - React-perflogger (= 0.72.3)
-  - RNCAsyncStorage (1.23.1):
+  - RNCAsyncStorage (1.24.0):
     - React-Core
-  - RNCClipboard (1.14.1):
+  - RNCClipboard (1.16.1):
     - React-Core
   - RNDeviceInfo (11.1.0):
     - React-Core
@@ -655,8 +655,7 @@ PODS:
     - FirebaseCoreExtension (= 10.20.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.16.2):
-    - RCT-Folly (= 2021.07.22.00)
+  - RNGestureHandler (2.12.1):
     - React-Core
   - RNImageCropPicker (0.40.3):
     - React-Core
@@ -671,7 +670,7 @@ PODS:
     - React-Core
   - RNPermissions (3.10.1):
     - React-Core
-  - RNQrGenerator (1.4.0):
+  - RNQrGenerator (1.4.3):
     - React
     - ZXingObjC
   - RNReanimated (3.4.2):
@@ -703,8 +702,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.31.1):
-    - RCT-Folly (= 2021.07.22.00)
+  - RNScreens (3.24.0):
     - React-Core
     - React-RCTImage
   - RNShare (9.4.1):
@@ -719,7 +717,7 @@ PODS:
     - SDWebImage/Core (~> 5.10)
   - SocketRocket (0.6.1)
   - TOCropViewController (2.7.4)
-  - VisionCamera (3.8.1):
+  - VisionCamera (3.9.2):
     - React
     - React-callinvoker
     - React-Core
@@ -992,11 +990,11 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: a2731bf3670747ce8f65368b118d18aa8e368246
   FirebaseCore: 28045c1560a2600d284b9c45a904fe322dc890b6
   FirebaseCoreExtension: 0659f035b88c5a7a15a9763c48c2e6ca8c0a2977
-  FirebaseCoreInternal: 4b297a2d56063dbea2c1d0d04222d44a8d058862
+  FirebaseCoreInternal: df84dd300b561c27d5571684f389bf60b0a5c934
   FirebaseCrashlytics: 81530595edb6d99f1918f723a6c33766a24a4c86
-  FirebaseInstallations: 766dabca09fd94aef922538aaf144cc4a6fb6869
+  FirebaseInstallations: 913cf60d0400ebd5d6b63a28b290372ab44590dd
   FirebaseMessaging: 06c414a21b122396a26847c523d5c370f8325df5
-  FirebaseSessions: 2fdf949f9e58295a57703ae8f2efc44f9fa3aa16
+  FirebaseSessions: dbd14adac65ce996228652c1fc3a3f576bdf3ecc
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   GoogleAppMeasurement: bb3c564c3efb933136af0e94899e0a46167466a8
@@ -1023,20 +1021,20 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 59d1eb03af7d30b7d66589c410f13151271e8006
   React-jsinspector: b511447170f561157547bc0bef3f169663860be7
   React-logger: c5b527272d5f22eaa09bb3c3a690fee8f237ae95
-  react-native-blob-util: 18b510205c080a453574a7d2344d64673d0ad9af
+  react-native-blob-util: 39a20f2ef11556d958dc4beb0aa07d1ef2690745
   react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
   react-native-compressor: b2009ba82a35d463267c4d4ba3c22d8c16134a9e
   react-native-date-picker: 312c387d2ff873c66c5e4cf78ff6827fa91644e2
-  react-native-geolocation: 67bb814aa950c4a5b32ed19ceab38ebd01565bbd
+  react-native-geolocation: 99e88dbb98e0bc11cadac135a92c67076eee495a
   react-native-geolocation-service: 608e1da71a1ac31b4de64d9ef2815f697978c55b
   react-native-image-picker: 60f4246eb5bb7187fc15638a8c1f13abd3820695
-  react-native-netinfo: 076df4f9b07f6670acf4ce9a75aac8d34c2e2ccc
+  react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-notifications: 4601a5a8db4ced6ae7cfc43b44d35fe437ac50c4
-  react-native-pdf: 103940c90d62adfd259f63cca99c7c0c306b514c
-  react-native-safe-area-context: b01d8f42d4e62a7be5a3e69fd332e0c7e67584c7
+  react-native-pdf: 70ec85fc764070ce9324f5aea504795e889e6ba0
+  react-native-safe-area-context: 141eca0fd4e4191288dfc8b96a7c7e1c2983447a
   react-native-version-check: 6cd36aad4e30b8e3216747e3b4ddeb09e0647af8
   react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
-  react-native-webview: 6830a4a7c5c7dbe2a564f6b019c51349672a9b7c
+  react-native-webview: e6e4703f5ebb6da097e1778bfa4470b9d64eb53a
   react-native-worklets-core: f51430dd07bf5343d4918d28a4bb00fe8f98b982
   React-NativeModulesApple: f4f1eb63ce4abb4bf6237388ed29001c88ba1d80
   React-perflogger: 6bd153e776e6beed54c56b0847e1220a3ff92ba5
@@ -1055,31 +1053,31 @@ SPEC CHECKSUMS:
   React-runtimescheduler: cf0257860741d7ad903d2dfca158b6d132d1a84f
   React-utils: da2e60679f4480f62225a338131fb8c4a8826305
   ReactCommon: 4ca239cecb16303061f7d24b82d656c506250080
-  RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNCClipboard: 0a720adef5ec193aa0e3de24c3977222c7e52a37
+  RNCAsyncStorage: ec53e44dc3e75b44aa2a9f37618a49c3bc080a7a
+  RNCClipboard: d7a8903d32692b0a1e71738c3825465a9acae10e
   RNDeviceInfo: b899ce37a403a4dea52b7cb85e16e49c04a5b88e
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNFBAnalytics: ec290267aac57446c10b491293373ac86357f575
   RNFBApp: 9b25191f7a5e72c185b7e43fffb0d906869c4659
   RNFBCrashlytics: 28f83084ae8a4b9e6ad128e3a644c28bb5e16007
   RNFBMessaging: 99621af036e0aa85506390f77d79c9e6353aacca
-  RNGestureHandler: ee924bd0024545efc4bc88c1e856f24b785d2ca2
+  RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
   RNImageCropPicker: e7ab6fb43d2fc3e84651e786ef4a080d63b0ed3d
   RNKeychain: bfe3d12bf4620fe488771c414530bf16e88f3678
   RNPermissions: 7e6b2dd65e393807326937a5b0dfb612268d0ca3
-  RNQrGenerator: 1676221c08bfabec978242989c733810dad20959
+  RNQrGenerator: ac6a6c766e80dd3625038929ed2b13e2f3edcafb
   RNReanimated: 726395a2fa2f04cea340274ba57a4e659bc0d9c1
-  RNScreens: 396c07678c1c35614bc5feba74a56df387bf1965
+  RNScreens: b21dc57dfa2b710c30ec600786a3fc223b1b92e7
   RNShare: 32e97adc8d8c97d4a26bcdd3c45516882184f8b6
   RNSVG: af3907ac5d4fa26a862b75a16d8f15bc74f2ceda
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
-  VisionCamera: 39dded86bad674c8c444f9983448c7b2f7ea431a
+  VisionCamera: e1fff899821ba3067206646b1ad5fe61c33d252e
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
   ZXingObjC: 8898711ab495761b2dbbdec76d90164a6d7e14c5
 
-PODFILE CHECKSUM: e39101bad3d25eaac9099bffc8e1d2767cf0c8b4
+PODFILE CHECKSUM: 2fdf91638c71777b5e45e79b469ca9c914911b99
 
 COCOAPODS: 1.16.2
