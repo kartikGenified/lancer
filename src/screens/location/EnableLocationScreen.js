@@ -12,8 +12,8 @@ import {
 } from "react-native";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
 import { useSelector, useDispatch } from "react-redux";
-import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 import Geolocation from "@react-native-community/geolocation";
+import LocationPermissionDialog from "../../components/organisms/LocationPermissionDialog";
 import {
   setLocation,
   setLocationPermissionStatus,
@@ -119,59 +119,25 @@ const EnableLocationScreen = ({ route, navigation }) => {
     return distance;
   };
 
-  const getLocationPermission = async () => {
-    console.log("LocationServicesDialogBox");
-
-    if (Platform.OS === "ios") {
-      Alert.alert(
-        t("GPS Disabled"),
-        t("Please enable GPS/Location to use this feature."),
-        [
-          { text: t("Cancel"), style: "cancel" },
-          { text: "Settings", onPress: openSettings },
-        ],
-        { cancelable: false }
-      );
-    } else if (Platform.OS === "android") {
-      LocationServicesDialogBox.checkLocationServicesIsEnabled({
-        message:
-          `<h2 style='color: #0af13e'>${t("Use Location ?")}</h2>${t("Calcutta Knit Wear wants to change your device settings:")}<br/><br/>${t("Enable location to use the application.")}<br/><br/><a href='#'>${t("Learn more")}</a>`,
-        ok: "YES",
-        cancel: "NO",
-        enableHighAccuracy: true,
-        showDialog: true,
-        openLocationServices: true,
-        preventOutSideTouch: false,
-        preventBackClick: true,
-        providerListener: false,
-        style: {
-          backgroundColor: "#DDDDDD",
-          positiveButtonTextColor: "white",
-          positiveButtonBackgroundColor: "#298d7b",
-          negativeButtonTextColor: "white",
-          negativeButtonBackgroundColor: "#ba5f5f",
-        },
-      })
-        .then(() => {
-          dispatch(setLocationPermissionStatus(true));
-          dispatch(setLocationEnabled(true));
-          getLocation();
-        })
-        .catch((error) => {
-          Alert.alert(
-            t("You denied GPS access"),
-            t("To scan QR code, Calcutta Knit Wear app requires location access, kindly enable GPS access to start scanning"),
-            [
-              {
-                text: t("OK"),
-                onPress: () => {
-                  navigation.navigate("Dashboard");
-                },
-              },
-            ]
-          );
-        });
-    }
+  const getLocationPermission = ({ navigation }) => {
+  
+    const onPermissionGranted = () => {
+      dispatch(setLocationPermissionStatus(true));
+      dispatch(setLocationEnabled(true));
+      getLocation(); // Ensure `getLocation` is defined elsewhere in your code.
+    };
+  
+    const onPermissionDenied = () => {
+      // Handle what happens when the user denies permission.
+    };
+  
+    return (
+      <LocationPermissionDialog
+        onPermissionGranted={onPermissionGranted}
+        onPermissionDenied={onPermissionDenied}
+        navigation={navigation}
+      />
+    );
   };
 
   const getLocation = useCallback(async () => {

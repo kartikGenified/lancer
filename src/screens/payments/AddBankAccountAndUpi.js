@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { useFetchGiftsRedemptionsOfUserMutation } from '../../apiServices/workflow/RedemptionApi';
 import * as Keychain from 'react-native-keychain';
 import { useFetchUserPointsMutation } from '../../apiServices/workflow/rewards/GetPointsApi';
-import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 
 const AddBankAccountAndUpi = ({navigation}) => {

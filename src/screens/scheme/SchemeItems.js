@@ -8,13 +8,11 @@ import {
   Dimensions,
   Linking,
 } from 'react-native';
-import Video from 'react-native-video';
 import {useSelector} from 'react-redux';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import {useCheckActiveSchemeMutation} from '../../apiServices/scheme/GetSchemeApi';
 import * as Keychain from 'react-native-keychain';
 import Logo from 'react-native-vector-icons/AntDesign';
-import moment from 'moment';
 export default function SchemeItems({navigation}) {
     const [scheme, setScheme] = useState([])
     const [gifts, setGifts] = useState([])

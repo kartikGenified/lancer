@@ -5,13 +5,13 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import { useSelector } from 'react-redux';
 import * as Keychain from 'react-native-keychain';
 import { useGetWarrantyByAppUserIdMutation } from '../../apiServices/workflow/warranty/ActivateWarrantyApi';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import ButtonNavigate from '../../components/atoms/buttons/ButtonNavigate';
 import { Text } from 'react-native-svg';
 import BottomModal from '../../components/modals/BottomModal';
 import RectangularUnderlinedDropDown from '../../components/atoms/dropdown/RectangularUnderlinedDropDown';
 import { useClaimWarrantyMutation } from '../../apiServices/workflow/warranty/ClaimWarrantyApi';
-import FeedbackTextArea from '../../components/feedback/FeedbackTextArea';
+import FeedbackTextArea from '../../components/modals/feedback/FeedbackTextArea';
 import ImageInput from '../../components/atoms/input/ImageInput';
 import ImageInputWithUpload from '../../components/atoms/input/ImageInputWithUpload';
 import ButtonRectangle from '../../components/atoms/buttons/ButtonRectangle';
@@ -366,8 +366,8 @@ const WarrantyDetails = ({ navigation, route }) => {
 
 
             <View style={{ alignItems: "center", justifyContent: "center" }}>
-                <PoppinsTextMedium style={{ color: 'black', fontSize: 18 }} content={`${t("Warranty Start")} : ${moment(warrantyStart).format('DD MMM YYYY')}`}></PoppinsTextMedium>
-                <PoppinsTextMedium style={{ color: 'black', fontSize: 18, marginTop: 4 }} content={`${t("Warranty End")} : ${moment(warrantyEnd).format('DD MMM YYYY')}`}></PoppinsTextMedium>
+                <PoppinsTextMedium style={{ color: 'black', fontSize: 18 }} content={`${t("Warranty Start")} : ${dayjs(warrantyStart).format('DD MMM YYYY')}`}></PoppinsTextMedium>
+                <PoppinsTextMedium style={{ color: 'black', fontSize: 18, marginTop: 4 }} content={`${t("Warranty End")} : ${dayjs(warrantyEnd).format('DD MMM YYYY')}`}></PoppinsTextMedium>
                 <View style={{ padding:8, width: 240, alignItems: "center", justifyContent: "center", borderWidth: 1, borderStyle: 'dashed', backgroundColor: ternaryThemeColor, borderRadius: 4, marginTop: 50 }}>
                     <PoppinsTextMedium style={{ color: 'white', fontSize: 18, marginTop: 4 }} content={`${t("Warranty Id")} : ${warrantyId}`}></PoppinsTextMedium>
                 </View>

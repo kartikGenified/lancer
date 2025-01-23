@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions, Linking } from 'react-native';
-import Video from 'react-native-video';
 import { useSelector } from 'react-redux';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import { useGetAppVideoMutation } from '../../apiServices/video/VideoApi';
 import * as Keychain from 'react-native-keychain';
 import Logo from 'react-native-vector-icons/AntDesign'
-import moment from 'moment';
+import dayjs from 'dayjs'
 import FastImage from 'react-native-fast-image';
 import DataNotFound from '../data not found/DataNotFound';
 import { useTranslation } from 'react-i18next';
@@ -75,7 +74,7 @@ const VideoGallery = ({ navigation }) => {
         <View style={{ backgroundColor: 'black', width: '100%', alignItems: 'flex-start', height: '60%', justifyContent: "center",padding:4 }}>
           <PoppinsTextMedium style={{ color: 'white', fontSize: 13, marginLeft: 8 }} content={`${t("Title")} : ${title.substring(0, 16)}`}></PoppinsTextMedium>
           <PoppinsTextMedium style={{ color: 'white', fontSize: 13, marginLeft: 8 }} content={`${t("Type")} : ${type}`}></PoppinsTextMedium>
-          <PoppinsTextMedium style={{ color: 'white', fontSize: 13, marginBottom: 6, marginLeft: 8 }} content={`${t("Date")} : ${moment(date).format("DD MMM YYYY")}`}></PoppinsTextMedium>
+          <PoppinsTextMedium style={{ color: 'white', fontSize: 13, marginBottom: 6, marginLeft: 8 }} content={`${t("Date")} : ${dayjs(date).format("DD MMM YYYY")}`}></PoppinsTextMedium>
 
         </View>
 

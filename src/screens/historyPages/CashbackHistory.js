@@ -15,7 +15,7 @@ import { useFetchCashbackEnteriesOfUserMutation, useFetchUserCashbackByAppUserId
 import DataNotFound from "../data not found/DataNotFound";
 import AnimatedDots from "../../components/animations/AnimatedDots";
 import { useGetCashTransactionsMutation, useGetRedeemptionListMutation } from "../../apiServices/cashback/CashbackRedeemApi";
-import moment from "moment";
+import dayjs from 'dayjs'
 import { useIsFocused } from '@react-navigation/native';
 import { useGetWalletBalanceMutation } from "../../apiServices/cashback/CashbackRedeemApi";
 import Wallet from 'react-native-vector-icons/Entypo'
@@ -243,7 +243,7 @@ useEffect(()=>{
       }
       else{
         setError(true)
-      setMessage("Redemption window starts from "+ moment(redemptionStartData).format("DD-MMM-YYYY") + " and ends on " +  moment(redemptionEndDate).format("DD-MMM-YYYY"))
+      setMessage("Redemption window starts from "+ dayjs(redemptionStartData).format("DD-MMM-YYYY") + " and ends on " +  dayjs(redemptionEndDate).format("DD-MMM-YYYY"))
       setNavigateTo("CashbackHistory")
 
       }
@@ -378,9 +378,9 @@ useEffect(()=>{
               <PoppinsTextMedium
                 style={{ color: "black", fontWeight: "600", fontSize: 14 }}
                 content={
-                  moment(props.items.transaction_on).format("DD-MMM-YYYY") +
+                  dayjs(props.items.transaction_on).format("DD-MMM-YYYY") +
                   " " +
-                  moment(props.items.transaction_on).format("HH:mm a")
+                  dayjs(props.items.transaction_on).format("HH:mm a")
                 }
               ></PoppinsTextMedium>
             </View>
@@ -454,9 +454,9 @@ useEffect(()=>{
               <PoppinsTextMedium
                 style={{ color: "black", fontWeight: "600", fontSize: 14 }}
                 content={
-                  moment(props.items.created_at).format("DD-MMM-YYYY") +
+                  dayjs(props.items.created_at).format("DD-MMM-YYYY") +
                   " " +
-                  moment(props.items.created_at).format("HH:mm a")
+                  dayjs(props.items.created_at).format("HH:mm a")
                 }
               ></PoppinsTextMedium>
             </View>

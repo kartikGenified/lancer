@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, PermissionsAndroid, ToastAndroid } from 'react-native'
 import React, { useEffect } from 'react'
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from '@react-native-community/geolocation';
 
 const LocationPermission = ({ onSuccess, onReject }) => {
 

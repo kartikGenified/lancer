@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import { useGetAppGalleryMutation } from '../../apiServices/imageGallery/ImageGalleryApi';
 import * as Keychain from 'react-native-keychain';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import Cancel from 'react-native-vector-icons/MaterialIcons'
 import Left from 'react-native-vector-icons/AntDesign'
 import Right from 'react-native-vector-icons/AntDesign'
@@ -119,7 +119,7 @@ setIndexImage(indexImage +1)
         {/* <View style={{backgroundColor:'black',width:'100%',alignItems:'flex-start',height:'50%',justifyContent:"center"}}>
         <PoppinsTextMedium style={{color:'white',fontSize:13,marginLeft:8}} content = {`Title : ${title}`}></PoppinsTextMedium>
         <PoppinsTextMedium style={{color:'white',fontSize:13,marginLeft:8}} content = {`Type : ${type}`}></PoppinsTextMedium>
-        <PoppinsTextMedium style={{color:'white',fontSize:13,marginBottom:6,marginLeft:8}} content = {`Date : ${moment(date).format("DD MMM YYYY")}`}></PoppinsTextMedium>
+        <PoppinsTextMedium style={{color:'white',fontSize:13,marginBottom:6,marginLeft:8}} content = {`Date : ${dayjs(date).format("DD MMM YYYY")}`}></PoppinsTextMedium>
         
         </View> */}
       

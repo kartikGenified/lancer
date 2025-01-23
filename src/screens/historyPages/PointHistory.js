@@ -5,7 +5,7 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import { useFetchUserPointsMutation, useFetchUserPointsHistoryMutation } from '../../apiServices/workflow/rewards/GetPointsApi';
 import * as Keychain from 'react-native-keychain';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import FastImage from 'react-native-fast-image';
 import PoppinsTextLeftMedium from '../../components/electrons/customFonts/PoppinsTextLeftMedium';
 import FilterModal from '../../components/modals/FilterModal';
@@ -79,10 +79,10 @@ const PointHistory = ({ navigation }) => {
         (async () => {
           const credentials = await Keychain.getGenericPassword();
           const token = credentials.username;
-        //   const startDate = moment(start).format(
+        //   const startDate = dayjs(start).format(
         //     "YYYY-MM-DD"
         //   )
-        //   const endDate = moment(end).format("YYYY-MM-DD")
+        //   const endDate = dayjs(end).format("YYYY-MM-DD")
           console.log("fetching point history data by date filter",{startDate:startDate,
           endDate:endDate,
           token: token,
@@ -493,7 +493,7 @@ const PointHistory = ({ navigation }) => {
                 renderItem={({ item, index }) => {
                     console.log(index + 1, item)
                     return (
-                        <ListItem visibleCode = {item.batch_running_code} type = {item?.cause?.type} image={item?.images ===undefined ? undefined : item?.images ===null ? undefined:item?.images[0]} description={item?.product_name} productCode={item?.product_code} amount={item?.points} status={item?.status} points={item?.points} is_reverted= {item?.is_reverted} date = {moment(item?.created_at).format("DD-MMM-YYYY")} time={moment(item?.created_at).format("HH:mm a")}/>
+                        <ListItem visibleCode = {item.batch_running_code} type = {item?.cause?.type} image={item?.images ===undefined ? undefined : item?.images ===null ? undefined:item?.images[0]} description={item?.product_name} productCode={item?.product_code} amount={item?.points} status={item?.status} points={item?.points} is_reverted= {item?.is_reverted} date = {dayjs(item?.created_at).format("DD-MMM-YYYY")} time={dayjs(item?.created_at).format("HH:mm a")}/>
                     )
                 }}
                 keyExtractor={(item,index) => index}

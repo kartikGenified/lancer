@@ -30,7 +30,6 @@ import { useUpdateKycStatusMutation } from "../../apiServices/kyc/KycStatusApi";
 import { setKycCompleted } from "../../../redux/slices/userKycStatusSlice";
 import FastImage from "react-native-fast-image";
 import { gifUri } from "../../utils/GifUrl";
-import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 const Verification = ({ navigation }) => {

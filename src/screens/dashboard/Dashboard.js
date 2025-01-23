@@ -46,7 +46,7 @@ import PlatinumModal from "../../components/platinum/PlatinumModal";
 import { useFetchAllQrScanedListMutation } from "../../apiServices/qrScan/AddQrApi";
 import FastImage from "react-native-fast-image";
 import ScannedDetailsBox from "../../components/organisms/ScannedDetailsBox";
-import moment from "moment";
+import dayjs from 'dayjs'
 import AnimatedDots from "../../components/animations/AnimatedDots";
 import analytics from "@react-native-firebase/analytics";
 import messaging from "@react-native-firebase/messaging";
@@ -810,7 +810,7 @@ const Dashboard = ({ navigation }) => {
               scanningDetails &&
               scanningDetails?.data.length !== 0 && (
                 <ScannedDetailsBox
-                  lastScannedDate={moment(
+                  lastScannedDate={dayjs(
                     scanningDetails?.data[0]?.created_at
                   ).format("DD MMM YYYY")}
                   scanCount={scanningDetails.total}

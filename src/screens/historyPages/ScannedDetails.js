@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import StatusBox from '../../components/atoms/StatusBox';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next';
 import { appIcon } from '../../utils/HandleClientSetup';
 
@@ -54,12 +54,12 @@ const ScannedDetails = ({ navigation, route }) => {
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 10 }}>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
                     <Image style={{ height: 16, width: 16, resizeMode: 'contain' }} source={require('../../../assets/images/Date.png')}></Image>
-                    <PoppinsTextMedium style={{ fontSize: 16, fontWeight: '800', color: 'black', marginLeft: 4 }} content={moment(date).format("DD MMM YYYY")}></PoppinsTextMedium>
+                    <PoppinsTextMedium style={{ fontSize: 16, fontWeight: '800', color: 'black', marginLeft: 4 }} content={dayjs(date).format("DD MMM YYYY")}></PoppinsTextMedium>
                 </View>
                 <View style={{ width: 2, height: '100%', backgroundColor: "grey", marginLeft: 20 }}></View>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginLeft: 10 }}>
                     <Image style={{ height: 16, width: 16, resizeMode: 'contain' }} source={require('../../../assets/images/clock.png')}></Image>
-                    <PoppinsTextMedium style={{ fontSize: 16, fontWeight: '800', color: 'black', marginLeft: 4 }} content={moment(date).format("HH:mm A")}></PoppinsTextMedium>
+                    <PoppinsTextMedium style={{ fontSize: 16, fontWeight: '800', color: 'black', marginLeft: 4 }} content={dayjs(date).format("HH:mm A")}></PoppinsTextMedium>
                 </View>
             </View>
             <ScannedDetailsProductBox></ScannedDetailsProductBox>

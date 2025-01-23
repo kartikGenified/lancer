@@ -11,7 +11,7 @@ import PoppinsText from '../../components/electrons/customFonts/PoppinsText';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import {useSelector} from 'react-redux';
 import ButtonNavigate from '../../components/atoms/buttons/ButtonNavigate';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useTranslation } from 'react-i18next';
 
@@ -22,7 +22,7 @@ const CouponDetails = ({navigation,route}) => {
     const data = route.params.data
     const approvalStatus = data.approval_status
     const couponTitle = data.brand_product_code;
-  const validDate = moment(data.expire_date).format("DD MMM YYYY");
+  const validDate = dayjs(data.expire_date).format("DD MMM YYYY");
   const couponCode = data.brand_product_code
   const {t} = useTranslation()
   const ternaryThemeColor = useSelector(

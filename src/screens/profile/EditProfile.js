@@ -27,7 +27,7 @@ import ErrorModal from "../../components/modals/ErrorModal";
 import InputDateProfile from "../../components/atoms/input/InputDateProfile";
 import RectangularUnderlinedDropDown from "../../components/atoms/dropdown/RectangularUnderlinedDropDown";
 import ProfileDropDown from "../../components/atoms/dropdown/ProfileDropDown";
-import moment from "moment";
+import dayjs from 'dayjs'
 import TextInputRectangularWithPlaceholder from "../../components/atoms/input/TextInputRectangularWithPlaceholder";
 import DisplayOnlyTextInput from "../../components/atoms/DisplayOnlyTextInput";
 import { useTranslation } from "react-i18next";
@@ -834,7 +834,7 @@ const EditProfile = ({ navigation, route }) => {
                   <InputDateProfile
                     label={formFields?.[index]?.label}
                     key={index}
-                    data={moment(formValues[index]).format("DD-MMM-YYYY")}
+                    data={dayjs(formValues[index]).format("DD-MMM-YYYY")}
                     title={item.name}
                     handleData={handleData}
                   ></InputDateProfile>

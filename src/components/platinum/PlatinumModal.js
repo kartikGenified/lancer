@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, FlatList } from
 import PoppinsTextMedium from '../electrons/customFonts/PoppinsTextMedium';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
-import { months } from 'moment/moment';
 import PoppinsText from '../electrons/customFonts/PoppinsText';
 import { ScrollView } from 'react-native';
 

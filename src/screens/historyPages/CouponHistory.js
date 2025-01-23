@@ -5,7 +5,7 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import { useAllUserPointsEntryMutation,useFetchUserPointsHistoryMutation } from '../../apiServices/workflow/rewards/GetPointsApi';
 import * as Keychain from 'react-native-keychain';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { useGetAllRedeemedCouponsMutation } from '../../apiServices/workflow/rewards/GetCouponApi';
 import { useGetAllUserCouponsMutation } from '../../apiServices/coupons/getAllCouponsApi';
 import DataNotFound from '../data not found/DataNotFound';
@@ -164,7 +164,7 @@ else if(getAllCouponsError){
                 renderItem={({item, index}) => (
                  <CouponItems 
                 data={item}
-                key ={index} refNo={item.ref_no} couponValue = {item.coupon_value} couponCode={item.brand_product_code} redeemedOn={moment(item.updated_at).format("DD-MM-YYYY")} ></CouponItems> 
+                key ={index} refNo={item.ref_no} couponValue = {item.coupon_value} couponCode={item.brand_product_code} redeemedOn={dayjs(item.updated_at).format("DD-MM-YYYY")} ></CouponItems> 
                 )}></FlatList>}
                  { showNoData &&
                 <View style={{ position:'absolute',width:'100%',height:'50%'}}>

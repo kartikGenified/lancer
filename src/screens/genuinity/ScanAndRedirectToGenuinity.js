@@ -10,9 +10,14 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import QRCodeScanner from 'react-native-qrcode-scanner';
-import { RNCamera } from 'react-native-camera';
-import PoppinsText from '../../components/electrons/customFonts/PoppinsText';
+
+import {
+  Camera,
+  useCameraDevice,
+  useCameraDevices,
+  useCameraPermission,
+  useCodeScanner,
+} from "react-native-vision-camera";
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ScannedListItem from '../../components/atoms/ScannedListItem';
@@ -31,6 +36,8 @@ import ModalWithBorder from '../../components/modals/ModalWithBorder';
 import Close from 'react-native-vector-icons/Ionicons';
 import RNQRGenerator from 'rn-qr-generator';
 import { useTranslation } from 'react-i18next';
+import { scannerType } from "../../utils/HandleClientSetup";
+import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
 
 
 const ScanAndRedirectToGenuinity = ({ navigation }) => {
@@ -41,6 +48,7 @@ const ScanAndRedirectToGenuinity = ({ navigation }) => {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState();
   const [error, setError] = useState(false);
+  const [cameraEnabled, setCameraEnabled] = useState(true);
   const [hideProceed, setHideProceed] = useState(true)
   const [savedToken, setSavedToken] = useState();
   const [productId, setProductId] = useState();
@@ -54,6 +62,7 @@ const ScanAndRedirectToGenuinity = ({ navigation }) => {
   const currentVersion = useSelector((state)=>state.appusers.app_version)
 
   const dispatch = useDispatch();
+  const device = useCameraDevice("back");
   
   const {t} = useTranslation()
 
@@ -61,7 +70,37 @@ const ScanAndRedirectToGenuinity = ({ navigation }) => {
   console.log('Workflow Program is ', workflowProgram);
   // console.log("Selector state",useSelector((state)=>state.appusersdata.userId))
 
+  const toastConfig = {
+    success: (props) => (
+      <BaseToast
+        {...props}
+        style={{ borderLeftColor: "pink" }}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+        text1Style={{
+          fontSize: 15,
+          fontWeight: "400",
+        }}
+      />
+    ),
 
+    error: ({ text1, props }) => (
+      <View
+        style={{
+          height: 60,
+          width: "70%",
+          backgroundColor: ternaryThemeColor,
+          borderWidth: 1,
+          borderColor: ternaryThemeColor,
+          borderRadius: 10,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Text style={{ color: "white", fontWeight: "800" }}>{text1}</Text>
+        <Text>{props.uuid}</Text>
+      </View>
+    ),
+  };
 
   const ternaryThemeColor = useSelector(
     state => state.apptheme.ternaryThemeColor,
@@ -425,231 +464,322 @@ else{
   };
   // --------------------------------------------------------
 
-  return (
-    <QRCodeScanner
-      onRead={onSuccess}
-      reactivate={true}
-      vibrate={true}
-      reactivateTimeout={2000}
-      fadeIn={true}
-      flashMode={
-        !flash
-          ? RNCamera.Constants.FlashMode.off
-          : RNCamera.Constants.FlashMode.torch
+  // debouncing function ----------------------------------------
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
-      customMarker={
-        <View style={{ height: '100%', width: '100%', flexDirection: 'row' }}>
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+  // ---------------------------------------------------------------
+
+  // initiallizing qr code scanner and applying debouncing to scanning -------------------------------
+  const codeScanner = useCodeScanner({
+    codeTypes: scannerType == "bar" ? ["code-128"] : ["qr"],
+    onCodeScanned: debounce((codes) => {
+      console.log(`Scanned ${codes.length} codes!`, codes[0]?.value);
+      scanDelay(codes[0]?.value, () => {
+        Vibration.vibrate([1000, 1000, 1000]);
+        onSuccess(codes[0]?.value);
+      });
+    }, 100), // Debounce time: adjust as needed
+  }); 
+  // ---------------------------------------------------------------------------------------------------
+  return (
+    <>
+      
+
+      {device != null  && (
+        <View style={{ height: "100%", width: "100%" }}>
+          <Camera
+            codeScanner={codeScanner}
+            focusable={true}
+            exposure={0}
+            zoom={zoom}
+            // frameProcessor={frameProcessor}
+            // frameProcessorFps={5}
+            style={{ height: "40%" }}
+            device={device}
+            isActive={cameraEnabled}
+            torch={flash ? "on" : "off"}
+            // format={}
+          ></Camera>
+
           <View
             style={{
-              height: '36%',
-              width: '80%',
-              position: 'absolute',
-              top: 10,
-              alignItems: 'center',
-              justifyContent: 'center',
-              left: 0,
-            }}>
-            <PoppinsText
-              style={{
-                fontSize: 20,
-                color: 'white',
-                position: 'absolute',
-                right: 0,
-                top: 0,
-              }}
-              content={t("Scan Product QR Code")}></PoppinsText>
+              width: "100%",
+              flexDirection: "row",
+              position: "absolute",
+              top: 0,
+              right: 0,
+            }}
+          >
             <View
               style={{
-                backgroundColor: 'transparent',
-                borderWidth: 4,
-                borderColor: '#305CB8',
-                height: 200,
-                width: 240,
-                borderRadius: 20,
-                position: 'absolute',
-                right: 0,
-                top: 40,
-                alignItems: 'center',
-                justifyContent: 'flex-end',
-              }}>
+                height: "36%",
+                width: "80%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <PoppinsTextMedium
+                style={{
+                  fontSize: 20,
+                  color: "white",
+                  marginLeft: 75,
+                  marginBottom: 30,
+                }}
+                content="Scan Product QR Code"
+              ></PoppinsTextMedium>
               <View
                 style={{
-                  height: 40,
-                  width: 80,
-                  backgroundColor: '#58585A',
-                  borderRadius: 20,
-                  marginBottom: 8,
-                  flexDirection: 'row',
-                }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setHelpModal(true)
-                  }}
+                  backgroundColor: "transparent",
+                  borderWidth: 4,
+                  borderColor: "#305CB8",
+                  height: 200,
+                  width: 240,
+                  alignSelf: "center",
+                  position: "absolute",
+                  right: 0,
+                  top: 60,
+
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <View
                   style={{
-                    backgroundColor: 'black',
-                    height: 34,
-                    width: 34,
-                    borderRadius: 17,
-                    position: 'absolute',
-                    left: 5,
-                    top: 3,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Image
-                    style={{ height: 16, width: 16, resizeMode: 'contain' }}
-                    source={require('../../../assets/images/qrQuestionMark.png')}></Image>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    handleZoom();
+                    height: 40,
+                    width: 80,
+                    backgroundColor: "#58585A",
+                    borderRadius: 20,
+                    marginBottom: 8,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
-                  style={{
-                    backgroundColor: 'black',
-                    height: 34,
-                    width: 34,
-                    borderRadius: 17,
-                    position: 'absolute',
-                    right: 5,
-                    top: 3,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Text style={{ fontSize: 14, color: '#FB774F' }}>
-                    {zoomText}X
-                  </Text>
-                </TouchableOpacity>
+                >
+                  <TouchableOpacity
+                    onPress={() => {
+                      setHelpModal(true);
+                    }}
+                    style={{
+                      backgroundColor: "black",
+                      height: 34,
+                      width: 34,
+                      borderRadius: 17,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Image
+                      style={{
+                        height: 16,
+                        width: 16,
+                        resizeMode: "contain",
+                        alignSelf: "center",
+                      }}
+                      source={require("../../../assets/images/qrQuestionMark.png")}
+                    ></Image>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      handleZoom();
+                    }}
+                    style={{
+                      backgroundColor: "black",
+                      height: 34,
+                      width: 34,
+                      borderRadius: 17,
+                      marginLeft: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 14, color: "#FB774F" }}>
+                      {zoomText}X
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
+            <View
+              style={{
+                width: "20%",
+                height: "36%",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("Dashboard");
+                }}
+                style={{ height: 34, width: 34, margin: 10, left: 20 }}
+              >
+                <Image
+                  style={{ height: 34, width: 34, resizeMode: "contain" }}
+                  source={require("../../../assets/images/qrCancel.png")}
+                ></Image>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  handleFlash();
+                }}
+                style={{ height: 44, width: 44, margin: 20, marginTop: 80 }}
+              >
+                <Image
+                  style={{ height: 44, width: 44, resizeMode: "contain" }}
+                  source={require("../../../assets/images/qrTorch.png")}
+                ></Image>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  handleOpenImageGallery();
+                }}
+                style={{ height: 44, width: 44, margin: 20 }}
+              >
+                <Image
+                  style={{ height: 44, width: 44, resizeMode: "contain" }}
+                  source={require("../../../assets/images/qrGallery.png")}
+                ></Image>
+              </TouchableOpacity>
+            </View>
           </View>
+
           <View
             style={{
-              width: '20%',
-              height: '36%',
-              position: 'absolute',
-              right: 0,
-              alignItems: 'flex-start',
-              justifyContent: 'flex-start',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Dashboard');
-              }}
-              style={{ height: 34, width: 34, margin: 10, left: 20 }}>
-              <Image
-                style={{ height: 34, width: 34, resizeMode: 'contain' }}
-                source={require('../../../assets/images/qrCancel.png')}></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleFlash();
-              }}
-              style={{ height: 44, width: 44, margin: 20 }}>
-              <Image
-                style={{ height: 44, width: 44, resizeMode: 'contain' }}
-                source={require('../../../assets/images/qrTorch.png')}></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                handleOpenImageGallery();
-              }}
-              style={{ height: 44, width: 44, margin: 20 }}>
-              <Image
-                style={{ height: 44, width: 44, resizeMode: 'contain' }}
-                source={require('../../../assets/images/qrGallery.png')}></Image>
-            </TouchableOpacity>
-          </View>
-        </View>
-      }
-      showMarker={true}
-      cameraStyle={{ height: '100%' }}
-      cameraProps={{ zoom: zoom }}
-      bottomContent={
-        <View
-          style={{
-            height: height - 100,
-            backgroundColor: 'white',
-            width: '100%',
-            top: platformMargin,
-            borderRadius: 30,
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-          }}>
-          {error && (
-            <ErrorModal
-              modalClose={modalClose}
-              message={message}
-              openModal={error}></ErrorModal>
-          )}
+              height: "60%",
+              backgroundColor: "white",
+              width: "100%",
+              // top: platformMargin,
+              borderRadius: 30,
+              alignItems: "center",
+              justifyContent: "flex-start",
+            }}
+          >
+            {error && (
+              <ErrorModal
+                modalClose={modalClose}
+                productData={verifyQrData?.body?.qr}
+                message={message}
+                warning={!isReportable ? true : false}
+                isReportable={isReportable}
+                openModal={error}
+              ></ErrorModal>
+            )}
 
-{helpModal && <ModalWithBorder
-                      modalClose={() => { setHelpModal(!helpModal) }}
-                      // message={message}
-                      openModal={helpModal}
-                      // navigateTo="WarrantyClaimDetails"
-                      // parameters={{ warrantyItemData: data, afterClaimData: warrantyClaimData }}
-                      comp={helpModalComp}></ModalWithBorder>}
+            {success && (
+              <MessageModal
+                modalClose={modalClose}
+                title="Success"
+                message={message}
+                openModal={success}
+              ></MessageModal>
+            )}
 
-          {addedQrList.length === 0 ? (
-            <View
-              style={{
-                height: '100%',
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-              }}>
-              <ScrollView contentContainerStyle={{ alignItems: "center", justifyContent: 'center', width: '80%' }}>
-                <Image
-                  style={{ height: 300, width: 300 }}
-                  source={require('../../../assets/images/qrHowTo.png')}></Image>
-                <PoppinsTextMedium
-                  style={{ color: 'grey', fontWeight: '700', fontSize: 20 }}
-                  content={t("Please start scanning by pointing the camera towards the QR code")}></PoppinsTextMedium>
-              </ScrollView>
-            </View>
-          ) : (
-            <View
-              style={{
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <FlatList
-                style={{ width: '100%' }}
-                data={addedQrList}
-                renderItem={({ item, index }) => (
-                  <View
-                    style={{
-                      width: '100%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    {!error && (
+            {addedQrList.length === 0 ? (
+              <View
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                }}
+              >
+                {console.log("addede QRLIST", addedQrList)}
+                <ScrollView
+                  contentContainerStyle={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "80%",
+                    marginTop: 60,
+                  }}
+                >
+                  <Image
+                    style={{ height: 300, width: 300, resizeMode: "contain" }}
+                    source={require("../../../assets/images/qrHowTo.png")}
+                  ></Image>
+                </ScrollView>
+              </View>
+            ) : (
+              <View
+                style={{
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "100%",
+                  // backgroundColor:'red'
+                }}
+              >
+                {console.log("addede QRLIST", addedQrList)}
+                <FlatList
+                  style={{ width: "100%", height: "80%" }}
+                  data={addedQrList}
+                  renderItem={({ item, index }) => (
+                    <View
+                      style={{
+                        width: "100%",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       <ScannedListItem
+                        listSize={addedQrList.length}
                         handleDelete={deleteQrFromList}
                         unique_code={item.unique_code}
                         index={index}
                         serialNo={item.batch_running_code}
-                        productName={item.created_by_name}
+                        productName={item.name}
                         productCode={item.product_code}
-                        batchCode={item.batch_code}></ScannedListItem>
-                    )}
+                        batchCode={item.batch_code}
+                      ></ScannedListItem>
+                    </View>
+                  )}
+                  keyExtractor={(item) => item.id}
+                />
 
-              
+                {showProceed && (
+                  <View style={{ marginBottom: 60 }}>
+                    <ButtonProceed
+                      handleOperation={handleAddQr}
+                      style={{ color: "white", fontSize: 16 }}
+                      // content="Proceed"
+                      content={"Proceed"}
+                      navigateTo={"QrCodeScanner"}
+                    ></ButtonProceed>
                   </View>
                 )}
-                keyExtractor={item => item.id}
-              />
-            </View>
+              </View>
+            )}
+            <Toast config={toastConfig} />
+          </View>
+          {}
+
+          {helpModal && (
+            <ModalWithBorder
+              modalClose={() => {
+                setHelpModal(!helpModal);
+              }}
+              // message={message}
+              openModal={helpModal}
+              // navigateTo="WarrantyClaimDetails"
+              // parameters={{ warrantyItemData: data, afterClaimData: warrantyClaimData }}
+              comp={helpModalComp}
+            ></ModalWithBorder>
           )}
-          {hideProceed &&<ButtonProceed
-            handleOperation={handleAddQr}
-            style={{ color: 'white' }}
-            content={t("Proceed")}
-            navigateTo={'QrCodeScanner'}></ButtonProceed>}
+        
+
+         
+          
         </View>
-      }
-    />
+      )}
+    </>
   );
 };
 

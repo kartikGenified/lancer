@@ -5,7 +5,7 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import { useSelector } from 'react-redux';
 import * as Keychain from 'react-native-keychain';
 import { useGetWarrantyByAppUserIdMutation } from '../../apiServices/workflow/warranty/ActivateWarrantyApi';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import FastImage from 'react-native-fast-image';
 import FilterModal from '../../components/modals/FilterModal';
 import DataNotFound from '../data not found/DataNotFound';
@@ -218,7 +218,7 @@ const WarrantyHistory = ({ navigation }) => {
             <View style={{ width: "90%", height: 150, borderRadius: 20, backgroundColor: '#F2F2F2', elevation: 6, margin: 20 }}>
                 <ImageBackground resizeMode='contain' style={{ position: "absolute", height: 100, width: 100, right: 10, top: -20, alignItems: "center", justifyContent: "center" }} source={require('../../../assets/images/blueEnvelope.png')}>
                     <PoppinsTextMedium style={{ fontSize: 11, color: 'white' }} content={t("Warranty Till")}></PoppinsTextMedium>
-                    <PoppinsTextMedium style={{ fontSize: 12, color: 'white' }} content={moment(warrantyTillDate).format("DD MMM YYYY")}></PoppinsTextMedium>
+                    <PoppinsTextMedium style={{ fontSize: 12, color: 'white' }} content={dayjs(warrantyTillDate).format("DD MMM YYYY")}></PoppinsTextMedium>
                 </ImageBackground>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", width: '60%',backgroundColor:'#F2F2F2' }}>
                     {image ? <Image style={{ height: 60, width: 60, resizeMode: 'contain' }} source={{uri:image}}></Image> : <Image style={{ height: 60, width: 60, resizeMode: 'contain' }} source={require('../../../assets/images/box.png')}></Image>  }

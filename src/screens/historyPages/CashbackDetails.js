@@ -4,7 +4,7 @@ import PoppinsText from '../../components/electrons/customFonts/PoppinsText';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import { useSelector } from 'react-redux';
 import ButtonNavigate from '../../components/atoms/buttons/ButtonNavigate';
-import moment from 'moment';
+import dayjs from 'dayjs'
 
 const CashbackDetails = ({navigation,route}) => {
     
@@ -15,7 +15,7 @@ const CashbackDetails = ({navigation,route}) => {
         : 'grey';
     
     const data = route.params.data
-    const date = moment(data.updated_at).format("DD MMM YYYY")
+    const date = dayjs(data.updated_at).format("DD MMM YYYY")
     const amount =data.cash;
     const beneName = data?.bene_details?.name
     const beneUpi = data?.bene_details?.vpa

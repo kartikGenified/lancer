@@ -10,7 +10,7 @@ import { useFetchUserPointsHistoryMutation } from '../../apiServices/workflow/re
 import { useGetAllRedeemedCouponsMutation } from '../../apiServices/workflow/rewards/GetCouponApi';
 import { useFetchGiftsRedemptionsOfUserMutation } from '../../apiServices/workflow/RedemptionApi';
 import { useFetchCashbackEnteriesOfUserMutation } from '../../apiServices/workflow/rewards/GetCashbackApi';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import RedeemRewardDataBoxLong from '../../components/molecules/RedeemRewardDataBoxLong';
 import ProgressBar from '../../components/miscellaneous/ProgressBar';
 import RedeemRewardDataBoxWithoutImage from '../../components/molecules/RedeemRewardDataBoxWithoutImage';
@@ -249,7 +249,7 @@ const RedeemRewardHistory = ({navigation}) => {
         renderItem={({item,index}) => {
             console.log("Redeem",item)
             return(
-                <RedeemRewardDataBoxWithoutImage header="Credited To Balance" data={moment(item.created_at).format("DD MMM YYYY")} points={item.cashback}></RedeemRewardDataBoxWithoutImage>
+                <RedeemRewardDataBoxWithoutImage header="Credited To Balance" data={dayjs(item.created_at).format("DD MMM YYYY")} points={item.cashback}></RedeemRewardDataBoxWithoutImage>
                 
                 )
         }}
@@ -275,7 +275,7 @@ const RedeemRewardHistory = ({navigation}) => {
         renderItem={({item,index}) => {
             console.log("Redeem",item)
             return(
-                <RedeemRewardDataBoxLong type="Uri" header={item.gift.gift[0].name} data={moment(item.created_at).format("DD MMM YYYY")} image={item.gift.gift[0].images[0]}></RedeemRewardDataBoxLong>
+                <RedeemRewardDataBoxLong type="Uri" header={item.gift.gift[0].name} data={dayjs(item.created_at).format("DD MMM YYYY")} image={item.gift.gift[0].images[0]}></RedeemRewardDataBoxLong>
                 
                 )
         }}
@@ -302,7 +302,7 @@ const RedeemRewardHistory = ({navigation}) => {
         renderItem={({item,index}) => {
             console.log(index+1,item)
             return(
-                <PointsDataBox header={t("points earned")} data={moment(item.created_at).format("DD MMM YYYY")} points={item.points}></PointsDataBox>
+                <PointsDataBox header={t("points earned")} data={dayjs(item.created_at).format("DD MMM YYYY")} points={item.points}></PointsDataBox>
             
                 )
         }}
@@ -358,7 +358,7 @@ const RedeemRewardHistory = ({navigation}) => {
         renderItem={({item,index}) => {
             console.log(index+1,item)
             return(
-                <Coupon earnedOn={moment(item.created_at).format("DD MMM YYYY")} couponName={item.brand} expiresOn={moment(item.expire_date).format("DD MMM YYYY")} couponCode={item.coupon_code}></Coupon>
+                <Coupon earnedOn={dayjs(item.created_at).format("DD MMM YYYY")} couponName={item.brand} expiresOn={dayjs(item.expire_date).format("DD MMM YYYY")} couponCode={item.coupon_code}></Coupon>
             
                 )
         }}

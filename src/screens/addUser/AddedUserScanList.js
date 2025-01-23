@@ -9,7 +9,7 @@ import { useFetchUserPointsMutation } from '../../apiServices/workflow/rewards/G
 import * as Keychain from 'react-native-keychain';
 import { useFetchAllQrScanedListMutation } from '../../apiServices/qrScan/AddQrApi';
 import { FlatList } from 'react-native';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 
 
@@ -58,9 +58,9 @@ const AddedUserScanList = ({ navigation, route }) => {
             let toDate;
             let queryParams = `?user_type_id=${data.mapped_user_type_id}&app_user_id=${data.mapped_app_user_id}`;
             if (fromDate && toDate) {
-                queryParams += `&from_date=${moment(fromDate).format(
+                queryParams += `&from_date=${dayjs(fromDate).format(
                     "YYYY-MM-DD"
-                )}&to_date=${moment(toDate).format("YYYY-MM-DD")}`;
+                )}&to_date=${dayjs(toDate).format("YYYY-MM-DD")}`;
             } else if (fromDate) {
                 queryParams += `&from_date=${fromDate}`;
             }
@@ -218,7 +218,7 @@ const AddedUserScanList = ({ navigation, route }) => {
         let tempArr = [];
         let tempData = [];
         data.map((item, index) => {
-            dateArr.push(moment(item.scanned_at).format("DD-MMM-YYYY"));
+            dateArr.push(dayjs(item.scanned_at).format("DD-MMM-YYYY"));
         });
         const distinctDates = Array.from(new Set(dateArr));
         console.log("distinctDates", distinctDates);
@@ -226,7 +226,7 @@ const AddedUserScanList = ({ navigation, route }) => {
         distinctDates.map((item1, index) => {
             tempData = [];
             data.map((item2, index) => {
-                if (moment(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
+                if (dayjs(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
                     tempData.push(item2);
                 }
             });
@@ -385,7 +385,7 @@ const AddedUserScanList = ({ navigation, route }) => {
                                         data={item}
                                         description={item.product_name}
                                         productCode={item.product_code}
-                                        time={moment(item.scanned_at).format("HH:mm a")}
+                                        time={dayjs(item.scanned_at).format("HH:mm a")}
                                     ></ListItem>
                                 )}
                                 keyExtractor={(item, index) => index}

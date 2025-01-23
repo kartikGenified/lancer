@@ -21,7 +21,7 @@ import ProductList from '../../components/molecules/ProductList';
 import {  useUploadSingleFileMutation } from '../../apiServices/imageApi/imageApi';
 import { useActivateWarrantyMutation } from '../../apiServices/workflow/warranty/ActivateWarrantyApi';
 import * as Keychain from 'react-native-keychain';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import ModalWithBorder from '../../components/modals/ModalWithBorder';
 import Icon from 'react-native-vector-icons/Feather';
 import Close from 'react-native-vector-icons/Ionicons';
@@ -662,7 +662,7 @@ const ActivateWarranty = ({ navigation, route }) => {
                     jsonData={item}
                     handleData={handleChildComponentData}
                     data={item.label}
-                    minDate ={moment().subtract(1, 'months').toDate()}
+                    minDate ={dayjs().subtract(1, 'months').toDate()}
                     key={index}></InputDate>
                 );
               }

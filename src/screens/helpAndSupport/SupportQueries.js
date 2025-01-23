@@ -22,7 +22,7 @@ import ErrorModal from '../../components/modals/ErrorModal';
 import MessageModal from '../../components/modals/MessageModal';
 import { useGetQueriesTypeMutation, useSubmitQueriesMutation } from '../../apiServices/supportQueries/supportQueriesApi';
 import PrefilledTextInput from '../../components/atoms/input/PrefilledTextInput';
-import FeedbackTextArea from '../../components/feedback/FeedbackTextArea';
+import FeedbackTextArea from '../../components/modals/feedback/FeedbackTextArea';
 import { useTranslation } from 'react-i18next';
 
 const SupportQueries = ({ navigation }) => {

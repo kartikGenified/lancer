@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useFetchGiftsRedemptionsOfUserMutation } from '../../apiServices/workflow/RedemptionApi';
 import * as Keychain from 'react-native-keychain';
 import { useFetchUserPointsMutation } from '../../apiServices/workflow/rewards/GetPointsApi';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import { useIsFocused } from '@react-navigation/native';
 import ErrorModal from '../../components/modals/ErrorModal';
 import MessageModal from '../../components/modals/MessageModal';
@@ -192,7 +192,7 @@ const RedeemedHistory = ({ navigation }) => {
     let tempArr = []
     let tempData = []
     data.map((item, index) => {
-      dateArr.push(moment(item.created_at).format("DD-MMM-YYYY"))
+      dateArr.push(dayjs(item.created_at).format("DD-MMM-YYYY"))
     })
     const distinctDates = Array.from(new Set(dateArr))
     console.log("distinctDates", distinctDates)
@@ -200,7 +200,7 @@ const RedeemedHistory = ({ navigation }) => {
     distinctDates.map((item1, index) => {
       tempData = []
       data.map((item2, index) => {
-        if (moment(item2.created_at).format("DD-MMM-YYYY") === item1) {
+        if (dayjs(item2.created_at).format("DD-MMM-YYYY") === item1) {
           tempData.push(item2)
         }
       })
@@ -281,7 +281,7 @@ const RedeemedHistory = ({ navigation }) => {
           console.log("correct redemption date",new Date().getTime(),new Date(redemptionStartData).getTime(),new Date(redemptionEndDate).getTime(),"hello")
 
           setError(true)
-        setMessage(`${t("Redemption window starts from ")} ${moment(redemptionStartData).format("DD-MMM-YYYY")}  ${t(" and ends on ")}  ${moment(redemptionEndDate).format("DD-MMM-YYYY")}`)
+        setMessage(`${t("Redemption window starts from ")} ${dayjs(redemptionStartData).format("DD-MMM-YYYY")}  ${t(" and ends on ")}  ${dayjs(redemptionEndDate).format("DD-MMM-YYYY")}`)
         // setMessage("hello")
         // setNavigateTo("RedeemedHistory")
 
@@ -383,7 +383,7 @@ const RedeemedHistory = ({ navigation }) => {
               console.log("correct redemption date",new Date().getTime(),new Date(redemptionStartData).getTime(),new Date(redemptionEndDate).getTime(),"hello")
     
               setError(true)
-            setMessage(`${t("Redemption window starts from ")} ${moment(redemptionStartData).format("DD-MMM-YYYY")}  ${t(" and ends on ")}  ${moment(redemptionEndDate).format("DD-MMM-YYYY")}`)
+            setMessage(`${t("Redemption window starts from ")} ${dayjs(redemptionStartData).format("DD-MMM-YYYY")}  ${t(" and ends on ")}  ${dayjs(redemptionEndDate).format("DD-MMM-YYYY")}`)
             // setMessage("hello")
             // setNavigateTo("RedeemedHistory")
     
@@ -561,7 +561,7 @@ const RedeemedHistory = ({ navigation }) => {
                   item.data.map((item, index) => {
                     return (
                       <View key={index}>
-                        <ListItem data={item} productStatus={item.gift_status} description={item.gift} productCode={item.product_code} amount={item.points} time={moment(item.created_at).format('HH:MM a')} />
+                        <ListItem data={item} productStatus={item.gift_status} description={item.gift} productCode={item.product_code} amount={item.points} time={dayjs(item.created_at).format('HH:MM a')} />
 
                       </View>
 
@@ -587,7 +587,7 @@ const RedeemedHistory = ({ navigation }) => {
           //         item.data.map((item, index) => {
           //           return (
           //             <View key={index}>
-          //               <ListItem data={item} description={item.gift} productCode={item.product_code} amount={item.points} time={moment(item.created_at).format('HH:MM')} />
+          //               <ListItem data={item} description={item.gift} productCode={item.product_code} amount={item.points} time={dayjs(item.created_at).format('HH:MM')} />
 
           //             </View>
 

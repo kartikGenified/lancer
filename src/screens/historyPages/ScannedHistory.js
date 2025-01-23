@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import * as Keychain from "react-native-keychain";
 import { useFetchUserPointsMutation } from "../../apiServices/workflow/rewards/GetPointsApi";
 import { useAllUserPointsEntryMutation } from "../../apiServices/workflow/rewards/GetPointsApi";
-import moment from "moment";
+import dayjs from 'dayjs'
 import BottomModal from "../../components/modals/BottomModal";
 import FastImage from "react-native-fast-image";
 import InputDate from "../../components/atoms/input/InputDate";
@@ -87,11 +87,11 @@ const ScannedHistory = ({ navigation }) => {
       const token = credentials.username;
       let queryParams = `?user_type_id=${userData.user_type_id}&app_user_id=${userData.id}&limit=${limit}`;
       if (startDate && endDate) {
-        queryParams += `&from_date=${moment(startDate).format(
+        queryParams += `&from_date=${dayjs(startDate).format(
           "YYYY-MM-DD"
-        )}&to_date=${moment(endDate).format("YYYY-MM-DD")}`;
+        )}&to_date=${dayjs(endDate).format("YYYY-MM-DD")}`;
       } else if (startDate) {
-        queryParams += `&from_date=${moment(startDate).format(
+        queryParams += `&from_date=${dayjs(startDate).format(
           "YYYY-MM-DD"
         )}`;
       }
@@ -111,11 +111,11 @@ const ScannedHistory = ({ navigation }) => {
       const token = credentials.username;
       let queryParams = `?user_type_id=${userData.user_type_id}&app_user_id=${userData.id}&limit=${limit}`;
       if (startDate && endDate) {
-        queryParams += `&from_date=${moment(startDate).format(
+        queryParams += `&from_date=${dayjs(startDate).format(
           "YYYY-MM-DD"
-        )}&to_date=${moment(endDate).format("YYYY-MM-DD")}`;
+        )}&to_date=${dayjs(endDate).format("YYYY-MM-DD")}`;
       } else if (startDate) {
-        queryParams += `&from_date=${moment(startDate).format(
+        queryParams += `&from_date=${dayjs(startDate).format(
           "YYYY-MM-DD"
         )}`;
       }
@@ -150,11 +150,11 @@ const ScannedHistory = ({ navigation }) => {
       console.log("Start End",start,end)
       let queryParams = `?user_type_id=${userData.user_type_id}&app_user_id=${userData.id}&limit=${limit}`;
       if (start && end) {
-        queryParams += `&from_date=${moment(start).format(
+        queryParams += `&from_date=${dayjs(start).format(
           "YYYY-MM-DD"
-        )}&to_date=${moment(end).format("YYYY-MM-DD")}`;
+        )}&to_date=${dayjs(end).format("YYYY-MM-DD")}`;
       } else if (start) {
-        queryParams += `&from_date=${moment(start).format(
+        queryParams += `&from_date=${dayjs(start).format(
           "YYYY-MM-DD"
         )}`;
       }
@@ -208,7 +208,7 @@ const ScannedHistory = ({ navigation }) => {
     let tempArr = [];
     let tempData = [];
     data.map((item, index) => {
-      dateArr.push(moment(item.scanned_at).format("DD-MMM-YYYY"));
+      dateArr.push(dayjs(item.scanned_at).format("DD-MMM-YYYY"));
     });
     const distinctDates = Array.from(new Set(dateArr));
     // console.log("distinctDates", distinctDates);
@@ -216,7 +216,7 @@ const ScannedHistory = ({ navigation }) => {
     distinctDates.map((item1, index) => {
       tempData = [];
       data.map((item2, index) => {
-        if (moment(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
+        if (dayjs(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
           tempData.push(item2);
         }
       });
@@ -743,7 +743,7 @@ const ScannedHistory = ({ navigation }) => {
                         description={item.product_name}
                         productCode={item.product_code}
                         batch_running_code={item.batch_running_code}
-                        time={moment(item.scanned_at).format("HH:mm a")}
+                        time={dayjs(item.scanned_at).format("HH:mm a")}
                       ></ListItem>
                     )}
                     keyExtractor={(item, index) => index}

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import { useSelector } from 'react-redux';
 import PoppinsTextLeftMedium from '../../components/electrons/customFonts/PoppinsTextLeftMedium';
-import moment from 'moment';
+import dayjs  from 'dayjs'
 import { useTranslation } from 'react-i18next';
 
 // create a component
@@ -50,7 +50,7 @@ const WarrantyClaimDetails = ({ navigation, route }) => {
             </View>
 
             <View style={{ marginTop: 20 }}>
-                <PoppinsTextMedium content={`Claim Date : ${moment(afterClaimData?.body?.claim_date).format('YYYY-MM-DD')}`} style={{ fontWeight: '700', fontSize: 20, color: ternaryThemeColor }} />
+                <PoppinsTextMedium content={`Claim Date : ${dayjs(afterClaimData?.body?.claim_date).format('YYYY-MM-DD')}`} style={{ fontWeight: '700', fontSize: 20, color: ternaryThemeColor }} />
             </View>
 
             <View style={{

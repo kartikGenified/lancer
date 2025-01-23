@@ -4,7 +4,7 @@ import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTex
 import { useSelector } from "react-redux";
 import RectanglarUnderlinedTextInput from "../../components/atoms/input/RectanglarUnderlinedTextInput";
 import RectangularUnderlinedDropDown from "../../components/atoms/dropdown/RectangularUnderlinedDropDown";
-import FeedbackTextArea from "../../components/feedback/FeedbackTextArea";
+import FeedbackTextArea from "../../components/modals/feedback/FeedbackTextArea";
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
 import {
   useGetFormAccordingToAppUserTypeFormIdMutation,

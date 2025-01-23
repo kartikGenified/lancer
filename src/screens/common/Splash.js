@@ -64,8 +64,6 @@ import {
 } from "../../../redux/slices/userLocationSlice";
 import { useCheckVersionSupportMutation } from "../../apiServices/minVersion/minVersionApi";
 import VersionCheck from "react-native-version-check";
-import LocationPermission from "../../components/organisms/LocationPermission";
-import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 import { useGetAppDashboardDataMutation } from "../../apiServices/dashboard/AppUserDashboardApi";
 import { setDashboardData } from "../../../redux/slices/dashboardDataSlice";
 import { useGetAppUserBannerDataMutation } from "../../apiServices/dashboard/AppUserBannerApi";
@@ -88,15 +86,6 @@ import { setDrawerData } from "../../../redux/slices/drawerDataSlice";
 import * as Keychain from "react-native-keychain";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
-import {
-  setLocationCheckVisited,
-  setLocationPermissionStatus,
-} from "../../../redux/slices/userLocationSlice";
-import SpInAppUpdates, {
-  NeedsUpdateResponse,
-  IAUUpdateKind,
-  StartUpdateOptions,
-} from "sp-react-native-in-app-updates";
 import { useInternetSpeedContext } from "../../Contexts/useInternetSpeedContext";
 import { setSlowNetwork } from "../../../redux/slices/internetSlice";
 import { apiFetchingInterval } from "../../utils/apiFetchingInterval";
@@ -104,6 +93,7 @@ import { clientName, splash } from "../../utils/HandleClientSetup";
 import FastImage from "react-native-fast-image";
 import { useTranslation } from "react-i18next";
 import handleLocationPermissionAndFetch from "../../utils/handleLocationPermissionAndFetch";
+import getCurrentLocation from "../../components/organisms/getCurrentLocation";
 
 const Splash = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -940,10 +930,15 @@ const Splash = ({ navigation }) => {
   // };
 
   useEffect(() => {
-    const fetchLocationData =  async() => {
+    const fetchLocationData = async () => {
       try {
-        const locationData =  await handleLocationPermissionAndFetch();
-        console.log("Fetched Location Dataaaaaa:", locationData);
+        const locationData = await handleLocationPermissionAndFetch();
+        if (locationData) {
+          console.log("Fetched Location Data:", locationData);
+          // Proceed with location data
+        } else {
+          console.log("Location fetch failed or permission denied");
+        }
       } catch (error) {
         console.error("Error fetching location data:", error);
       }
@@ -1271,33 +1266,9 @@ const Splash = ({ navigation }) => {
     }
   }, [getAppThemeData, getAppThemeError, locationStatusChecked, connected]);
 
-  // in app update code
+ 
 
-  // useEffect(()=>{
-  //   if(!checkedForInAppUpdate)
-  //   {
-  //     const inAppUpdates = new SpInAppUpdates(
-  //       false // isDebug
-  //     );
-  //     // curVersion is optional if you don't provide it will automatically take from the app using react-native-device-info
-  //   inAppUpdates.checkNeedsUpdate({ curVersion: '0.0.8' }).then((result) => {
-  //     if (result.shouldUpdate) {
-  //       let updateOptions = {};
-  //       if (Platform.OS === 'android') {
-  //         // android only, on iOS the user will be promped to go to your app store page
-  //         updateOptions = {
-  //           updateType: IAUUpdateKind.IMMEDIATE,
-  //         };
-  //       }
-  //       inAppUpdates.startUpdate(updateOptions); // https://github.com/SudoPlz/sp-react-native-in-app-updates/blob/master/src/types.ts#L78
-  //     }
-  //   });
-  //   setCheckedForInAppUpdate(true)
-  //   }
-
-  // },[])
-
-  //------------------------------------------------------------------
+  
 
   // checking response time from google api
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, Image } from 'react-native';
-import PoppinsTextMedium from '../electrons/customFonts/PoppinsTextMedium';
+import PoppinsTextMedium from '../../electrons/customFonts/PoppinsTextMedium';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
 
@@ -18,7 +18,7 @@ const FeedbackModal = ({ isVisible, onClose, user }) => {
                 <View style={styles.modalContent}>
                     <Image
                         style={{ height: 30, width: 30, resizeMode: 'contain' }}
-                        source={require('../../../assets/images/userGreen.png')}></Image>
+                        source={require('../../../../assets/images/userGreen.png')}></Image>
                     <PoppinsTextMedium style={{ fontSize: 22, fontWeight: '600', color: '#7BC143', fontWeight: 'bold', marginTop: 10 }} content={"Dear " + user}></PoppinsTextMedium>
 
                     <View>

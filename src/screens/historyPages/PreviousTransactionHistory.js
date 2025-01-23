@@ -4,7 +4,6 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import { usePreviousTransactionsMutation } from '../../apiServices/workflow/rewards/GetPointsApi';
 import { useSelector } from 'react-redux';
 import * as Keychain from 'react-native-keychain';
-import moment from 'moment';
 import DataNotFound from '../data not found/DataNotFound';
 import { dispatchCommand } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';

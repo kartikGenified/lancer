@@ -18,7 +18,7 @@ import { useIsFocused } from "@react-navigation/native";
 import PlatinumModal from "../../components/platinum/PlatinumModal";
 import Edit from "react-native-vector-icons/Entypo";
 import Delete from "react-native-vector-icons/AntDesign";
-import moment from "moment";
+import dayjs from 'dayjs'
 import FastImage from "react-native-fast-image";
 import ModalWithBorder from "../../components/modals/ModalWithBorder";
 import Close from "react-native-vector-icons/Ionicons";
@@ -678,7 +678,7 @@ const Profile = ({ navigation }) => {
                           formValues[index] === null ||
                           formValues[index] === undefined
                             ? t("No data available")
-                            : moment(formValues[index]).format("DD-MMM-YYYY")
+                            : dayjs(formValues[index]).format("DD-MMM-YYYY")
                         }
                         title={
                           item.label == "Date of Registration"
@@ -697,7 +697,7 @@ const Profile = ({ navigation }) => {
                             formValues[index] === null ||
                             formValues[index] === undefined
                               ? t("No data available")
-                              : moment(formValues[index]).format("DD-MMM-YYYY")
+                              : dayjs(formValues[index]).format("DD-MMM-YYYY")
                           }
                           title={
                             item.label == "Date of Registration"

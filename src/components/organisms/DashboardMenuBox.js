@@ -80,6 +80,8 @@ const DashboardMenuBox=(props)=>{
             })
             
         }
+                    <MenuItems handlePress={handleMenuItemPress} index ={data.length+1} key={data.length+1} image={"https://picsum.photos/200/300"} content={"Check Warranty"}></MenuItems>
+
         </View>
         </View>
     )

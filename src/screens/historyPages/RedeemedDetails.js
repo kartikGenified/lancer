@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
-import moment from "moment";
+import dayjs from 'dayjs'
 import { useSelector } from "react-redux";
 import Location from "react-native-vector-icons/EvilIcons";
 import Message from "react-native-vector-icons/Feather";
@@ -64,7 +64,7 @@ const RedeemedDetails = ({ navigation, route }) => {
     getToken()
   },[])
 
-  const redeemedDate = moment(data.created_at).format("DD MMM YYYY");
+  const redeemedDate = dayjs(data.created_at).format("DD MMM YYYY");
   const redeemedId = data.ref_no;
   const redemptionMode = data.redemption_type === "1" ? "Points" : "N/A";
 

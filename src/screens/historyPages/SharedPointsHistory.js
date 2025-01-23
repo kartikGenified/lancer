@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import * as Keychain from "react-native-keychain";
 import { useFetchUserPointsMutation } from "../../apiServices/workflow/rewards/GetPointsApi";
 import { useGetPointSharingDataMutation } from "../../apiServices/pointSharing/pointSharingApi";
-import moment from "moment";
+import dayjs from 'dayjs'
 import BottomModal from "../../components/modals/BottomModal";
 import FastImage from "react-native-fast-image";
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
@@ -132,7 +132,7 @@ const SharedPointsHistory = ({ navigation }) => {
     let tempArr = [];
     let tempData = [];
     data.map((item, index) => {
-      dateArr.push(moment(item.scanned_at).format("DD-MMM-YYYY"));
+      dateArr.push(dayjs(item.scanned_at).format("DD-MMM-YYYY"));
     });
     const distinctDates = Array.from(new Set(dateArr));
     console.log("distinctDates", distinctDates);
@@ -140,7 +140,7 @@ const SharedPointsHistory = ({ navigation }) => {
     distinctDates.map((item1, index) => {
       tempData = [];
       data.map((item2, index) => {
-        if (moment(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
+        if (dayjs(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
           tempData.push(item2);
         }
       });
@@ -609,8 +609,8 @@ const SharedPointsHistory = ({ navigation }) => {
                     data={item}
                     description={item.product_name}
                     productCode={item.product_code}
-                    time={moment(item.created_at).format("HH:mm a")}
-                    day={moment(item.created_at).format("DD-MMM-YYYY")}
+                    time={dayjs(item.created_at).format("HH:mm a")}
+                    day={dayjs(item.created_at).format("DD-MMM-YYYY")}
                     amount={item.points}
                   ></ListItem>
                 );

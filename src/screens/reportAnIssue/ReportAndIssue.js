@@ -9,13 +9,11 @@ import {
   Linking,
   TextInput,
 } from "react-native";
-import Video from "react-native-video";
 import { useDispatch, useSelector } from "react-redux";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
 import { useGetAppVideoMutation } from "../../apiServices/video/VideoApi";
 import * as Keychain from "react-native-keychain";
 import Logo from "react-native-vector-icons/MaterialIcons";
-import moment from "moment";
 import RectangularUnderlinedDropDown from "../../components/atoms/dropdown/RectangularUnderlinedDropDown";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import ButtonWithPlane from "../../components/atoms/buttons/ButtonWithPlane";

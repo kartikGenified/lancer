@@ -1,11 +1,11 @@
 import React, { Component, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useSelector } from 'react-redux';
-import FeedbackTextArea from '../../components/feedback/FeedbackTextArea';
+import FeedbackTextArea from '../../components/modals/feedback/FeedbackTextArea';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import ButtonWithPlane from '../../components/atoms/buttons/ButtonWithPlane';
 import StarRating from 'react-native-star-rating';
-import FeedbackModal from '../../components/feedback/FeedbackModal';
+import FeedbackModal from '../../components/modals/feedback/FeedbackModal';
 import { useAddFeedbackMutation } from '../../apiServices/feedbackApi/FeedbackApi';
 import * as Keychain from 'react-native-keychain';
 import ErrorModal from '../../components/modals/ErrorModal';

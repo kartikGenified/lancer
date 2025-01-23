@@ -3,14 +3,14 @@ import {View, StyleSheet,TextInput,TouchableOpacity} from 'react-native';
 import DatePicker from 'react-native-date-picker'
 import DateIcon from 'react-native-vector-icons/MaterialIcons'
 import PoppinsText from '../../electrons/customFonts/PoppinsText';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import PoppinsTextMedium from '../../electrons/customFonts/PoppinsTextMedium';
 
 const InputDateProfile = (props) => {
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
     const [selected, setSelected] = useState(false)
-    console.log(moment(date).format('YYYY-MM-DD'))
+    console.log(dayjs(date).format('YYYY-MM-DD'))
     const data =props.data
     const label = props.label
     const title = props.title
@@ -29,7 +29,7 @@ const InputDateProfile = (props) => {
            
            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',position:'absolute',left:20}}>
             <PoppinsTextMedium style={{color:'black',marginRight:10,}} content ={`${label} :`}></PoppinsTextMedium>
-           {selected ? (<PoppinsTextMedium style={{color:'black',width:100}} content={moment(date).format('DD/MM/YYYY')}></PoppinsTextMedium>) : (<PoppinsTextMedium style={{color:'black',width:100}} content={data===null ? "Please select date":moment(date).format('DD/MM/YYYY')}></PoppinsTextMedium>)
+           {selected ? (<PoppinsTextMedium style={{color:'black',width:100}} content={dayjs(date).format('DD/MM/YYYY')}></PoppinsTextMedium>) : (<PoppinsTextMedium style={{color:'black',width:100}} content={data===null ? "Please select date":dayjs(date).format('DD/MM/YYYY')}></PoppinsTextMedium>)
             
           }
            </View>

@@ -9,13 +9,12 @@ import {
   Linking,
   Text,
 } from "react-native";
-import Video from "react-native-video";
 import { useSelector } from "react-redux";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
 import { useCheckActiveSchemeMutation,useCheckAllSchemeMutation } from "../../apiServices/scheme/GetSchemeApi";
 import * as Keychain from "react-native-keychain";
 import Logo from "react-native-vector-icons/AntDesign";
-import moment from "moment";
+import dayjs from 'dayjs'
 import DatePicker from "react-native-date-picker";
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
 export default function Scheme({ navigation }) {
@@ -478,7 +477,7 @@ export default function Scheme({ navigation }) {
           }}
         >
           <PoppinsTextMedium
-            content={`Start Date ${moment(selectedDataStart).format("MM/YYYY")}`}
+            content={`Start Date ${dayjs(selectedDataStart).format("MM/YYYY")}`}
             style={{ width: "60%", fontSize: 16, fontWeight: "700" }}
           ></PoppinsTextMedium>
           <TouchableOpacity
@@ -526,7 +525,7 @@ export default function Scheme({ navigation }) {
           }}
         >
           <PoppinsTextMedium
-            content={`End Date ${moment(selectedDataEnd).format("MM/YYYY")}`}
+            content={`End Date ${dayjs(selectedDataEnd).format("MM/YYYY")}`}
             style={{ width: "60%", fontSize: 16, fontWeight: "700" }}
           ></PoppinsTextMedium>
           <TouchableOpacity
