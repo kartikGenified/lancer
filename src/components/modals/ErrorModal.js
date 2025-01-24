@@ -27,10 +27,16 @@ const ErrorModal = (props) => {
   
   useEffect(() => {
     if (props.openModal === true) {
+      console.log("error modal openend", props.openModal)
+      setTimeout(() => {
       setModalVisible(true)
+      }, 100);
     }
     else {
+      setTimeout(() => {
       setModalVisible(false)
+        
+      }, 100);
     }
   }, [])
   useEffect(()=>{

@@ -467,7 +467,7 @@ const QrCodeScanner = ({ navigation, route }) => {
 
   useEffect(() => {
     if (verifyQrData) {
-      console.log("Verify qr data", verifyQrData?.body);
+      // console.log("Verify qr data", verifyQrData?.body);
       setAnimationModal(true);
       setTimeout(() => {
         setAnimationModal(false);
@@ -603,15 +603,25 @@ const QrCodeScanner = ({ navigation, route }) => {
                   setIsDuplicateQr(updatedDuplicateQr);
 
                   if (statusCode === 201) {
-                    setError(true);
+                    setTimeout(() => {
+                      setError(true);
                     setMessage(response?.data.message);
+                    }, 500);
+                    
                   } else if (statusCode === 202) {
+                    setTimeout(() => {
+                    console.log("statusCode is 202")
                     setIsReportable(true);
                     setError(true);
                     setMessage(response?.data.message);
+                    }, 500);
+                    
                   } else if (statusCode === 200) {
-                    setError(true);
+                    setTimeout(() => {
+                      setError(true);
                     setMessage(response?.data.message);
+                    }, 500);
+                    
                   }
                 }
               } else {

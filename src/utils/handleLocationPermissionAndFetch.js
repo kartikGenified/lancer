@@ -134,14 +134,7 @@ const handleLocationPermissionAndFetch = async (
   
 
   const checkAndFetchLocation = async () => {
-    if (Platform.OS === "ios") {
-      showAlert(
-        "GPS Disabled",
-        
-          "Please enable GPS/Location to use this feature."
-      );
-      return null;
-    } else if (Platform.OS === "android") {
+    if (Platform.OS === "android") {
       try {
         const result = await LocationServicesDialogBox.checkLocationServicesIsEnabled({
           message:
