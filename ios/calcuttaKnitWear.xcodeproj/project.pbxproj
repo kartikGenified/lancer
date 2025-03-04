@@ -1097,7 +1097,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.tweens;
 				PRODUCT_NAME = calcuttaKnitWear;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";
@@ -1135,7 +1135,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.tweens;
 				PRODUCT_NAME = calcuttaKnitWear;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";

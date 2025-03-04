@@ -14,6 +14,8 @@ export const splash = require("../../assets/gif/Splash-myro.gif");
 export const descriptionImages = [
   // require("../../assets/images/Step1.png"),
   require("../../assets/images/stepTweens.png"),
+  require("../../assets/images/step2Supply.png"),
+
   // require("../../assets/images/Step3.png"),
   // require("../../assets/images/Step4.png"),
   // require("../../assets/images/Step5.png")

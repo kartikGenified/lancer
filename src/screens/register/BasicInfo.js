@@ -126,7 +126,7 @@ const BasicInfo = ({ navigation, route }) => {
   const height = Dimensions.get('window').height
   const {t} = useTranslation()
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/loaderTween.gif")
   ).uri;
 
   let timeoutId;

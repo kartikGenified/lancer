@@ -40,7 +40,7 @@ const dispatch = useDispatch()
     : '#FFB533';
 
   const allUsers = useSelector(state => state.appusers.value)
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderTween.gif')).uri;
 
   var allUsersData = []
   var allUsersList = []

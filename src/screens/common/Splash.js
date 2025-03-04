@@ -1034,7 +1034,7 @@ const Splash = ({ navigation }) => {
                 text: t("Update"),
                 onPress: () =>
                   Linking.openURL(
-                    "https://play.google.com/store/apps/details?id=com.genefied.calcuttaKnitWear"
+                    "https://play.google.com/store/apps/details?id=com.genefied.tweens"
                   ),
               },
             ]
@@ -1050,7 +1050,7 @@ const Splash = ({ navigation }) => {
                 text: "Update",
                 onPress: () =>
                   Linking.openURL(
-                    "https://play.google.com/store/apps/details?id=com.genefied.calcuttaKnitWear"
+                    "https://play.google.com/store/apps/details?id=com.genefied.tweens"
                   ),
               },
             ]

@@ -210,7 +210,7 @@ const Profile = ({ navigation }) => {
     getActiveMembershipData && getActiveMembershipData.body?.tier.name;
   const accountVerified = !Object.values(kycData).includes(false);
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/loaderTween.gif")
   ).uri;
 
   const ProfileBox = (props) => {

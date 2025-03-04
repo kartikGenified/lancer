@@ -1,4 +1,4 @@
-package com.genefied.calcuttaKnitWear;
+package com.genefied.tweens;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

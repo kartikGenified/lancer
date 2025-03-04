@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 // create a component
 const InstallationVideo = ({ navigation }) => {
 
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderTween.gif')).uri;
 
     const {t} = useTranslation()
 

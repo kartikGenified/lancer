@@ -11,7 +11,7 @@ const RewardBox = () => {
     const workflow = useSelector(state => state.appWorkflow.program)
     const id = useSelector(state => state.appusersdata.id);
     const userData = useSelector(state => state.appusersdata.userData)
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderTween.gif')).uri;
     const {t} = useTranslation();
 
     console.log("asbfhjsahjvchjashvhhavshj",userData)

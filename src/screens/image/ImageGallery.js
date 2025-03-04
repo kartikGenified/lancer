@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 const ImageGallery = ({navigation}) => {
   const [imageData, setImageData] = useState({})
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/loaderTween.gif")
   ).uri;
   const ternaryThemeColor = useSelector(
     state => state.apptheme.ternaryThemeColor,

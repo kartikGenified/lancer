@@ -30,7 +30,7 @@ const WarrantyHistory = ({ navigation }) => {
 
     const {t} = useTranslation();
 
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderTween.gif')).uri;
     const noData = Image.resolveAssetSource(require('../../../assets/gif/noData.gif')).uri;
     let startDate,endDate
 

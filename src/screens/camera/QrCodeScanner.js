@@ -132,7 +132,7 @@ const QrCodeScanner = ({ navigation, route }) => {
     ? useSelector((state) => state.apptheme.ternaryThemeColor)
     : "grey";
   const gifUriLoading = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/loaderTween.gif")
   ).uri;
 
   const gifUriCheck = Image.resolveAssetSource(

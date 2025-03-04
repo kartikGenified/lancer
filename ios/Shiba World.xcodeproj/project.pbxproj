@@ -675,7 +675,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.tweens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiba World.app/Shiba World";
 			};
@@ -701,7 +701,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.tweens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiba World.app/Shiba World";
 			};
@@ -735,7 +735,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear.myro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.tweens.myro;
 				PRODUCT_NAME = "Shiba World";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";
@@ -773,7 +773,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear.myro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.tweens.myro;
 				PRODUCT_NAME = "Shiba World";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";

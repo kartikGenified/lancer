@@ -75,10 +75,10 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.genefied.calcuttaKnitWear"
+    namespace "com.genefied.tweens"
     defaultConfig 
     {
-        applicationId "com.genefied.calcuttaKnitWear"
+        applicationId "com.genefied.tweens"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

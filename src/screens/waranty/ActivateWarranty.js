@@ -70,7 +70,7 @@ const ActivateWarranty = ({ navigation, route }) => {
     },
   ] = useUploadSingleFileMutation();
 
-  // const gifUri = Image.resolveAssetSource(require('../../../assets/gif/cgloaderNew.gif')).uri;
+  // const gifUri = Image.resolveAssetSource(require('../../../assets/gif/cgloaderTween.gif')).uri;
 
 
   const [
