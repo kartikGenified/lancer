@@ -52,7 +52,7 @@ export const userMappingApi = baseApi.injectEndpoints({
         query: (params) => {
           return {
             method: "GET",
-            url: `/api/tenant/user-mapping/?user_type=${params.user_type}&&mapped_user_type=${params.mapped_user_type}`,
+            url: `/api/tenant/user-mapping/?user_type=distributor&mapped_user_type=retailer`,
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + params.token,

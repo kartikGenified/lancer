@@ -19,6 +19,10 @@ const DashboardMenuBox=(props)=>{
         {
             navigation.navigate("Passbook")
         }
+        else if(data.toLowerCase()==="checkout" || data.toLowerCase()==="assign" || data.toLowerCase()== "assign product")
+        {
+            navigation.navigate("AssignUser")
+        }
         else if(data.toLowerCase() === "rewards"){
             navigation.navigate('RedeemRewardHistory')
         }
@@ -56,7 +60,7 @@ const DashboardMenuBox=(props)=>{
         else if(data.toLowerCase() === "product catalogue"){
             navigation.navigate('ProductCatalogue')
         }
-        else if(data.toLowerCase() === "add user"){
+        else if(data.toLowerCase() === "add user" || data.toLowerCase() === "retailer list"){
             navigation.navigate('ListUsers')
         }
         else if(data.toLowerCase() === "customer support" || data.toLowerCase() === "help and support"){
@@ -80,7 +84,10 @@ const DashboardMenuBox=(props)=>{
             })
             
         }
-                    <MenuItems handlePress={handleMenuItemPress} index ={data.length+1} key={data.length+1} image={"https://picsum.photos/200/300"} content={"Check Warranty"}></MenuItems>
+                    {/* <MenuItems handlePress={handleMenuItemPress} index ={data.length+1} key={data.length+1} image={"https://picsum.photos/200/300"} content={"Check Warranty"}></MenuItems> */}
+                    {/* <MenuItems handlePress={handleMenuItemPress} index ={data.length+2} key={data.length+1} image={"https://picsum.photos/300/300"} content={"Retailer List"}></MenuItems> */}
+                    {/* <MenuItems handlePress={handleMenuItemPress} key={data.length+3} image={`https://picsum.photos/200/200`} content={"Assign"}></MenuItems> */}
+
 
         </View>
         </View>

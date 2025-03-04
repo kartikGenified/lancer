@@ -6,13 +6,16 @@ import * as Keychain from 'react-native-keychain';
 import Plus from 'react-native-vector-icons/AntDesign';
 import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTextMedium';
 import PoppinsText from '../../components/electrons/customFonts/PoppinsText';
-import { useFetchUserMappingByAppUserIdAndMappedUserTypeMutation } from '../../apiServices/userMapping/userMappingApi';
+import { useFetchUserMappingByAppUserIdAndMappedUserTypeMutation, useFetchUserMappingByUserTypeAndMappedUserTypeMutation } from '../../apiServices/userMapping/userMappingApi';
 import DropDownRegistration from '../../components/atoms/dropdown/DropDownRegistration';
 import PoppinsTextLeftMedium from '../../components/electrons/customFonts/PoppinsTextLeftMedium';
 import FastImage from 'react-native-fast-image';
 import { setCanMapUsers } from '../../../redux/slices/userMappingSlice';
 import { useFetchAllQrScanedListMutation } from '../../apiServices/qrScan/AddQrApi';
 import { useTranslation } from 'react-i18next';
+import User from 'react-native-vector-icons/Entypo'
+import Mobile from 'react-native-vector-icons/Entypo'
+import Location from 'react-native-vector-icons/Entypo'
 
 const ListUsers = ({ navigation }) => {
 
@@ -47,7 +50,7 @@ const dispatch = useDispatch()
     error: listAddedUserError,
     isLoading: listAddedUserIsLoading,
     isError: listAddedUserIsError
-  }] = useFetchUserMappingByAppUserIdAndMappedUserTypeMutation();
+  }] = useFetchUserMappingByUserTypeAndMappedUserTypeMutation();
 
   useEffect(() => {
     const getData = async () => {
@@ -62,7 +65,7 @@ const dispatch = useDispatch()
         const params = {
           token: token,
           app_user_id: userId,
-          type: type
+          type: "retailer"
         }
         console.log("params",params)
         listAddedUserFunc(params);
@@ -108,7 +111,7 @@ const dispatch = useDispatch()
         const params = {
           token: token,
           app_user_id: userId,
-          type: type
+          type: "retailer"
         }
         listAddedUserFunc(params);
       }
@@ -116,7 +119,7 @@ const dispatch = useDispatch()
     getData()
 
 
-  }, [selectUsers])
+  }, [])
 
   useEffect(() => {
     if (listAddedUserData) {
@@ -191,27 +194,57 @@ const dispatch = useDispatch()
     const mobile = props.mobile
     const status = props.status
     const data = props.item
+    const state = data.state
+    const city = data.city
+    const pincode = data.pincode
     return (
-      <TouchableOpacity style={{backgroundColor:"white", elevation: 5, borderWidth: 1, borderColor: '#DDDDDD', marginTop: 20,}} onPress={()=>{
+      <TouchableOpacity style={{backgroundColor:"white", marginTop: 20,borderRadius:20,padding:4,width:'90%',elevation:4}} onPress={()=>{
         navigation.navigate("AddedUserScanList",{data:data})
       }}>
-        <View style={{ padding: 6, height: 100, width: '90%', backgroundColor: 'white', flexDirection: 'row', borderRadius: 4, justifyContent: 'space-around' }}>
-          <View style={{ justifyContent: 'center', }}>
+        <View style={{width: '100%', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-around' }}>
+          {/* <View style={{ justifyContent: 'center', }}>
             <View style={{ height: 60, width: 60, borderRadius: 100, backgroundColor: '#80808019', alignItems: 'center', justifyContent: 'center' }}>
               <Image style={{ height: 30, width: 30, }} source={require('../../../assets/images/userGrey.png')}></Image>
             </View>
-          </View>
-          <View style={{ width: '80%', alignItems: "flex-start", justifyContent: 'center', height: '100%', padding: 20 }}>
-            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginBottom: 5 }} content={`${t("Name")} : ${name}`}></PoppinsTextMedium>
-            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginBottom: 5 }} content={`${t("User Type")} : ${userType}`}></PoppinsTextMedium>
-            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginBottom: 5 }} content={`${t("Mobile")} : ${mobile}`}></PoppinsTextMedium>
+          </View> */}
+          <View style={{ width: '90%', alignItems: "flex-start", justifyContent: 'center', padding: 4}}>
+            <View style={{flexDirection:'row', marginBottom:8}}>
+              <User size={20} color={"grey"} name='user'></User>
+            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginLeft:4,letterSpacing:1 }} content={`Name : ${name}`}></PoppinsTextMedium>
+
+            </View>
+            <View style={{flexDirection:'row', marginBottom:8}}>
+              <User size={20} color={"grey"} name='user'></User>
+            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginLeft:4,letterSpacing:1 }} content={`User Type : ${userType}`}></PoppinsTextMedium>
+
+            </View>
+            <View style={{flexDirection:'row', marginBottom:8}}>
+              <Mobile size={20} color={"grey"} name='mobile'></Mobile>
+            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginLeft:4,letterSpacing:1 }} content={`Mobile : ${mobile}`}></PoppinsTextMedium>
+
+            </View>
+            <View style={{flexDirection:'row', marginBottom:8}}>
+              <User size={20} color={"grey"} name='location-pin'></User>
+            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginLeft:4,letterSpacing:1 }} content={`State : ${state}`}></PoppinsTextMedium>
+
+            </View>
+            <View style={{flexDirection:'row', marginBottom:8}}>
+              <User size={20} color={"grey"} name='location-pin'></User>
+            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginLeft:4,letterSpacing:1 }} content={`City : ${city}`}></PoppinsTextMedium>
+
+            </View>
+            <View style={{flexDirection:'row', marginBottom:8}}>
+              <User size={20} color={"grey"} name='location-pin'></User>
+            <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700", marginLeft:4,letterSpacing:1 }} content={`Pincode : ${pincode}`}></PoppinsTextMedium>
+
+            </View>
             {/* <PoppinsTextMedium style={{ color: 'grey', fontWeight: "700" }} content={`Status : ${status == 1 ? "Active" : "Inactive"}`}></PoppinsTextMedium> */}
 
 
           </View>
         </View>
-        <View style={{ backgroundColor: status == 1 ? "#DCFCE7" : "#FFE2E6", height: 50, justifyContent: 'center' }}>
-          <PoppinsTextMedium style={{ color: '#413E3E', fontWeight: "700" }} content={`${status == 1 ? t("Verified") : t("Not Verified")}`}></PoppinsTextMedium>
+        <View style={{ backgroundColor: ternaryThemeColor, height: 50, justifyContent: 'center',borderRadius:10,elevation:4 }}>
+          <PoppinsTextMedium style={{ color: 'white', fontWeight: "700",letterSpacing:2 }} content={`View Details`}></PoppinsTextMedium>
         </View>
       </TouchableOpacity>
     )
@@ -245,7 +278,7 @@ const dispatch = useDispatch()
             source={require('../../../assets/images/blackBack.png')}></Image>
         </TouchableOpacity>
         <PoppinsTextMedium
-          content={t("Added Users List")}
+          content={t("Retailer List")}
           style={{
             marginLeft: 10,
             fontSize: 16,
@@ -257,8 +290,8 @@ const dispatch = useDispatch()
 
       <View style={{ height: '90%', width: '100%', justifyContent: 'flex-start', paddingTop: 10 }}>
       {selectedOption.length===0 && <PoppinsTextMedium style={{color:'black',fontSize:16,margin:10}} content={t("There are no users to select")}></PoppinsTextMedium>}
-          <View style={{width:'100%',flexDirection:"row",alignItems:"center",justifyContent:'flex-start'}}>
-        <View style={{ width: '50%', justifyContent: 'flex-start', marginLeft: 10 }}>
+          <View style={{width:'100%',flexDirection:"row",alignItems:"center",justifyContent:'center'}}>
+        {/* <View style={{ width: '50%', justifyContent: 'flex-start', marginLeft: 10 }}>
           {
             selectedOption.length!==0 &&
             <DropDownRegistration
@@ -269,60 +302,42 @@ const dispatch = useDispatch()
               handleData={handleData}
             ></DropDownRegistration>
           }
-          </View>
-          
-          {listAddedUserData &&  <TextInput onChangeText={(text)=>{
-            searchUsers(text)
-          }} placeholderTextColor={ternaryThemeColor} placeholder={t('Search mobile')} style={{alignItems:'center',justifyContent:'center',borderWidth:2,borderRadius:10,height:40,color:'grey',width:'40%',borderColor:ternaryThemeColor,fontSize:16,paddingLeft:10,padding:4}}>
-
-          </TextInput>}
-            
-
-
+          </View> */}
+        
         
         </View>
-
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginLeft: 10, height: '25%' }}>
-
-
-          <View style={styles.box1}>
-            <Image style={styles.boxImage} source={require('../../../assets/images/total_influencer.png')}></Image>
-            <View style={{ alignItems: 'center' }}>
-              <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 18, }} content={` ${totalCount && totalCount}`} ></PoppinsTextLeftMedium>
-
-              <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '600' }} content={`${t("Total")} ${t(selectUsers) ? t(selectUsers) : t("Users")}`} ></PoppinsTextLeftMedium>
-
-            </View>
+        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',width:'100%'}}>
+      
+          <View style={{height:40,padding:8,borderRadius:10,backgroundColor:'grey',flexDirection:'row'}}>
+          <PoppinsTextMedium
+          content={t("Total Retailers : ")}
+          style={{
+            
+            fontSize: 16,
+            // height:60,
+            fontWeight: '700',
+            color: 'white',
+          }}></PoppinsTextMedium>
+          <PoppinsTextMedium
+          content={totalCount}
+          style={{
+            
+            fontSize: 16,
+            // height:60,
+            fontWeight: '700',
+            color: 'white',
+          }}></PoppinsTextMedium>
           </View>
+         
+          {listAddedUserData &&  <TextInput maxLength={10} onChangeText={(text)=>{
+            searchUsers(text)
+          }} placeholderTextColor={ternaryThemeColor} placeholder={t('Search mobile')} style={{alignItems:'center',justifyContent:'center',borderWidth:2,borderRadius:10,height:40,color:'grey',width:'50%',borderColor:ternaryThemeColor,fontSize:16,padding:4,marginLeft:20,paddingLeft:10}}>
 
-          <View style={styles.box2}>
-            <Image style={styles.boxImage2} source={require('../../../assets/images/total_active.png')}></Image>
-            <View style={{ alignItems: 'center' }}>
-              <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 18, }} content={`${active!=undefined ? active:"Loading"}`}></PoppinsTextLeftMedium>
+          </TextInput>}
+        </View>
+       
 
-
-              <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '600' }} content={`${t("Total Verified")}`} ></PoppinsTextLeftMedium>
-
-            </View>
-          </View>
-
-          <View style={styles.box3}>
-            <Image style={styles.boxImage2} source={require('../../../assets/images/total_inactive.png')}></Image>
-            <View style={{ alignItems: 'center' }}>
-              <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 18, }} content={` ${inactive!=undefined ? inactive:"Loading"}`}></PoppinsTextLeftMedium>
-
-              {/* <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize:20, }} content={` ${totalCount}`} ></PoppinsTextLeftMedium> */}
-
-              <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '600' }} content={`${t("Total Not Verified")}`} ></PoppinsTextLeftMedium>
-
-            </View>
-          </View>
-
-
-
-
-
-        </ScrollView>
+     
 
         <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', justifyContent: 'flex-start', paddingBottom: 30 }}>
           {userList && userList?.map((item, index) => {
@@ -333,12 +348,7 @@ const dispatch = useDispatch()
         </ScrollView>
 
 
-        <View style={{ flexDirection: "row", alignItems: 'center', justifyContent: 'center', position: 'absolute', right: 20, bottom: 10 }}>
-          {/* <PoppinsText content="Add Users" style={{ color: ternaryThemeColor, fontSize: 20 }}></PoppinsText> */}
-          <TouchableOpacity onPress={() => { navigation.navigate('AddUser') }} style={{ height: 60, width: 60, borderRadius: 30, alignItems: "center", justifyContent: 'center', marginLeft: 10 }}>
-            <Plus name="pluscircle" size={50} color={ternaryThemeColor}></Plus>
-          </TouchableOpacity>
-        </View>
+     
       </View>
 
       {

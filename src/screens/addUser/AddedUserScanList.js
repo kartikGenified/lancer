@@ -11,21 +11,26 @@ import { useFetchAllQrScanedListMutation } from '../../apiServices/qrScan/AddQrA
 import { FlatList } from 'react-native';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
-
+import { useFetchGiftsRedemptionsOfUserMutation } from '../../apiServices/workflow/RedemptionApi';
+import { useIsFocused } from '@react-navigation/native';
+import { useGetRedeemedGiftsStatusMutation } from "../../apiServices/gifts/RedeemGifts";
 
 // create a component
 const AddedUserScanList = ({ navigation, route }) => {
   const [scannedListData, setScannedListData] = useState([]);
+  const [status, setStatus] = useState("")
+
+  const userData = useSelector(state => state.appusersdata.userData)
 
   const {t} = useTranslation()
-
+  const focused = useIsFocused()
     const ternaryThemeColor = useSelector(
         state => state.apptheme.ternaryThemeColor,
     )
         
 
     const data = route.params.data;
-
+      console.log("savhdgvghsvaghcvghvaghsvghcvghasvghcvghas",data)
     const [userPointFunc, {
         data: userPointData,
         error: userPointError,
@@ -33,17 +38,51 @@ const AddedUserScanList = ({ navigation, route }) => {
         isError: userPointIsError
     }] = useFetchUserPointsMutation();
 
+    const [redeemedGiftStatusFunc,{
+      data:redeemedGiftStatusData,
+      error:redeemedGiftStatusError,
+      isLoading:redeemedGiftIsLoading,
+      isError:redeemedGiftIsError
+  }]= useGetRedeemedGiftsStatusMutation()
+
     const [
-        fetchAllQrScanedList,
-        {
-            data: fetchAllQrScanedListData,
-            isLoading: fetchAllQrScanedListIsLoading,
-            error: fetchAllQrScanedListError,
-            isError: fetchAllQrScanedListIsError,
-        },
-    ] = useFetchAllQrScanedListMutation();
+      FetchGiftsRedemptionsOfUser,
+      {
+        data: fetchGiftsRedemptionsOfUserData,
+        isLoading: fetchGiftsRedemptionsOfUserIsLoading,
+        isError: fetchGiftsRedemptionsOfUserIsError,
+        error: fetchGiftsRedemptionsOfUserError,
+      },
+    ] = useFetchGiftsRedemptionsOfUserMutation();
 
 
+    useEffect(() => {
+      if (redeemedGiftStatusData) {
+        console.log("redeemedGiftStatusData", redeemedGiftStatusData,data);
+  
+        const statArray = (redeemedGiftStatusData.body)
+       
+        
+        setStatus(statArray)
+      } else if (redeemedGiftStatusError) {
+        console.log("redeemedGiftStatusError", redeemedGiftStatusError);
+      }
+    }, [redeemedGiftStatusData, redeemedGiftStatusError]);
+
+    useEffect(()=>{
+      const getToken=async()=>{
+        const credentials = await Keychain.getGenericPassword();
+        if (credentials) {
+          console.log(
+            'Credentials successfully loaded for user ' + credentials.username
+          );
+          const token = credentials.username
+          const params = {token:token}
+          redeemedGiftStatusFunc(params)
+        }
+      }
+      getToken()
+    },[])
 
     useEffect(() => {
         console.log("AddedUserScanList", data)
@@ -51,40 +90,58 @@ const AddedUserScanList = ({ navigation, route }) => {
     }, [])
 
     useEffect(() => {
-        (async () => {
-            const credentials = await Keychain.getGenericPassword();
-            const token = credentials.username;
-            const fromDate = data?.created_at;
-            let toDate;
-            let queryParams = `?user_type_id=${data.mapped_user_type_id}&app_user_id=${data.mapped_app_user_id}`;
-            if (fromDate && toDate) {
-                queryParams += `&from_date=${dayjs(fromDate).format(
-                    "YYYY-MM-DD"
-                )}&to_date=${dayjs(toDate).format("YYYY-MM-DD")}`;
-            } else if (fromDate) {
-                queryParams += `&from_date=${fromDate}`;
-            }
-
-            console.log("queryParams", queryParams);
-
-            fetchAllQrScanedList({
-                token: token,
-                query_params: queryParams,
-            });
-        })();
+      const fetch=async()=>
+       {
+        const credentials = await Keychain.getGenericPassword();
+        const token = credentials.username;
+        const userId = userData.id
+        console.log("FetchGiftsRedemptionsOfUser", token, userId)
+        FetchGiftsRedemptionsOfUser({
+          token: token,
+          userId: data?.mapped_app_user_id,
+          type: "1",
+  
+        });
+      }
+      fetch()
     }, []);
 
     useEffect(() => {
-        if (fetchAllQrScanedListData) {
-          console.log(
-            "fetchAllQrScanedListData",
-            fetchAllQrScanedListData.body.data
-          );
-          fetchDates(fetchAllQrScanedListData.body.data);
-        } else if (fetchAllQrScanedListError) {
-          console.log("fetchAllQrScanedListError", fetchAllQrScanedListError);
-        }
-      }, [fetchAllQrScanedListData, fetchAllQrScanedListError]);
+      if (fetchGiftsRedemptionsOfUserData) {
+        console.log("fetchGiftsRedemptionsOfUserData", JSON.stringify(fetchGiftsRedemptionsOfUserData))
+        fetchDates(fetchGiftsRedemptionsOfUserData.body.userPointsRedemptionList)
+     
+      }
+      else if (fetchGiftsRedemptionsOfUserError) {
+        console.log("fetchGiftsRedemptionsOfUserIsLoading", fetchGiftsRedemptionsOfUserError)
+      }
+    }, [fetchGiftsRedemptionsOfUserData, fetchGiftsRedemptionsOfUserError])
+
+    const fetchDates = (data) => {
+      const dateArr = []
+      let tempArr = []
+      let tempData = []
+      data.map((item, index) => {
+        dateArr.push(dayjs(item.created_at).format("DD-MMM-YYYY"))
+      })
+      const distinctDates = Array.from(new Set(dateArr))
+      console.log("distinctDates", distinctDates)
+  
+      distinctDates.map((item1, index) => {
+        tempData = []
+        data.map((item2, index) => {
+          if (dayjs(item2.created_at).format("DD-MMM-YYYY") === item1) {
+            tempData.push(item2)
+          }
+        })
+        tempArr.push({
+          "date": item1,
+          "data": tempData
+        })
+      })
+      setScannedListData(tempArr)
+      console.log("tempArr", JSON.stringify(tempArr))
+    }
 
     useEffect(() => {
         if (userPointData) {
@@ -105,139 +162,44 @@ const AddedUserScanList = ({ navigation, route }) => {
     }
 
     const ListItem = (props) => {
-        const description = props.description;
-        const productCode = props.productCode;
-        const time = props.time;
-        const amount = props.amount;
-        const data = props.data;
-    
-        const image = data.images !== null ? data.images[0] : null;
-        return (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("ScannedDetails", { data: data });
-            }}
-            style={{
-              flexDirection: "row",
-            //   alignItems: "center",
-            //   justifyContent: "center",
-              margin: 4,
-              width: "100%",
-              backgroundColor: "white",
-            }}
-          >
-            <View
-              style={{
-                height: 70,
-                width: 70,
-                alignItems: "center",
-                // justifyContent: "center",
-                borderRadius: 10,
-                borderColor: "#DDDDDD",
-              }}
-            >
-              {image !== null && (
-                <Image
-                  style={{ height: 60, width: 60, resizeMode: "contain" }}
-                  source={{ uri: image }}
-                ></Image>
-              )}
+      const data = props.data
+      const description = data.gift.gift[0].name
+      const productCode = props.productCode
+      const time = props.time
+      const productStatus = status[props.data.gift.gift[0].status]
+      const amount = props.data.gift.gift[0].points
+      const image = data.gift.gift[0].images[0]
+      console.log("data from listItem", data.gift.gift[0])
+      return (
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('RedeemedDetails', { data: data })
+        }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 10, width: "100%", marginBottom: 10 }}>
+          <View style={{ height: 70, width: 70, alignItems: "center", justifyContent: "center", borderRadius: 10, borderWidth: 1, borderColor: '#DDDDDD', right: 10 }}>
+            <Image style={{ height: 50, width: 50, resizeMode: "contain" }} source={{ uri:image }}></Image>
+          </View>
+          <View style={{ alignItems: "flex-start", justifyContent: "center", marginLeft: 0, width: 160 }}>
+            <PoppinsTextMedium style={{ fontWeight: '600', fontSize: 16, color: 'black', textAlign: 'auto' }} content={description}></PoppinsTextMedium>
+            <View style={{ backgroundColor: ternaryThemeColor, alignItems: 'center', justifyContent: "center", borderRadius: 4, padding: 3, paddingLeft: 5, paddingRight: 5 }}>
+              <PoppinsTextMedium style={{ fontWeight: '400', fontSize: 12, color: 'white' }} content={`${t("Product Status :")} ${productStatus}`}></PoppinsTextMedium>
             </View>
-            <View
-              style={{
-                alignItems: "flex-start",
-                justifyContent: "center",
-                marginLeft: 10,
-                width: 200,
-              }}
-            >
-              <PoppinsTextMedium
-                style={{
-                  fontWeight: "600",
-                  fontSize: 14,
-                  textAlign: "auto",
-                  color: "black",
-                }}
-                content={description}
-              ></PoppinsTextMedium>
-              <PoppinsTextMedium
-                style={{ fontWeight: "400", fontSize: 12, color: "black" }}
-                content={`${t("Product Code")} : ${productCode}`}
-              ></PoppinsTextMedium>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "black",
-                }}
-              >
-                <Image
-                  style={{ height: 14, width: 14, resizeMode: "contain" }}
-                  source={require("..s/../../assets/images/clock.png")}
-                ></Image>
-                <PoppinsTextMedium
-                  style={{
-                    fontWeight: "200",
-                    fontSize: 12,
-                    marginLeft: 4,
-                    color: "black",
-                  }}
-                  content={time}
-                ></PoppinsTextMedium>
-              </View>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 4 }}>
+              <Image style={{ height: 14, width: 14, resizeMode: "contain" }} source={require('../../../assets/images/clock.png')}></Image>
+              <PoppinsTextMedium style={{ fontWeight: '200', fontSize: 12, color: 'grey', marginLeft: 4 }} content={time}></PoppinsTextMedium>
+  
             </View>
-            {amount ? (
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  style={{ height: 20, width: 20, resizeMode: "contain" }}
-                  source={require("../../../assets/images/wallet.png")}
-                ></Image>
-                <PoppinsTextMedium
-                  style={{ color: "#91B406", fontSize: 16, color: "black" }}
-                  content={` + ${amount}`}
-                ></PoppinsTextMedium>
-              </View>
-            ) : (
-              <View style={{ width: 100 }}></View>
-            )}
-          </TouchableOpacity>
-        );
-      };
+          </View>
+          <View style={{ alignItems: "center", justifyContent: "center", marginLeft: 40 }}>
+  
+            <PoppinsTextMedium style={{ color: ternaryThemeColor, fontSize: 18, fontWeight: "700" }} content={` - ${amount}`}></PoppinsTextMedium>
+            <PoppinsTextMedium style={{ color: "grey", fontSize: 14 }} content="PTS"></PoppinsTextMedium>
+  
+          </View>
+        </TouchableOpacity>
+      )
+    }
 
 
-    const fetchDates = (data) => {
-        const dateArr = [];
-        let tempArr = [];
-        let tempData = [];
-        data.map((item, index) => {
-            dateArr.push(dayjs(item.scanned_at).format("DD-MMM-YYYY"));
-        });
-        const distinctDates = Array.from(new Set(dateArr));
-        console.log("distinctDates", distinctDates);
-
-        distinctDates.map((item1, index) => {
-            tempData = [];
-            data.map((item2, index) => {
-                if (dayjs(item2.scanned_at).format("DD-MMM-YYYY") === item1) {
-                    tempData.push(item2);
-                }
-            });
-            tempArr.push({
-                date: item1,
-                data: tempData,
-            });
-        });
-        setScannedListData(tempArr);
-        console.log("tempArr", JSON.stringify(tempArr));
-    };
+   
 
 
     return (
@@ -263,7 +225,7 @@ const AddedUserScanList = ({ navigation, route }) => {
                         source={require('../../../assets/images/blackBack.png')}></Image>
                 </TouchableOpacity>
 
-                <PoppinsTextMedium style={{ fontSize: 20, color: '#ffffff',marginLeft:10}} content={t("Added User Scanned List")}></PoppinsTextMedium>
+                <PoppinsTextMedium style={{ fontSize: 20, color: '#ffffff',marginLeft:10}} content={t("Retailer Detail")}></PoppinsTextMedium>
 
 
             </View>
@@ -286,8 +248,6 @@ const AddedUserScanList = ({ navigation, route }) => {
                         <Image style={styles.boxImage2} source={require('../../../assets/images/points.png')}></Image>
                         <View style={{ alignItems: 'center' }}>
                             <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 20, }} content={`${userPointData?.body?.point_redeemed}`}></PoppinsTextLeftMedium>
-
-
                             <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '600' }} content={t(`Point Redeemed`)} ></PoppinsTextLeftMedium>
 
                         </View>
@@ -311,20 +271,7 @@ const AddedUserScanList = ({ navigation, route }) => {
                         <View style={{ alignItems: 'center' }}>
                             {/* <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 20, }} content={` ${inactive}`}></PoppinsTextLeftMedium> */}
 
-                            <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 20, }} content={` ${userPointData?.body?.point_reserved}`} ></PoppinsTextLeftMedium>
-
-                            <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '600' }} content={t(`Reserved Points`)} ></PoppinsTextLeftMedium>
-
-                        </View>
-                    </View>
-
-
-                    <View style={styles.box2}>
-                        <Image style={styles.boxImage2} source={require('../../../assets/images/points.png')}></Image>
-                        <View style={{ alignItems: 'center' }}>
-                            {/* <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 20, }} content={` ${inactive}`}></PoppinsTextLeftMedium> */}
-
-                            <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 20, }} content={String(Number(userPointData?.body?.point_reserved) + Number(userPointData?.body?.point_earned)).substring(0, 6)} ></PoppinsTextLeftMedium>
+                            <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '800', fontSize: 20, }} content={String(Number(userPointData?.body?.point_reserved) + Number(userPointData?.body?.point_earned))} ></PoppinsTextLeftMedium>
 
                             <PoppinsTextLeftMedium style={{ marginLeft: 5, color: 'black', fontWeight: '600' }} content={t(`Total Points`)} ></PoppinsTextLeftMedium>
 

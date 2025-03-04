@@ -87,6 +87,9 @@ import ForgetPassword from '../screens/login/ForgotPassword';
 import MpinSetupScreen from '../screens/mpin/MpinSetupScreen';
 import MpinValidationScreen from '../screens/mpin/MpinValidationScreen';
 import ForgotMpin from '../screens/mpin/ForgotMpin';
+import AssignUser from '../screens/assignTo/AssignUser';
+
+
 
 const Stack = createNativeStackNavigator()
 
@@ -330,6 +333,11 @@ const StackNavigator = () => {
                         headerShown: false
                     }
                 } name="ProductCatalogue" component={ProductCatalogue}></Stack.Screen>
+                <Stack.Screen options={
+                    {
+                        headerShown: false
+                    }
+                } name="AssignUser" component={AssignUser}></Stack.Screen>
                 <Stack.Screen options={
                     {
                         headerShown: false
