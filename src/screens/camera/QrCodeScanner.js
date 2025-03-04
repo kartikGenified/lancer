@@ -1013,8 +1013,8 @@ const QrCodeScanner = ({ navigation, route }) => {
                   width: 240,
                   alignSelf: "center",
                   position: "absolute",
-                  right: 0,
-                  top: 60,
+                  right: 20,
+                  top: 80,
 
                   alignItems: "center",
                   justifyContent: "flex-end",

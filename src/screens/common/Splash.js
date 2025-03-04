@@ -120,7 +120,7 @@ const Splash = ({ navigation }) => {
   let lastFetchedApiOn;
   
  
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/Splash-myro.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/SplashTweens.gif')).uri;
   // generating functions and constants for API use cases---------------------
   const [
     getAppTheme,

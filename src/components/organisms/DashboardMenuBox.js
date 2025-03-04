@@ -13,7 +13,7 @@ const DashboardMenuBox=(props)=>{
     const handleMenuItemPress=(data)=>{
         if(data.substring(0,4).toLowerCase()==="scan" )
         {
-           Platform.OS == 'android' ? navigation.navigate('EnableCameraScreen') : requiresLocation ? navigation.navigate('EnableLocationScreen',{navigateTo:"QrCodeScanner"}) : navigation.navigate("QrCodeScanner")
+           Platform.OS == 'android' ? navigation.navigate('EnableCameraScreen')  : navigation.navigate("QrCodeScanner")
         }
         else if(data.toLowerCase()==="passbook")
         {

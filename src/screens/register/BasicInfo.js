@@ -396,32 +396,29 @@ const BasicInfo = ({ navigation, route }) => {
   useEffect(() => {
     if (registerUserData) {
       console.log("data after submitting form", registerUserData,mappedUserData)
-      if (registerUserData.success && mappedUserData) {
+      if (registerUserData.success ) {
 
-          const body = {
-            user_type: mappedUserData.user_type,
-            user_type_id: Number(mappedUserData.user_type_id),
-            app_user_id: mappedUserData.id,
-            app_user_name: mappedUserData.name,
-            app_user_mobile: mappedUserData.mobile,
-            mapped_user_type: registerUserData.body.user_type,
-            mapped_user_type_id: registerUserData.body.user_type_id,
-            mapped_app_user_id: registerUserData.body.id,
-            mapped_app_user_name: registerUserData.body.name,
-            mapped_app_user_mobile: registerUserData.body.mobile,
-          };
-          console.log("the body", body)
-         
-            
-  
-            let params = {
-              body: { "rows": [body] }
-            }
-            console.log("createusermapping", JSON.stringify(params))
-            createUserMapping(params)
+          // const body = {
+          //   // user_type: mappedUserData.user_type,
+          //   user_type_id: Number(mappedUserData.user_type_id),
+          //   app_user_id: mappedUserData.id,
+          //   app_user_name: mappedUserData.name,
+          //   app_user_mobile: mappedUserData.mobile,
+          //   mapped_user_type: registerUserData.body.user_type,
+          //   mapped_user_type_id: registerUserData.body.user_type_id,
+          //   mapped_app_user_id: registerUserData.body.id,
+          //   mapped_app_user_name: registerUserData.body.name,
+          //   mapped_app_user_mobile: registerUserData.body.mobile,
+          // };
+
+          //   let params = {
+          //     body: { "rows": [body] }
+          //   }
+          //   console.log("createusermapping", JSON.stringify(params))
+          //   createUserMapping(params)
           
         setSuccess(true)
-        setMessage(t("Thank you for joining Shiba World Loyalty program"))
+        setMessage(t("Thank you for joining Tweens Loyalty program"))
         setModalTitle(t("Greetings"))
       }
       setHideButton(false)
@@ -1345,23 +1342,23 @@ console.log("responseMap",responseMap)
 
 
                 }
-                else if (item.name.trim().toLowerCase() === "dealer_name") {
-                  return (
-                    <View style={{ width: "90%" }}>
-                      {mappedUserType && <DropDownForDistributor
-                        state = {location?.state}
-                        title={`Select ${mappedUserType}`}
-                        header={`Select ${mappedUserType}`}
-                        jsonData={{label:item.name,name:item.name}}
-                        searchEnable={true}
-                        data={[]}
-                        type ={mappedUserType}
-                        handleData={handleChildComponentData}
-                      ></DropDownForDistributor>}
+                // else if (item.name.trim().toLowerCase() === "dealer_name") {
+                //   return (
+                //     <View style={{ width: "90%" }}>
+                //       {mappedUserType && <DropDownForDistributor
+                //         state = {location?.state}
+                //         title={`Select ${mappedUserType}`}
+                //         header={`Select ${mappedUserType}`}
+                //         jsonData={{label:item.name,name:item.name}}
+                //         searchEnable={true}
+                //         data={[]}
+                //         type ={mappedUserType}
+                //         handleData={handleChildComponentData}
+                //       ></DropDownForDistributor>}
                   
-                    </View>
-                  );
-                } 
+                //     </View>
+                //   );
+                // } 
                 else {
                   return (
                     <TextInputRectangle

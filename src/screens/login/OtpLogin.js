@@ -320,10 +320,10 @@ const OtpLogin = ({ navigation, route }) => {
 
           <Image
             style={{
-              height: 50,
-              width: 80,
+              height: 100,
+              width: 140,
               resizeMode: "contain",
-              top: 20,
+              top: 0,
               position: "absolute",
               left: 50,
             }}
