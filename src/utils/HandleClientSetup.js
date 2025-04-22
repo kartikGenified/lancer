@@ -1,19 +1,19 @@
 //Thanks to Karik for this Setup (The Half Blood Prince)
 
 //clint ID's
-export const clientName = "calkn";
-export const clientID = 29;
-export const clientOfficialName = "Calcutta Knit Wear"
-export const baseUrl =  "https://saas.genefied.in/"
+export const clientName = "lancer-footwear";
+export const clientID = 39;
+export const clientOfficialName = "lancer-footwear"
+export const baseUrl =  "http://saas-api-dev.genefied.in/"
 // "https://saas.genefied.in/"
 // "http://saas-api-dev.genefied.in/"
-//icons and images
-export const appIcon = require("../../assets/images/Logo.png");
+//icons and images d
+export const appIcon = require("../../assets/images/lancer_logo.jpg");
 export const splash = require("../../assets/gif/Splash-myro.gif");
 
 export const descriptionImages = [
   // require("../../assets/images/Step1.png"),
-  require("../../assets/images/Step2.png"),
+  require("../../assets/images/step1lancer.png"),
   // require("../../assets/images/Step3.png"),
   // require("../../assets/images/Step4.png"),
   // require("../../assets/images/Step5.png")

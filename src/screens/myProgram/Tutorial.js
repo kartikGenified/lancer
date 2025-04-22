@@ -18,7 +18,7 @@ const Tutorial = ({navigation}) => {
     : 'grey';
     const height = Dimensions.get('window').height
 
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/lancerLoading.gif')).uri;
 
 
     const [appVideoFunc, {

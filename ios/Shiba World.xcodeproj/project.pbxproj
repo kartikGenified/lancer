@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		005EFA06328442D69CFD157C /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6BB490790024A1D944512E3 /* Poppins-BlackItalic.ttf */; };
-		00E356F31AD99517003FC87E /* calcuttaKnitWearTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* calcuttaKnitWearTests.m */; };
+		00E356F31AD99517003FC87E /* lancerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* lancerTests.m */; };
 		0B5E7FD736894E34B199C899 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEAC1C540BDA408D917124E6 /* Poppins-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -63,22 +63,22 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = calcuttaKnitWear;
+			remoteInfo = lancer;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* Shiba WorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shiba WorldTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* calcuttaKnitWearTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = calcuttaKnitWearTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* lancerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lancerTests.m; sourceTree = "<group>"; };
 		0A03B811F416BCEACC5B145D /* Pods-Shiba World.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shiba World.release.xcconfig"; path = "Target Support Files/Pods-Shiba World/Pods-Shiba World.release.xcconfig"; sourceTree = "<group>"; };
 		0E1B8BF0838049D291ECD299 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Shiba World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shiba World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = calcuttaKnitWear/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = calcuttaKnitWear/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = calcuttaKnitWear/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = calcuttaKnitWear/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = calcuttaKnitWear/main.m; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = lancer/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = lancer/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = lancer/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = lancer/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = lancer/main.m; sourceTree = "<group>"; };
 		1AE6820C23DE453CAB52F952 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		1CDBC9E99E284E7B5006FAB7 /* Pods-Shiba World-Shiba WorldTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shiba World-Shiba WorldTests.debug.xcconfig"; path = "Target Support Files/Pods-Shiba World-Shiba WorldTests/Pods-Shiba World-Shiba WorldTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E3DA997340647E68B5EABD5 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Italic.ttf"; path = "../assets/fonts/Poppins-Italic.ttf"; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		5109BE1CC45D4D228F5905C8 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		53BCA4852D427795005E51C5 /* checkAnimated3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkAnimated3.gif; sourceTree = "<group>"; };
 		53BCA4862D427795005E51C5 /* loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader.gif; sourceTree = "<group>"; };
-		53BCA4872D427795005E51C5 /* loaderNew.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loaderNew.gif; sourceTree = "<group>"; };
+		53BCA4872D427795005E51C5 /* lancerLoading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lancerLoading.gif; sourceTree = "<group>"; };
 		53BCA4882D427795005E51C5 /* loadingAnim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingAnim.gif; sourceTree = "<group>"; };
 		53BCA4892D427795005E51C5 /* noData.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noData.gif; sourceTree = "<group>"; };
 		53BCA48A2D427795005E51C5 /* ozoStars.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ozoStars.gif; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		6ADA9E2354B743C393570BC0 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BoldItalic.ttf"; path = "../assets/fonts/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		6CC0A2D5FC54BBDF403AC0E2 /* Pods_Shiba_World.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shiba_World.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD9F36D1CDD42B4A722D9A1 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = calcuttaKnitWear/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = lancer/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		884A6DE7592C4EE0B1A9E605 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Thin.ttf"; path = "../assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		8DB51198E9EA4355BC888C2C /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		B6BB490790024A1D944512E3 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../assets/fonts/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 		E92D736B2B3B50B3009D7BC1 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92D736D2B3B549D009D7BC1 /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		E92EE8E92B4156DE00162902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E97F37B52B3AE9B500D662DB /* calcuttaKnitWear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = calcuttaKnitWear.entitlements; path = calcuttaKnitWear/calcuttaKnitWear.entitlements; sourceTree = "<group>"; };
+		E97F37B52B3AE9B500D662DB /* lancer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = lancer.entitlements; path = lancer/lancer.entitlements; sourceTree = "<group>"; };
 		E989CCF92D311F250005A53B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E99B6EA22B3CA8A600D14E1F /* reacthermes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = reacthermes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A31A8F2C3802DA00346EF5 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		E9B14AAF2A8CDED1004DE909 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		E9B14AB02A8CDED1004DE909 /* FontAwesome6_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome6_Brands.ttf; sourceTree = "<group>"; };
 		E9B14AB12A8CDED1004DE909 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
-		E9B14AC52A8E3BD2004DE909 /* calcuttaKnitWear-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "calcuttaKnitWear-Bridging-Header.h"; sourceTree = "<group>"; };
+		E9B14AC52A8E3BD2004DE909 /* lancer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lancer-Bridging-Header.h"; sourceTree = "<group>"; };
 		E9B14AC62A8E3BD3004DE909 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F97B41FC45544F1C852F0A14 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -285,13 +285,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* calcuttaKnitWearTests */ = {
+		00E356EF1AD99517003FC87E /* lancerTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* calcuttaKnitWearTests.m */,
+				00E356F21AD99517003FC87E /* lancerTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = calcuttaKnitWearTests;
+			path = lancerTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -327,11 +327,11 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* calcuttaKnitWear */ = {
+		13B07FAE1A68108700A75B9A /* lancer */ = {
 			isa = PBXGroup;
 			children = (
 				E989CCF92D311F250005A53B /* GoogleService-Info.plist */,
-				E97F37B52B3AE9B500D662DB /* calcuttaKnitWear.entitlements */,
+				E97F37B52B3AE9B500D662DB /* lancer.entitlements */,
 				E9B14A9E2A8CDED1004DE909 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -340,7 +340,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = calcuttaKnitWear;
+			name = lancer;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -362,7 +362,7 @@
 			children = (
 				53BCA4852D427795005E51C5 /* checkAnimated3.gif */,
 				53BCA4862D427795005E51C5 /* loader.gif */,
-				53BCA4872D427795005E51C5 /* loaderNew.gif */,
+				53BCA4872D427795005E51C5 /* lancerLoading.gif */,
 				53BCA4882D427795005E51C5 /* loadingAnim.gif */,
 				53BCA4892D427795005E51C5 /* noData.gif */,
 				53BCA48A2D427795005E51C5 /* ozoStars.gif */,
@@ -592,7 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				E9B14AC62A8E3BD3004DE909 /* File.swift */,
-				E9B14AC52A8E3BD2004DE909 /* calcuttaKnitWear-Bridging-Header.h */,
+				E9B14AC52A8E3BD2004DE909 /* lancer-Bridging-Header.h */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -606,9 +606,9 @@
 				53BCA5112D427795005E51C5 /* assets */,
 				53BCA5122D427795005E51C5 /* main.jsbundle */,
 				E92EE8E92B4156DE00162902 /* Assets.xcassets */,
-				13B07FAE1A68108700A75B9A /* calcuttaKnitWear */,
+				13B07FAE1A68108700A75B9A /* lancer */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* calcuttaKnitWearTests */,
+				00E356EF1AD99517003FC87E /* lancerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -686,7 +686,7 @@
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
 			name = "Shiba WorldTests";
-			productName = calcuttaKnitWearTests;
+			productName = lancerTests;
 			productReference = 00E356EE1AD99517003FC87E /* Shiba WorldTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -710,7 +710,7 @@
 			dependencies = (
 			);
 			name = "Shiba World";
-			productName = calcuttaKnitWear;
+			productName = lancer;
 			productReference = 13B07F961A680F5B00A75B9A /* Shiba World.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -995,7 +995,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* calcuttaKnitWearTests.m in Sources */,
+				00E356F31AD99517003FC87E /* lancerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,7 +1031,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = calcuttaKnitWearTests/Info.plist;
+				INFOPLIST_FILE = lancerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1043,7 +1043,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.lancer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiba World.app/Shiba World";
 			};
@@ -1057,7 +1057,7 @@
 				BUNDLE_loaderNew = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 9D932R2PWR;
-				INFOPLIST_FILE = calcuttaKnitWearTests/Info.plist;
+				INFOPLIST_FILE = lancerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1069,7 +1069,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.lancer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiba World.app/Shiba World";
 			};
@@ -1082,15 +1082,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = calcuttaKnitWear/calcuttaKnitWear.entitlements;
+				CODE_SIGN_ENTITLEMENTS = lancer/lancer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9D932R2PWR;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = calcuttaKnitWear/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = calcuttaKnitWear;
+				INFOPLIST_FILE = lancer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = lancer;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1103,10 +1103,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear.myro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.lancer.myro;
 				PRODUCT_NAME = "Shiba World";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "lancer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1121,14 +1121,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = calcuttaKnitWear/calcuttaKnitWear.entitlements;
+				CODE_SIGN_ENTITLEMENTS = lancer/lancer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9D932R2PWR;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = calcuttaKnitWear/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = calcuttaKnitWear;
+				INFOPLIST_FILE = lancer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = lancer;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1141,10 +1141,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.calcuttaKnitWear.myro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.lancer.myro;
 				PRODUCT_NAME = "Shiba World";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "calcuttaKnitWear-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "lancer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

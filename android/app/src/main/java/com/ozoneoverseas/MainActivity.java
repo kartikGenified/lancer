@@ -1,4 +1,4 @@
-package com.genefied.calcuttaKnitWear;
+package com.genefied.lancer;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "calcuttaKnitWear";
+    return "lancer";
   }
   @Override
   protected void onCreate(Bundle savedInstanceState) {

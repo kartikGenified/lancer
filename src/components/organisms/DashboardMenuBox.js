@@ -65,6 +65,12 @@ const DashboardMenuBox=(props)=>{
         else if(data.toLowerCase() === "report an issue"){
             navigation.navigate('QueryList')
         }
+        else if(data.toLowerCase() === "videos"){
+            navigation.navigate('VideoGallery')
+        }
+        else if(data.toLowerCase() === "gallery"){
+            navigation.navigate('ImageGallery')
+        }
     }
 
     return(

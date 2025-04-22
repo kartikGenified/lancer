@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface calcuttaKnitWearTests : XCTestCase
+@interface lancerTests : XCTestCase
 
 @end
 
-@implementation calcuttaKnitWearTests
+@implementation lancerTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

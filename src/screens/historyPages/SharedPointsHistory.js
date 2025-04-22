@@ -27,7 +27,7 @@ const SharedPointsHistory = ({ navigation }) => {
   const [distinctDateArr, setDistinctDateArr] = useState();
   const [scannedListData, setScannedListData] = useState([]);
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/lancerLoading.gif")
   ).uri;
   const noData = Image.resolveAssetSource(
     require("../../../assets/gif/noData.gif")

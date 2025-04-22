@@ -63,6 +63,7 @@ const BasicInfo = ({ navigation, route }) => {
   const [needsAadharVerification, setNeedsAadharVerification] = useState(false)
   const [location, setLocation] = useState()
   const [formFound, setFormFound] = useState(true)
+
   const [isCorrectPincode, setIsCorrectPincode] = useState(true)
   const [otp, setOtp] = useState("")
   const [otpVerified, setOtpVerified] = useState(false)
@@ -126,7 +127,7 @@ const BasicInfo = ({ navigation, route }) => {
   const height = Dimensions.get('window').height
   const {t} = useTranslation()
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/lancerLoading.gif")
   ).uri;
 
   let timeoutId;
@@ -395,33 +396,12 @@ const BasicInfo = ({ navigation, route }) => {
 
   useEffect(() => {
     if (registerUserData) {
-      console.log("data after submitting form", registerUserData,mappedUserData)
-      if (registerUserData.success && mappedUserData) {
+      console.log("data after submitting form", registerUserData)
+      if (registerUserData.success ) {
 
-          const body = {
-            user_type: mappedUserData.user_type,
-            user_type_id: Number(mappedUserData.user_type_id),
-            app_user_id: mappedUserData.id,
-            app_user_name: mappedUserData.name,
-            app_user_mobile: mappedUserData.mobile,
-            mapped_user_type: registerUserData.body.user_type,
-            mapped_user_type_id: registerUserData.body.user_type_id,
-            mapped_app_user_id: registerUserData.body.id,
-            mapped_app_user_name: registerUserData.body.name,
-            mapped_app_user_mobile: registerUserData.body.mobile,
-          };
-          console.log("the body", body)
-         
-            
-  
-            let params = {
-              body: { "rows": [body] }
-            }
-            console.log("createusermapping", JSON.stringify(params))
-            createUserMapping(params)
           
         setSuccess(true)
-        setMessage(t("Thank you for joining Shiba World Loyalty program"))
+        setMessage(t("Thank you for joining Lancer Badhte Kadam Loyalty program"))
         setModalTitle(t("Greetings"))
       }
       setHideButton(false)

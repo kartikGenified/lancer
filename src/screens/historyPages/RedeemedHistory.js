@@ -52,7 +52,7 @@ const RedeemedHistory = ({ navigation }) => {
 
   }
   console.log("appUserData",appUserData)
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderNew.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/lancerLoading.gif')).uri;
   const noData = Image.resolveAssetSource(require('../../../assets/gif/noData.gif')).uri;
   let startDate,endDate
   const [
@@ -271,10 +271,11 @@ const RedeemedHistory = ({ navigation }) => {
         }
         else{
           console.log("correct redemption date sadghasgd",new Date().getTime(),new Date(redemptionStartData).getTime(),new Date(redemptionEndDate).getTime())
+          setModalVisible(true)
 
-          setError(true)
-          setMessage(t("KYC not completed yet"))
-          setNavigateTo("Verification")
+          // setError(true)
+          // setMessage(t("KYC not completed yet"))
+          // setNavigateTo("Verification")
         }
         }
         else{

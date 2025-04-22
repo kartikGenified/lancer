@@ -73,8 +73,8 @@ const EnableCameraScreen = ({ navigation, route }) => {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.CAMERA,
           {
-            title: "calcuttaKnitWear App Camera Permission",
-            message: "calcuttaKnitWear App needs access to your camera",
+            title: "lancer App Camera Permission",
+            message: "lancer App needs access to your camera",
             buttonNegative: "Cancel",
             buttonPositive: "OK",
           }

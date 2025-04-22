@@ -114,7 +114,7 @@ const OtpLogin = ({ navigation, route }) => {
   console.log("navigationParams", navigationParams);
   
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loaderNew.gif")
+    require("../../../assets/gif/lancerLoading.gif")
   ).uri;
 
   useEffect(() => {

@@ -906,7 +906,7 @@ const Splash = ({ navigation }) => {
   //   if (Platform.OS == "android") {
   //     LocationServicesDialogBox.checkLocationServicesIsEnabled({
   //       message:
-  //         "<h2 style='color: #0af13e'>Use Location ?</h2>calcuttaKnitWear wants to change your device settings:<br/><br/>Enable location to use the application.<br/><br/><a href='#'>Learn more</a>",
+  //         "<h2 style='color: #0af13e'>Use Location ?</h2>lancer wants to change your device settings:<br/><br/>Enable location to use the application.<br/><br/><a href='#'>Learn more</a>",
   //       ok: "YES",
   //       cancel: "NO",
   //       enableHighAccuracy: true, // true => GPS AND NETWORK PROVIDER, false => GPS OR NETWORK PROVIDER
@@ -1006,7 +1006,7 @@ const Splash = ({ navigation }) => {
                 text: t("Update"),
                 onPress: () =>
                   Linking.openURL(
-                    "https://play.google.com/store/apps/details?id=com.genefied.calcuttaKnitWear"
+                    "https://play.google.com/store/apps/details?id=com.genefied.lancer"
                   ),
               },
             ]
@@ -1022,7 +1022,7 @@ const Splash = ({ navigation }) => {
                 text: "Update",
                 onPress: () =>
                   Linking.openURL(
-                    "https://play.google.com/store/apps/details?id=com.genefied.calcuttaKnitWear"
+                    "https://play.google.com/store/apps/details?id=com.genefied.lancer"
                   ),
               },
             ]
@@ -1352,15 +1352,15 @@ const Splash = ({ navigation }) => {
 
   // console.log("internet connection status",connected)
   return (
-    <View>
-      <FastImage
+    <ImageBackground  style={{height:'100%',width:'100%', resizeMode:'contain'}} source={require('../../../assets/images/SplashLancer.jpeg')}>
+      {/* <FastImage
         style={{ width: "100%", height: "100%", alignSelf: "center" }}
         source={{
           uri: gifUri, // Update the path to your GIF
           priority: FastImage.priority.normal,
         }}
         resizeMode={FastImage.resizeMode.cover}
-      />
+      /> */}
     {console.log("isSlow", isConnected.isInternetReachable)}
       {(!connected) && (
         <InternetModal visible={(!connected)} comp={NoInternetComp} />
@@ -1397,7 +1397,7 @@ const Splash = ({ navigation }) => {
         </View>
         </View>
       }
-    </View>
+    </ImageBackground>
   );
 };
 
