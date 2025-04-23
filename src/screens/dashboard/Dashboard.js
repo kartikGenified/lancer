@@ -890,7 +890,7 @@ const Dashboard = ({ navigation }) => {
               image={require("../../../assets/images/support.png")}
             ></DashboardSupportBox>
             <DashboardSupportBox
-              title={t("feedback")}
+              title={t("Feedback")}
               text="Feedback"
               backgroundColor="#D8C8C8"
               borderColor="#FDDADA"
