@@ -78,6 +78,8 @@ const RedeemGifts = ({ navigation, route }) => {
         const params = { userId: userId, token: token };
         userPointFunc(params);
 
+        console.log("schemeGiftCatalogue",schemeGiftCatalogue)
+
         if (schemeGiftCatalogue == undefined) {
           fetchGiftCatalogue({
             token: token,
@@ -120,10 +122,11 @@ const RedeemGifts = ({ navigation, route }) => {
   }, [userPointData, userPointError]);
 
   const getDistinctSchemeCategories = (data) => {
+    console.log("data125", data)
     let allCategories = [];
 
     for (var i = 0; i < data?.length; i++) {
-      allCategories.push(data[i]?.category);
+      allCategories.push(data[i]?.catalogue_name);
     }
     const set = new Set(allCategories);
     const arr = Array.from(set);
@@ -159,11 +162,21 @@ const RedeemGifts = ({ navigation, route }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          const filteredData = giftCatalogueData.body.filter((item, index) => {
-            return item.category == data;
-          });
-          setDisplayContent(filteredData);
-          setCart([]);
+          if(giftCatalogueData?.body){
+            const filteredData = giftCatalogueData?.body.filter((item, index) => {
+              return item.category == data;
+            });
+            setDisplayContent(filteredData);
+            setCart([]);
+          }
+          else{
+            const filteredData = schemeGiftCatalogue.filter((item, index) => {
+              return item.catalogue_name == data;
+            });
+            setDisplayContent(filteredData);
+            setCart([]);
+          }
+       
         }}
         style={{
           marginLeft: 30,
@@ -578,8 +591,15 @@ const RedeemGifts = ({ navigation, route }) => {
         >
           <TouchableOpacity
             onPress={() => {
-              setDisplayContent(giftCatalogueData.body);
-              setCart([]);
+              if(giftCatalogueData?.body){
+                setDisplayContent(giftCatalogueData.body);
+                setCart([]);
+              }
+              else{
+                setDisplayContent(schemeGiftCatalogue);
+                setCart([]);  
+              }
+           
             }}
             style={{
               height: 70,
@@ -603,6 +623,7 @@ const RedeemGifts = ({ navigation, route }) => {
             ></PoppinsTextMedium>
           </TouchableOpacity>
           <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+            {console.log("distinctCategories608", distinctCategories)}
             {distinctCategories &&
               distinctCategories.map((item, index) => {
                 return (
