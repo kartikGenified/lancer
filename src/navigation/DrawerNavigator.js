@@ -13,7 +13,11 @@ import BottomNavigator from "./BottomNavigator";
 import RedeemRewardHistory from "../screens/historyPages/RedeemRewardHistory";
 import AddBankAccountAndUpi from "../screens/payments/AddBankAccountAndUpi";
 import Profile from "../screens/profile/Profile";
-import { DrawerActions, useIsFocused, useNavigation } from "@react-navigation/native";
+import {
+  DrawerActions,
+  useIsFocused,
+  useNavigation,
+} from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useGetAppDashboardDataMutation } from "../apiServices/dashboard/AppUserDashboardApi";
@@ -66,7 +70,7 @@ const CustomDrawer = () => {
   const userData = useSelector((state) => state.appusersdata.userData);
   const kycData = useSelector((state) => state.kycDataSlice.kycData);
 
-  console.log("drawer data tabs", drawerData,kycData);
+  console.log("drawer data tabs", drawerData, kycData);
 
   const [
     getFAQ,
@@ -102,7 +106,7 @@ const CustomDrawer = () => {
     },
   ] = useGetActiveMembershipMutation();
 
-  const focused = useIsFocused()
+  const focused = useIsFocused();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -228,12 +232,17 @@ const CustomDrawer = () => {
         >
           {/* <SvgUri width={40} height={40} uri={image}></SvgUri> */}
           {/* <Icon size={size} name="bars" color={ternaryThemeColor}></Icon> */}
-     
+          {!eye ? (
             <Image
               style={{ height: 20, width: 20, resizeMode: "contain" }}
               source={{ uri: image }}
             ></Image>
-        
+          ) : (
+            <Image
+              style={{ height: 20, width: 20, resizeMode: "contain" }}
+              source={require("../../assets/images/privacyP.png")}
+            ></Image>
+          )}
         </View>
 
         <View
@@ -273,7 +282,11 @@ const CustomDrawer = () => {
                 props.title.toLowerCase() === "bank account"
               ) {
                 navigation.navigate("BankAccounts");
-              } else if (props.title.toLowerCase() === "profile") {
+              }
+              else if(props.title.toLowerCase() === "privacy policy"){
+                navigation.navigate('PdfComponent', { pdf: "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1745394111498-265420724Privacy-Policy.pdf" })
+              }
+              else if (props.title.toLowerCase() === "profile") {
                 navigation.navigate("Profile");
               } else if (props.title.toLowerCase() === "feedback") {
                 navigation.navigate("Feedback");
@@ -281,11 +294,7 @@ const CustomDrawer = () => {
                 navigation.navigate("ReferAndEarn");
               } else if (props.title.toLowerCase() === "warranty list") {
                 navigation.navigate("WarrantyHistory");
-              } 
-              else if (props.title.toLowerCase() === "complaint list") {
-                navigation.navigate("QueryList");
-              } 
-              else if (props.title.toLowerCase() === "help and support") {
+              } else if (props.title.toLowerCase() === "help and support") {
                 navigation.navigate("HelpAndSupport");
               } else if (props.title.toLowerCase() === "product catalogue") {
                 navigation.navigate("ProductCatalogue");
@@ -294,13 +303,9 @@ const CustomDrawer = () => {
                 props.title.toLowerCase() === "videos"
               ) {
                 navigation.navigate("VideoGallery");
-              } 
-              else if (
-                props.title.toLowerCase() === "update password" 
-              ) {
+              } else if (props.title.toLowerCase() === "update password") {
                 navigation.navigate("UpdatePassword");
-              } 
-              else if (props.title.toLowerCase() === "gallery") {
+              } else if (props.title.toLowerCase() === "gallery") {
                 navigation.navigate("ImageGallery");
               } else if (
                 props.title.substring(0, 4).toLowerCase() === "scan" &&
@@ -314,17 +319,13 @@ const CustomDrawer = () => {
                       })
                     : navigation.navigate("QrCodeScanner")
                   : navigation.navigate("QrCodeScanner");
-              } else if (props.title.toLowerCase() === "aqualite scheme") {
+              } else if (props.title.toLowerCase() === "scheme") {
                 navigation.navigate("Scheme");
               } else if (props.title.toLowerCase() === "store locator") {
                 navigation.navigate("ScanAndRedirectToWarranty");
               } else if (props.title.toLowerCase() === "scan list") {
                 navigation.navigate("PointHistory");
-              } 
-              else if (props.title.toLowerCase() === "coupons") {
-                navigation.navigate("RedeemCoupons");
-              } 
-              else if (props.title.toLowerCase() === "add user") {
+              } else if (props.title.toLowerCase() === "add user") {
                 navigation.navigate("ListUsers");
               } else if (props.title.toLowerCase() === "query list") {
                 navigation.navigate("QueryList");
@@ -344,7 +345,7 @@ const CustomDrawer = () => {
             }}
           >
             {/* {console.log("props.title", props.title)} */}
-            <Text style={{ color: primaryThemeColor, fontSize: 15 }}>
+            <Text style={{ color: primaryThemeColor, fontSize: 15 ,width:200}}>
               {props.title == "Passbook"
                 ? `${t("Passbook")}`
                 : props.title == "My Profile"
@@ -559,41 +560,67 @@ const CustomDrawer = () => {
             </Text>
           )}
 
-          {!Object.values(kycData).includes(false) ? <View style={{ flexDirection: 'row', marginTop: 4 }}>
-            <View
-              style={{
-                height: 22,
-                width: 80,
-                borderRadius: 20,
-                backgroundColor: 'white',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                marginTop: 2,
-              }}>
-              <Image style={{ height: 10, width: 10, resizeMode: 'contain' }} source={require('../../assets/images/tickBlue.png')}></Image>
-              <Text style={{ marginLeft: 4, color: 'black', fontSize: 10, fontWeight: '500' }}>KYC Status</Text>
-            </View>
-
-          </View> :
-            <View style={{ flexDirection: 'row', marginTop: 4 }}>
+          {!Object.values(kycData).includes(false) ? (
+            <View style={{ flexDirection: "row", marginTop: 4 }}>
               <View
                 style={{
                   height: 22,
                   width: 80,
                   borderRadius: 20,
-                  backgroundColor: 'white',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'row',
+                  backgroundColor: "white",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
                   marginTop: 2,
-                }}>
-                <Image style={{ height: 10, width: 10, resizeMode: 'contain' }} source={require('../../assets/images/cancel.png')}></Image>
-                <Text style={{ marginLeft: 4, color: 'black', fontSize: 10, fontWeight: '500' }}>KYC Status</Text>
+                }}
+              >
+                <Image
+                  style={{ height: 10, width: 10, resizeMode: "contain" }}
+                  source={require("../../assets/images/tickBlue.png")}
+                ></Image>
+                <Text
+                  style={{
+                    marginLeft: 4,
+                    color: "black",
+                    fontSize: 10,
+                    fontWeight: "500",
+                  }}
+                >
+                  KYC Status
+                </Text>
               </View>
-
             </View>
-          }
+          ) : (
+            <View style={{ flexDirection: "row", marginTop: 4 }}>
+              <View
+                style={{
+                  height: 22,
+                  width: 80,
+                  borderRadius: 20,
+                  backgroundColor: "white",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  marginTop: 2,
+                }}
+              >
+                <Image
+                  style={{ height: 10, width: 10, resizeMode: "contain" }}
+                  source={require("../../assets/images/cancel.png")}
+                ></Image>
+                <Text
+                  style={{
+                    marginLeft: 4,
+                    color: "black",
+                    fontSize: 10,
+                    fontWeight: "500",
+                  }}
+                >
+                  KYC Status
+                </Text>
+              </View>
+            </View>
+          )}
         </View>
         <PoppinsTextMedium
           content={`Version : ${currentVersion}`}
@@ -625,7 +652,14 @@ const CustomDrawer = () => {
             );
           })}
 
-    {/* {
+        <DrawerItems
+          // key={index}
+          title={"Privacy Policy"}
+          image={""}
+          size={20}
+          eye={true}
+        ></DrawerItems>
+        {/* {
       userData?.user_type == "distributor" &&
       <DrawerItems
           // key={index}
@@ -636,7 +670,7 @@ const CustomDrawer = () => {
         ></DrawerItems>
 
     } */}
-  
+
         {/* My Program Starting */}
         {/* <View
           style={{

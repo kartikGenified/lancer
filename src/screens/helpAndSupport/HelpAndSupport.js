@@ -119,7 +119,7 @@ const HelpAndSupport = ({navigation}) => {
           }}></PoppinsTextMedium>
             </TouchableOpacity>
             <PoppinsTextMedium style={{color:'white',fontSize:14,fontWeight:'600',marginTop:20}} content="Call our customer care executive" ></PoppinsTextMedium>
-            <PoppinsTextMedium style={{color:'white',fontSize:14,fontWeight:'600'}} content="Monday - Friday" ></PoppinsTextMedium>
+            <PoppinsTextMedium style={{color:'white',fontSize:14,fontWeight:'600'}} content="Monday - Saturday" ></PoppinsTextMedium>
             <PoppinsTextMedium style={{color:'white',fontSize:14,fontWeight:'600'}} content="10am - 6pm" ></PoppinsTextMedium>
 
 

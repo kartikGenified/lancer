@@ -582,7 +582,7 @@ const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loadingAnim
                   width: "60%",
                   marginTop: 6,
                 }}
-                content="You have successfully performed the action"
+                content="you have successfully scanned the product"
               ></PoppinsTextMedium>
               {/* action box ---------------------------------------------- */}
               <View

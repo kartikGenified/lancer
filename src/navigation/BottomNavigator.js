@@ -237,7 +237,7 @@ function BottomNavigator({ navigation }) {
             {(userData?.user_type).toLowerCase() !== "sales" && (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("Passbook");
+                  navigation.navigate("Scheme");
                 }}
                 style={{
                   alignItems: "center",
@@ -304,7 +304,7 @@ function BottomNavigator({ navigation }) {
                       fontWeight: platformFontWeight,
                       color: "black",
                     }}
-                    content={t("passbook")}
+                    content={t("scheme")}
                   ></PoppinsTextMedium>
                 </Tooltip>
               </TouchableOpacity>

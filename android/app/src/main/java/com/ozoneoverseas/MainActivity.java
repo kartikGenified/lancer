@@ -1,4 +1,4 @@
-package com.genefied.lancer;
+package com.evato.o4s.lancer;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

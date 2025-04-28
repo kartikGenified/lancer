@@ -59,6 +59,7 @@ const Verification = ({ navigation }) => {
   // const [splitAddress , setSplitAddress] = useState()
   const dispatch = useDispatch();
   const kycOptions = useSelector((state) => state.apptheme.kycOptions);
+  console.log("kycdndjnkdd", kycOptions)
   // const userData = useSelector(state=>)
   const userData = useSelector((state) => state.appusersdata.userData);
   const kycData = useSelector((state) => state.kycDataSlice.kycData);
@@ -942,12 +943,12 @@ const Verification = ({ navigation }) => {
                 </View>
               </View>
 
-              {verifyPanData && (
+              {/* {verifyPanData && (
                 <PANDataBox
                   name={verifyPanData.body?.registered_name}
                   panNumber={verifyPanData.body?.pan}
                 ></PANDataBox>
-              )}
+              )} */}
             </View>
           )}
           {showAadhar && (

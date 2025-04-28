@@ -5,6 +5,7 @@ export const GetSchemeApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         checkActiveScheme: builder.mutation({
         query: (token) => {
+            console.log("checkActiveScheme",token)
         return {
         method: "GET",
         url: `/api/app/scheme/check`,
@@ -18,12 +19,13 @@ export const GetSchemeApi = baseApi.injectEndpoints({
         }),
         checkAllScheme: builder.mutation({
             query: (params) => {
+                console.log("checkAllScheme",params)
             return {
             method: "GET",
             url: `/api/app/scheme/info?start_date=${params.startDate}&end_date=${params.endDate}`,
             headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + params.token,
             slug: slug,
             },
             };

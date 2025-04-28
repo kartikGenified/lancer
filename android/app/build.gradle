@@ -75,10 +75,10 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.genefied.lancer"
+    namespace "com.evato.o4s.lancer"
     defaultConfig 
     {
-        applicationId "com.genefied.lancer"
+        applicationId "com.evato.o4s.lancer"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

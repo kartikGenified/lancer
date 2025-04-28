@@ -1,4 +1,4 @@
-package com.genefied.lancer;
+package com.evato.o4s.lancer;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

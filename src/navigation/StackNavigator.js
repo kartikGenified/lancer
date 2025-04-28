@@ -87,6 +87,7 @@ import ForgetPassword from '../screens/login/ForgotPassword';
 import MpinSetupScreen from '../screens/mpin/MpinSetupScreen';
 import MpinValidationScreen from '../screens/mpin/MpinValidationScreen';
 import ForgotMpin from '../screens/mpin/ForgotMpin';
+import SchemeHistory from '../screens/scheme/SchemeHistory';
 
 const Stack = createNativeStackNavigator()
 
@@ -340,6 +341,11 @@ const StackNavigator = () => {
                         headerShown: false
                     }
                 } name="MyBonus" component={MyBonus}></Stack.Screen>
+                       <Stack.Screen options={
+                    {
+                        headerShown: false
+                    }
+                } name="SchemeHistory" component={SchemeHistory}></Stack.Screen>
                 <Stack.Screen options={
                     {
                         headerShown: false

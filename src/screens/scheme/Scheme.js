@@ -8,23 +8,32 @@ import {
   Dimensions,
   Linking,
   Text,
+  Modal,
+  Alert
+
 } from "react-native";
 import Video from "react-native-video";
 import { useSelector } from "react-redux";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
-import { useCheckActiveSchemeMutation,useCheckAllSchemeMutation } from "../../apiServices/scheme/GetSchemeApi";
+import {
+  useCheckActiveSchemeMutation,
+  useCheckAllSchemeMutation,
+} from "../../apiServices/scheme/GetSchemeApi";
 import * as Keychain from "react-native-keychain";
 import Logo from "react-native-vector-icons/AntDesign";
 import moment from "moment";
 import DatePicker from "react-native-date-picker";
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
+import Cancel from 'react-native-vector-icons/MaterialIcons'
+
 export default function Scheme({ navigation }) {
   const [scheme, setScheme] = useState([]);
-  const [getAllScheme, setGetAllScheme] = useState([])
+  const [getAllScheme, setGetAllScheme] = useState([]);
   const [gifts, setGifts] = useState([]);
-  const [activeScheme, setActiveScheme] = useState()
+  const [activeScheme, setActiveScheme] = useState();
   const [selectedGifts, setSelectedGifts] = useState();
   const [categories, setCategories] = useState();
+  const [stateCollapsed, setStateCollapsed] = useState(true);
   const [highlightWidthPrevious, setHighlightWidthPrevious] = useState(false);
   const [selected, setSelected] = useState(false);
   const secondaryThemeColor = useSelector(
@@ -34,15 +43,18 @@ export default function Scheme({ navigation }) {
     (state) => state.apptheme.ternaryThemeColor
   );
   const location = useSelector((state) => state.userLocation.location);
-    console.log("Location Data from redux state", location)
+  console.log("Location Data from redux state", location);
   const height = Dimensions.get("window").height;
 
-  const [checkAllSchemeFunc,{
-    data:checkAllSchemeData,
-    error:checkAllSchemeError,
-    isLoading:checkAllSchemeIsLoading,
-    isError:checkAllSchemeIsError
-  }] = useCheckAllSchemeMutation()
+  const [
+    checkAllSchemeFunc,
+    {
+      data: checkAllSchemeData,
+      error: checkAllSchemeError,
+      isLoading: checkAllSchemeIsLoading,
+      isError: checkAllSchemeIsError,
+    },
+  ] = useCheckAllSchemeMutation();
 
   const [
     checkActiveSchemeFunc,
@@ -54,378 +66,72 @@ export default function Scheme({ navigation }) {
     },
   ] = useCheckActiveSchemeMutation();
 
-  const schemeData = {
-    status: 200,
-    success: true,
-    message: "All Scheme Data",
-    body: [
-      {
-        id: 6,
-        name: "Second Test Scheme",
-        user_types: [3, 2],
-        states: ["Delhi", "Uttarkhand", "Haryana"],
-        gift_catalogue_id: 2,
-        scheme_start: "2024-07-01",
-        scheme_end: "2024-07-25",
-        redeem_start: "2024-07-01",
-        redeem_end: "2024-07-31",
-        type: "1",
-        products: [],
-        image:
-          "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720604602806-387774581RUMBA.jpg",
-        pdf: "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720617280204-657186004Terms-and-Conditions---JQR.pdf",
-        status: "2",
-        created_at: "2024-07-11T07:45:10.477Z",
-        created_by_id: 1,
-        created_by_name: "lyra",
-        updated_at: "2024-07-11T07:45:10.477Z",
-        updated_by_id: 1,
-        updated_by_name: "lyra",
-        scheme_wallet_id: "490",
-        app_user_id: 443,
-        user_type_id: 2,
-        user_type: "retailer",
-        wallet_status: "3",
-        point_earned: "0.00",
-        point_redeemed: "0.00",
-        point_balance: "0.00",
-        point_expired: "0.00",
-        gift_catalogue: [
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 3,
-            name: "Combo Voucher",
-            brand: "Bata",
-            points: 3,
-            value: 3,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261406795-222877395.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 2,
-            name: "Voucher",
-            brand: "Bata",
-            points: 2,
-            value: 2,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261376761-588744604.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 1,
-            name: "Bata Card",
-            brand: "Bata",
-            points: 1,
-            value: 1,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261342488-442000408.jpg",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-        ],
-      },
-      {
-        id: 8,
-        name: "Faltu Test Scheme",
-        user_types: [2, 3],
-        states: ["Delhi", "Uttar Pradesh"],
-        gift_catalogue_id: 2,
-        scheme_start: "2024-07-01",
-        scheme_end: "2024-07-25",
-        redeem_start: "2024-07-26",
-        redeem_end: "2024-07-31",
-        type: "1",
-        products: [],
-        image:
-          "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720604602806-387774581RUMBA.jpg",
-        pdf: "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720617280204-657186004Terms-and-Conditions---JQR.pdf",
-        status: "1",
-        created_at: "2024-07-12T07:37:13.599Z",
-        created_by_id: 1,
-        created_by_name: "lyra",
-        updated_at: "2024-07-12T07:37:13.599Z",
-        updated_by_id: 1,
-        updated_by_name: "lyra",
-        scheme_wallet_id: "978",
-        app_user_id: 443,
-        user_type_id: 2,
-        user_type: "retailer",
-        wallet_status: "3",
-        point_earned: "0.00",
-        point_redeemed: "0.00",
-        point_balance: "0.00",
-        point_expired: "0.00",
-        gift_catalogue: [
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 3,
-            name: "Combo Voucher",
-            brand: "Bata",
-            points: 3,
-            value: 3,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261406795-222877395.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 2,
-            name: "Voucher",
-            brand: "Bata",
-            points: 2,
-            value: 2,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261376761-588744604.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 1,
-            name: "Bata Card",
-            brand: "Bata",
-            points: 1,
-            value: 1,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261342488-442000408.jpg",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-        ],
-      },
-      {
-        id: 8,
-        name: "Expired Test Scheme",
-        user_types: [2, 3],
-        states: ["Uttar Pradesh"],
-        gift_catalogue_id: 2,
-        scheme_start: "2024-07-01",
-        scheme_end: "2024-07-25",
-        redeem_start: "2024-07-26",
-        redeem_end: "2024-07-31",
-        type: "1",
-        products: [],
-        image:
-          "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720604602806-387774581RUMBA.jpg",
-        pdf: "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720617280204-657186004Terms-and-Conditions---JQR.pdf",
-        status: "1",
-        created_at: "2024-07-12T07:37:13.599Z",
-        created_by_id: 1,
-        created_by_name: "lyra",
-        updated_at: "2024-07-12T07:37:13.599Z",
-        updated_by_id: 1,
-        updated_by_name: "lyra",
-        scheme_wallet_id: "978",
-        app_user_id: 443,
-        user_type_id: 2,
-        user_type: "retailer",
-        wallet_status: "3",
-        point_earned: "0.00",
-        point_redeemed: "0.00",
-        point_balance: "0.00",
-        point_expired: "0.00",
-        gift_catalogue: [
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 3,
-            name: "Combo Voucher",
-            brand: "Bata",
-            points: 3,
-            value: 3,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261406795-222877395.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 2,
-            name: "Voucher",
-            brand: "Bata",
-            points: 2,
-            value: 2,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261376761-588744604.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 1,
-            name: "Bata Card",
-            brand: "Bata",
-            points: 1,
-            value: 1,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261342488-442000408.jpg",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-        ],
-      },
-      {
-        id: 8,
-        name: "Expired Test Scheme",
-        user_types: [2, 3],
-        states: ["Uttar Pradesh"],
-        gift_catalogue_id: 2,
-        scheme_start: "2024-07-01",
-        scheme_end: "2024-07-12",
-        redeem_start: "2024-07-17",
-        redeem_end: "2024-07-31",
-        type: "1",
-        products: [],
-        image:
-          "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720604602806-387774581RUMBA.jpg",
-        pdf: "https://genefied-saas-partner-staging.s3.ap-south-1.amazonaws.com/1720617280204-657186004Terms-and-Conditions---JQR.pdf",
-        status: "1",
-        created_at: "2024-07-12T07:37:13.599Z",
-        created_by_id: 1,
-        created_by_name: "lyra",
-        updated_at: "2024-07-12T07:37:13.599Z",
-        updated_by_id: 1,
-        updated_by_name: "lyra",
-        scheme_wallet_id: "978",
-        app_user_id: 443,
-        user_type_id: 2,
-        user_type: "retailer",
-        wallet_status: "3",
-        point_earned: "0.00",
-        point_redeemed: "0.00",
-        point_balance: "0.00",
-        point_expired: "0.00",
-        gift_catalogue: [
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 3,
-            name: "Combo Voucher",
-            brand: "Bata",
-            points: 3,
-            value: 3,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261406795-222877395.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 2,
-            name: "Voucher",
-            brand: "Bata",
-            points: 2,
-            value: 2,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261376761-588744604.png",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-          {
-            catalogue_id: 2,
-            catalogue_name: "new Bata",
-            catalogue_type: "point",
-            user_types: [2],
-            id: 1,
-            name: "Bata Card",
-            brand: "Bata",
-            points: 1,
-            value: 1,
-            images: [
-              "https://genefied-saas-partner.s3.ap-south-1.amazonaws.com/uploads/image-1704261342488-442000408.jpg",
-            ],
-            created_at: "2024-03-21T06:36:11.303Z",
-            created_by_name: "Bata",
-          },
-        ],
-      },
-    ],
-  };
-  
-
-  useEffect(()=>{
-    if(checkActiveSchemeData)
-    {
-      console.log("checkActiveSchemeData",checkActiveSchemeData)
-    }
-    else if(checkActiveSchemeError)
-    {
-      console.log("checkActiveSchemeError",checkActiveSchemeError)
-    }
-  },[checkAllSchemeData,checkAllSchemeError])
-
-
-  useEffect(()=>{
-    
-      const currentScheme = schemeData?.body?.filter((item,index)=>{
-        if(((new Date(item.scheme_start).getTime()< new Date().getTime()) && ( new Date().getTime()< new Date(item.scheme_end).getTime())))
-        return item
-      })
-      setActiveScheme(currentScheme)
-      console.log("current scheme", currentScheme)
-  },[checkActiveSchemeError,checkActiveSchemeData])
-
+ 
   useEffect(() => {
     const getToken = async () => {
       const credentials = await Keychain.getGenericPassword();
-      if (credentials) {
-        console.log(
-          "Credentials successfully loaded for user " + credentials.username
-        );
-        const token = credentials.username;
-        checkActiveSchemeFunc(token);
+      const token = credentials.username;
+      const startDate = moment(new Date()).format("YYYY-MM-DD")
+      const params = {
+        token:token,
+        endDate:startDate
       }
+      checkAllSchemeFunc(params);
     };
     getToken();
+
   }, []);
+
+  useEffect(() => {
+    if (checkAllSchemeData) {
+      console.log("checkAllSchemeData", checkAllSchemeData);
+    } else if (checkAllSchemeError) {
+      console.log("checkAllSchemeError", checkAllSchemeError);
+    }
+  }, [checkAllSchemeData, checkAllSchemeError]);
+
+  // useEffect(() => {
+  //   const currentScheme = checkAllSchemeData?.body?.filter((item, index) => {
+  //     if (
+  //       (item?.scheme_start <= moment(new Date()).format("YYYY-MM-DD")) &&
+  //       (moment(new Date()).format("YYYY-MM-DD") <= item?.scheme_end)
+  //     )
+  //       return item;
+  //   });
+  //   setActiveScheme(currentScheme);
+  //   console.log("current scheme", currentScheme);
+  // }, [checkAllSchemeData]);
+
+  useEffect(() => {
+    if (checkAllSchemeData?.body) {
+      console.log("💡 Raw scheme data received:");
+      checkAllSchemeData.body.forEach((item, index) => {
+        console.log(`👉 Scheme ${index + 1}`);
+        console.log("Scheme Start:", item.scheme_start);
+        console.log("Scheme End:", item.scheme_end);
+        console.log("Today:", moment().format("YYYY-MM-DD"));
+  
+        const start = moment(item.scheme_start).isSameOrBefore(moment(), 'day');
+        const end = moment(item.scheme_end).isSameOrAfter(moment(), 'day');
+  
+        console.log("Start Valid:", start);
+        console.log("End Valid:", end);
+      });
+  
+      const currentScheme = checkAllSchemeData.body.filter((item) => {
+        return (
+          moment(item.scheme_start).isSameOrBefore(moment(), 'day') &&
+          moment(item.scheme_end).isSameOrAfter(moment(), 'day')
+        );
+      });
+  
+      console.log("✅ Filtered currentScheme:", currentScheme);
+      setActiveScheme(currentScheme);
+    }
+  }, [checkAllSchemeData]);
+  
+
+ 
 
   useEffect(() => {
     if (checkActiveSchemeData) {
@@ -465,20 +171,29 @@ export default function Scheme({ navigation }) {
     const [openStart, setOpenStart] = useState(false);
     const [openEnd, setOpenEnd] = useState(false);
 
-
     return (
-      <View style={{alignItems:'center',justifyContent:'center' ,width:'100%',flexDirection:'row',marginBottom:10}}>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          flexDirection: "row",
+          marginBottom: 10,
+        }}
+      >
         <View
           style={{
-           padding:10,
+            padding: 10,
             width: "44%",
             alignItems: "center",
             justifyContent: "space-between",
-            flexDirection:'row'
+            flexDirection: "row",
           }}
         >
           <PoppinsTextMedium
-            content={`Start Date ${moment(selectedDataStart).format("MM/YYYY")}`}
+            content={`Start Date ${moment(selectedDataStart).format(
+              "MM/YYYY"
+            )}`}
             style={{ width: "60%", fontSize: 16, fontWeight: "700" }}
           ></PoppinsTextMedium>
           <TouchableOpacity
@@ -488,8 +203,8 @@ export default function Scheme({ navigation }) {
               borderRadius: 6,
               paddingRight: 10,
               padding: 6,
-              marginTop:10,
-              marginLeft:10
+              marginTop: 10,
+              marginLeft: 10,
             }}
             onPress={() => {
               setOpenStart(!openStart);
@@ -516,13 +231,13 @@ export default function Scheme({ navigation }) {
         </View>
         <View
           style={{
-            padding:10,
+            padding: 10,
             width: "44%",
             alignItems: "center",
             justifyContent: "space-between",
-            flexDirection:'row',
-            borderLeftWidth:1,
-            marginLeft:10
+            flexDirection: "row",
+            borderLeftWidth: 1,
+            marginLeft: 10,
           }}
         >
           <PoppinsTextMedium
@@ -536,8 +251,8 @@ export default function Scheme({ navigation }) {
               borderRadius: 6,
               paddingRight: 10,
               padding: 6,
-              marginTop:10,
-              marginLeft:10
+              marginTop: 10,
+              marginLeft: 10,
             }}
             onPress={() => {
               setOpenEnd(!openEnd);
@@ -567,11 +282,13 @@ export default function Scheme({ navigation }) {
   };
 
   const SchemeComponent = (props) => {
+    const [modalVisible, setModalVisible] = useState(false)
     const image = props.image;
     const name = props.name;
     const worth = props.worth;
     const earnedPoints = props?.data?.point_earned;
     const coin = props.coin;
+  
     return (
       <View
         style={{
@@ -579,102 +296,148 @@ export default function Scheme({ navigation }) {
           borderWidth: 0.2,
           borderColor: "#DDDDDD",
           elevation: 10,
-          height: 240,
-          backgroundColor: secondaryThemeColor,
+          backgroundColor: ternaryThemeColor,
           borderRadius: 20,
           marginTop: 20,
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "row",
+          paddingBottom:10
         }}
       >
-        <View
-          style={{
-            width: "36%",
-            height: "100%",
-            borderBottomWidth: 1,
-            borderColor: "#DDDDDD",
-            alignItems: "center",
-            justifyContent: 'flex-start',
-          }}
-        >
-          <View
-            style={{
-              height: 100,
-              width: 100,
-              borderRadius: 10,
-              alignItems: "center",
-              justifyContent: "center",
-              borderWidth: 1,
-              borderColor: "white",
-              marginTop:20
-            }}
-          >
-            <Image
+         <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+          <Image
               style={{
-                height: 100,
-                width: 100,
+                height: 300,
+                width: 300,
                 resizeMode: "contain",
                 borderRadius: 10,
               }}
               source={{ uri: props.data?.image }}
             ></Image>
+            <TouchableOpacity style={{position:'absolute', top:0,right:0}} onPress={()=>{
+              setModalVisible(false)
+            }}>
+              <Cancel name="cancel" size = {40} color="#FF3436"></Cancel>
+            </TouchableOpacity>
+            
           </View>
+        </View>
+      </Modal>
+
+
+        <View
+          style={{
+            width: "36%",
+            height: "100%",
+            
+            borderColor: "#DDDDDD",
+            alignItems: "center",
+            justifyContent: "flex-start",
+          }}
+        >
+          <TouchableOpacity onPress={()=>{
+            setModalVisible(true)
+          }}
+            style={{
+              height: 80,
+              width: 80,
+              borderRadius: 10,
+              alignItems: "center",
+              justifyContent: "center",
+              borderWidth: 1,
+              borderColor: "white",
+              marginTop: 20,
+            }}
+          >
+            <Image
+              style={{
+                height: 80,
+                width: 80,
+                resizeMode: "contain",
+                borderRadius: 10,
+              }}
+              source={{ uri: props.data?.image }}
+            ></Image>
+          </TouchableOpacity>
           <View
             style={{
               alignItems: "center",
               justifyContent: "center",
-              width:'100%',
+              width: "100%",
               marginTop: 20,
-             
             }}
           >
             <TouchableOpacity
-              disabled = {!props.data.states?.includes(location.state)}
               onPress={() => {
-                if((new Date(props.data.redeem_start).getTime() <= new Date().getTime()) && (new Date().getTime() <= new Date(props.data.redeem_end).getTime()))
-                {
-                  navigation.navigate("RedeemGifts",{
-                    schemeType:'quaterly',
-                    schemeGiftCatalogue:props.data?.gift_catalogue,
-                    schemeID:props.data?.id
-                  })
-                }
-                else { 
-                  console.log("redemption window is not open", new Date(props.data.redeem_start).getTime(), new Date().getTime(), )
-                  alert(`${t("Redemption window will start at")} ${props.data.redeem_start} ${t("and will end at")} ${props.data.redeem_end}`)
-                }
                 
+                if ((props.data.redeem_start<= moment(new Date()).format("YYYY-MM-DD")) && (moment(new Date()).format("YYYY-MM-DD")<= props.data.redeem_end)) {
+                  navigation.navigate("RedeemGifts", {
+                    schemeType: 'quaterly',
+                    schemeGiftCatalogue: props.data?.gift_catalogue,
+                    schemeID: props.data?.id,
+                    pointBalance : props?.data?.point_balance
+                  });
+                  console.log("schemeID",props.data?.id)
+                } else {
+                  console.log("Redemption date",new Date(props.data.redeem_start).getTime(),new Date(props.data.redeem_end).getTime())
+                  alert(`Redemption window start date ${moment(props.data.redeem_start).format('DD-MM-YYYY')} ,window end date ${moment(props.data.redeem_end).format("DD-MM-YYYY'")}`);
+                }
               }}
               style={{
-                height: 40,
+                height: 30,
                 width: "90%",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: props.data.states?.includes(location.state) ? "#D4B01C" : "#D5D4D3",
+                backgroundColor: secondaryThemeColor,
                 borderRadius: 20,
               }}
             >
               <PoppinsTextMedium
                 content="Redeem"
-                style={{ color: props.data.states?.includes(location.state)? "white" : 'black', fontWeight: "800", fontSize: 15 }}
+                style={{ color: props.data.states?.includes(location.state) ? "white" : 'black', fontWeight: "800", fontSize: 15 }}
               ></PoppinsTextMedium>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { navigation.navigate("PdfComponent", { pdf: props.data?.pdf })}}
+              onPress={() => { props.data?.pdf ? navigation.navigate("PdfComponent", { pdf: props.data?.pdf }) : alert("Scheme PDF is not available yet") }}
               style={{
-                height: 40,
+                height: 30,
                 width: "90%",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: ternaryThemeColor,
+                backgroundColor: "#34a847",
                 borderRadius: 20,
-                marginLeft: 10,
-                marginTop:10
+                marginTop: 8
               }}
             >
               <PoppinsTextMedium
-                content="View"
+                content="View Scheme"
+                style={{ color: "white", fontWeight: "800", fontSize: 15 }}
+              ></PoppinsTextMedium>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { navigation.navigate("SchemeHistory", { schemeID: props.data?.id, item:props.data }) }}
+              style={{
+                height: 30,
+                width: "90%",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#000000",
+                borderRadius: 20,
+                marginTop: 8
+              }}
+            >
+              <PoppinsTextMedium
+                content="History"
                 style={{ color: "white", fontWeight: "800", fontSize: 15 }}
               ></PoppinsTextMedium>
             </TouchableOpacity>
@@ -686,7 +449,7 @@ export default function Scheme({ navigation }) {
             height: "100%",
             alignItems: "flex-start",
             justifyContent: "flex-start",
-            marginTop: 30,
+            marginTop: 0,
             marginLeft: 10,
           }}
         >
@@ -694,27 +457,28 @@ export default function Scheme({ navigation }) {
             style={{ color: "white", fontSize: 16, fontWeight: "700" }}
             content={name}
           ></PoppinsTextMedium>
-
+  
           <View
             style={{
               width: "90%",
-              marginTop: 20,
+              marginTop: 10,
               alignItems: "flex-start",
               justifyContent: "flex-start",
               borderBottomWidth: 1,
               borderColor: "white",
               flexDirection: "row",
+              paddingBottom:6
             }}
           >
             <PoppinsTextLeftMedium
               style={{
                 color: "white",
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: "500",
                 width: "70%",
                 textAlign: "left",
               }}
-              content={`${name} Earned Points `}
+              content={`Earned Points `}
             ></PoppinsTextLeftMedium>
             <Text style={{ textAlign: "left" }}></Text>
             <PoppinsTextMedium
@@ -741,7 +505,6 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                
                 textAlign: "left",
               }}
               content={"Scheme Start Date"}
@@ -751,15 +514,15 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft:10
+                marginLeft: 10
               }}
-              content={props.data?.scheme_start}
+              content={moment(props.data?.scheme_start).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
           </View>
           <View
             style={{
               width: "90%",
-              marginTop: 10,
+              marginTop: 4,
               alignItems: "flex-start",
               justifyContent: "flex-start",
               flexDirection: "row",
@@ -770,7 +533,6 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                
                 textAlign: "left",
               }}
               content={"Scheme End Date"}
@@ -780,15 +542,15 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft:10
+                marginLeft: 10
               }}
-              content={props.data?.scheme_end}
+              content={moment(props.data?.scheme_end).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
           </View>
           <View
             style={{
               width: "90%",
-              marginTop: 10,
+              marginTop: 4,
               alignItems: "flex-start",
               justifyContent: "flex-start",
               flexDirection: "row",
@@ -799,7 +561,6 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                
                 textAlign: "left",
               }}
               content={"Redemption Start Date"}
@@ -809,15 +570,15 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft:10
+                marginLeft: 10
               }}
-              content={props.data?.redeem_start}
+              content={moment(props.data?.redeem_start).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
           </View>
           <View
             style={{
               width: "90%",
-              marginTop: 10,
+              marginTop: 4,
               alignItems: "flex-start",
               justifyContent: "flex-start",
               flexDirection: "row",
@@ -828,7 +589,6 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-               
                 textAlign: "left",
               }}
               content={"Redemption End Date"}
@@ -838,50 +598,89 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft:10
+                marginLeft: 10
               }}
-              content={props.data?.redeem_end}
+              content={moment(props.data?.redeem_end).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
           </View>
-          <View style={{width:'100%',height:40,alignItems:'flex-start',justifyContent:'flex-start',flexDirection:'row',marginTop:10}}>
-          <PoppinsTextMedium content="Applicable States :" style={{color:'white',fontSize:10}}></PoppinsTextMedium>
-
-            {props?.data?.states?.map((item,index)=>{
-              if(index ==props?.data?.states?.length-1)
-              {
-                return(
-                  <PoppinsTextMedium content={`${item} `} style={{color:'white',fontSize:10}}></PoppinsTextMedium>
-                )
-              }
-              else{
-                return(
-                  <PoppinsTextMedium content={`${item}, `} style={{color:'white',fontSize:10}}></PoppinsTextMedium>
-                )
-              }
-              
-            })}
-          </View>
-          
+          {/* <View style={{ width: '100%', alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'row', marginTop: 10,flexWrap:'wrap',marginBottom:20,borderTopWidth:1,borderColor:'white',paddingTop:4 }}>
+            <PoppinsTextMedium content="Applicable States :" style={{ color: 'white', fontSize: 10 }}></PoppinsTextMedium>
+  
+            {props?.data?.states?.slice(0, 2).map((item, index) => (
+            <PoppinsTextMedium
+              key={index}
+              content={`${item} ${index < 1 && props.data.states.length > 1 ? ',' : ''}`}
+              style={{ color: 'white', fontSize: 10, marginLeft: index === 0 ? 0 : 5 }}
+            />
+          ))}
+          {stateCollapsed &&  props?.data?.states.length > 2 && (
+            <TouchableOpacity onPress={() => setStateCollapsed(!stateCollapsed)}>
+              <PoppinsTextMedium
+                content={`+ ${props.data.states.length - 2} more`}
+                style={{ color: 'white', fontSize: 10, marginLeft: 5 }}
+              />
+            </TouchableOpacity>
+          )}
+          {
+            !stateCollapsed && props?.data?.states?.map((item, index) => (
+              index> 2 &&
+              <TouchableOpacity onPress={() => setStateCollapsed(!stateCollapsed)}>
+              <PoppinsTextMedium
+                key={index}
+                content={`${item}, `}
+                style={{ color: 'white', fontSize: 10, marginLeft: index === 0 ? 0 : 5 }}
+              />
+              </TouchableOpacity>
+            ))
+          }
+       
+            
+          </View> */}
         </View>
       </View>
     );
   };
-  const handleCurrentData=()=>{
-    const currentScheme = schemeData?.body?.filter((item,index)=>{
-      if(((new Date(item.scheme_start).getTime()< new Date().getTime()) && ( new Date().getTime()< new Date(item.scheme_end).getTime())))
-      return item
-    })
-    setActiveScheme(currentScheme)
-    console.log("current scheme", currentScheme)
-  }
-  const handlePreviousData=()=>{
-    const currentScheme = schemeData?.body?.filter((item,index)=>{
-      if((( new Date().getTime()> new Date(item.scheme_end).getTime())))
-      return item
-    })
-    setActiveScheme(currentScheme)
-    console.log("current scheme", currentScheme)
-  }
+  
+  // const handleCurrentData=()=>{
+  //   const currentScheme = checkAllSchemeData?.body?.filter((item,index)=>{
+  //     if(((item?.scheme_start<= moment(new Date()).format("YYYY-MM-DD")) && ( moment(new Date()).format("YYYY-MM-DD")<= item?.scheme_end)))
+  //     return item
+  //   })
+  //   setActiveScheme(currentScheme)
+  //   console.log("current scheme", currentScheme)
+  // }
+
+  const handleCurrentData = () => {
+    const currentScheme = checkAllSchemeData?.body?.filter((item) => {
+      const isStartValid = moment(item.scheme_start).isSameOrBefore(moment(), 'day');
+      const isEndValid = moment(item.scheme_end).isSameOrAfter(moment(), 'day');
+      return isStartValid && isEndValid;
+    });
+  
+    setActiveScheme(currentScheme);
+    console.log("✅ current scheme (filtered):", currentScheme);
+  };
+  
+
+
+  // const handlePreviousData=()=>{
+  //   const currentScheme = checkAllSchemeData?.body?.filter((item,index)=>{
+  //     if((( moment(new Date()).format("YYYY-MM-DD") > item?.scheme_end)))
+  //     return item
+  //   })
+  //   setActiveScheme(currentScheme)
+  //   console.log("current scheme", currentScheme)
+  // }
+
+  const handlePreviousData = () => {
+    const currentScheme = checkAllSchemeData?.body?.filter((item) => {
+      return moment().isAfter(moment(item.scheme_end), 'day');
+    });
+  
+    setActiveScheme(currentScheme);
+    console.log("📦 previous schemes (filtered):", currentScheme);
+  };
+  
 
   const FilterComp = (props) => {
     const [color, setColor] = useState("#F0F0F0");
@@ -1001,7 +800,7 @@ export default function Scheme({ navigation }) {
           <TouchableOpacity
             onPress={() => {
               setHighlightWidthPrevious(false);
-              handleCurrentData()
+              handleCurrentData();
             }}
             style={{
               width: "50%",
@@ -1020,7 +819,7 @@ export default function Scheme({ navigation }) {
           <TouchableOpacity
             onPress={() => {
               setHighlightWidthPrevious(true);
-              handlePreviousData()
+              handlePreviousData();
             }}
             style={{
               width: "50%",
@@ -1037,9 +836,9 @@ export default function Scheme({ navigation }) {
             ></PoppinsTextMedium>
           </TouchableOpacity>
         </View>
-        
+
         {/* <FilterSchemeComponent></FilterSchemeComponent> */}
-        <ScrollView style={{ width: "100%",marginBottom:100 }}>
+        <ScrollView style={{ width: "100%", marginBottom: 100 }}>
           <View
             style={{
               width: "100%",
@@ -1065,14 +864,14 @@ export default function Scheme({ navigation }) {
               activeScheme.map((item, index) => {
                 return (
                   <SchemeComponent
-                    data = {item}
-                    key={index}
-                    name={item.name}
-                    worth={"10000"}
-                    coin={10}
-                    image={""}
-                    earnedPoints={100}
-                  ></SchemeComponent>
+                  data={item}
+                  key={index}
+                  name={item.name}
+                  worth={"10000"}
+                  coin={10}
+                  image={item?.gift_catalogue?.[0]?.images?.[0]} // ✅ better
+                  earnedPoints={item?.point_earned}
+                />
                 );
               })}
           </View>
@@ -1081,3 +880,46 @@ export default function Scheme({ navigation }) {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+});

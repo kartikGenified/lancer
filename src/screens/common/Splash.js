@@ -1006,7 +1006,7 @@ const Splash = ({ navigation }) => {
                 text: t("Update"),
                 onPress: () =>
                   Linking.openURL(
-                    "https://play.google.com/store/apps/details?id=com.genefied.lancer"
+                    "https://play.google.com/store/apps/details?id=com.evato.o4s.lancer"
                   ),
               },
             ]
@@ -1022,7 +1022,7 @@ const Splash = ({ navigation }) => {
                 text: "Update",
                 onPress: () =>
                   Linking.openURL(
-                    "https://play.google.com/store/apps/details?id=com.genefied.lancer"
+                    "https://play.google.com/store/apps/details?id=com.evato.o4s.lancer"
                   ),
               },
             ]
