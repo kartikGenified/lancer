@@ -20,7 +20,6 @@ import { useVerifyOtpForNormalUseMutation } from "../../apiServices/otp/VerifyOt
 import * as Keychain from "react-native-keychain";
 import { useRedeemGiftsMutation } from "../../apiServices/gifts/RedeemGifts";
 import {
-  useAddCashToBankWalletMutation,
   useGetWalletBalanceMutation,
   useRedeemCashbackMutation,
 } from "../../apiServices/cashback/CashbackRedeemApi";
@@ -28,6 +27,7 @@ import { useGetLoginOtpForVerificationMutation } from "../../apiServices/otp/Get
 import { useAddCashToBankMutation } from "../../apiServices/cashback/CashbackRedeemApi";
 import Geolocation from "@react-native-community/geolocation";
 import { useCreateCouponRequestMutation } from "../../apiServices/coupons/getAllCouponsApi";
+import { GoogleMapsKey } from "@env";
 import { useTranslation } from "react-i18next";
 import {
   setPointConversionF,
@@ -36,7 +36,6 @@ import {
 } from "../../../redux/slices/redemptionDataSlice";
 import { useDispatch } from "react-redux";
 import { useRedeemSchemeApiMutation } from "../../apiServices/scheme/RedeemSchemeApi";
-import { getCurrentLocation } from "../../utils/getCurrentLocation";
 
 const OtpVerification = ({ navigation, route }) => {
   const [message, setMessage] = useState();
@@ -108,13 +107,6 @@ const OtpVerification = ({ navigation, route }) => {
     },
   ] = useRedeemCashbackMutation();
 
-  const [addCashToBankWalletFunc,{
-    data:addCashToBankWalletData,
-    error:addCashToBankWalletError,
-    isLoading:addCashToBankWalletIsLoading,
-    isError:addCashToBankWalletIsError
-  }] = useAddCashToBankWalletMutation()
-
   const [
     addCashToBankFunc,
     {
@@ -153,8 +145,7 @@ const OtpVerification = ({ navigation, route }) => {
   const schemeID = route.params?.schemeID;
   const { t } = useTranslation();
 
-  console.log("couponCart", schemeID, schemeType);
-
+  console.log("OTP Verification navigation props", route.params);
   const handleCashbackRedemption = async () => {
     const credentials = await Keychain.getGenericPassword();
     if (credentials) {
@@ -162,75 +153,39 @@ const OtpVerification = ({ navigation, route }) => {
         "Credentials successfully loaded for user " + credentials.username
       );
       const token = credentials.username;
-      if(redemptionFrom !="Wallet")
-      {
-        const params = {
-          token: token,
-          body: {
-            platform_id: 1,
-            platform: "mobile",
-            points: pointsConversion,
-            remarks: "demo",
-            state: location?.state === undefined ? "N/A" : location?.state,
-            district:
-              location?.district === undefined ? "N/A" : location?.district,
-            city: location?.city === undefined ? "N/A" : location?.city,
-            lat: location?.lat === undefined ? "N/A" : location?.lat,
-            log: location?.lon === undefined ? "N/A" : location?.lon,
-            active_beneficiary_account_id: selectedAccount,
-            redemptionFrom: redemptionFrom,
-          },
-        };
-        console.log("addCashToBankFunc", params);
+      const params = {
+        token: token,
+        body: {
+          platform_id: 1,
+          platform: "mobile",
+          cash: cashConversion,
+          remarks: "demo",
+          state: location?.state === undefined ? "N/A" : location?.state,
+          district:
+            location?.district === undefined ? "N/A" : location?.district,
+          city: location?.city === undefined ? "N/A" : location?.city,
+          lat: location?.lat === undefined ? "N/A" : location?.lat,
+          log: location?.lon === undefined ? "N/A" : location?.lon,
+          active_beneficiary_account_id: selectedAccount,
+          redemptionFrom: redemptionFrom,
+        },
+      };
+      console.log("addCashToBankFunc", params);
       addCashToBankFunc(params);
-      }
-      else{
-        const params = {
-          token: token,
-          body: {
-            platform_id: 1,
-            platform: "mobile",
-            cash: walletBalance,
-            remarks: "demo",
-            state: location?.state === undefined ? "N/A" : location?.state,
-            district:
-              location?.district === undefined ? "N/A" : location?.district,
-            city: location?.city === undefined ? "N/A" : location?.city,
-            lat: location?.lat === undefined ? "N/A" : location?.lat,
-            log: location?.lon === undefined ? "N/A" : location?.lon,
-            active_beneficiary_account_id: selectedAccount,
-            redemptionFrom: redemptionFrom,
-          },
-        };
-        console.log("addCashToBankWalletFunc", params);
-        addCashToBankWalletFunc(params);
-      }
-      
-      
     }
   };
-
-  useEffect(()=>{
-    if(addCashToBankWalletData)
-    {
-      console.log("addCashToBankWalletData",addCashToBankWalletData)
-      setSuccess(true);
-      setMessage(addCashToBankWalletData.message);
-    }
-    else if(addCashToBankWalletError)
-    {
-      console.log("addCashToBankWalletError",addCashToBankWalletError)
-      setError(true);
-      setMessage(addCashToBankWalletError?.data?.message);
-    }
-  },[addCashToBankWalletData,addCashToBankWalletError])
 
   useEffect(() => {
     if (redeemSchemeApiData) {
       console.log("redeemSchemeApiData", redeemSchemeApiData);
+      setMessage(redeemSchemeApiData?.message)
+      setSuccess(true)
+      setShowRedeemButton(true)
     } else if (redeemSchemeApiError) {
+      setShowRedeemButton(true)
+      setError(true)
+      setMessage(redeemSchemeApiError?.data?.message)
       console.log("redeemSchemeApiError", redeemSchemeApiError);
-      
     }
   }, [redeemSchemeApiData, redeemSchemeApiError]);
 
@@ -238,21 +193,89 @@ const OtpVerification = ({ navigation, route }) => {
     timer > 0 && setTimeout(timeOutCallback, 1000);
   }, [timer, timeOutCallback]);
 
-  useEffect(async() => {
-    // check if there is stored location
-    // if not present keep the previous location
+  useEffect(() => {
     if (Object.keys(storedLocation).length == 0) {
-      const getCurrLocation = getCurrentLocation()
-      setLocation(getCurrLocation)
+      let lat = "";
+      let lon = "";
+      Geolocation.getCurrentPosition((res) => {
+        console.log("res", res);
+        lat = res.coords.latitude;
+        lon = res.coords.longitude;
+        // getLocation(JSON.stringify(lat),JSON.stringify(lon))
+        console.log("latlong", lat, lon);
+        var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${res.coords.latitude},${res.coords.longitude}
+        &location_type=ROOFTOP&result_type=street_address&key=${GoogleMapsKey}`;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((json) => {
+            console.log("location address=>", JSON.stringify(json));
+            const formattedAddress = json.results[0].formatted_address;
+            const formattedAddressArray = formattedAddress?.split(",");
+
+            let locationJson = {
+              lat:
+                json.results[0].geometry.location.lat === undefined
+                  ? "N/A"
+                  : json.results[0].geometry.location.lat,
+              lon:
+                json.results[0].geometry.location.lng === undefined
+                  ? "N/A"
+                  : json.results[0].geometry.location.lng,
+              address:
+                formattedAddress === undefined ? "N/A" : formattedAddress,
+            };
+
+            const addressComponent = json.results[0].address_components;
+            console.log("addressComponent", addressComponent);
+            for (let i = 0; i <= addressComponent.length; i++) {
+              if (i === addressComponent.length) {
+                setLocation(locationJson);
+              } else {
+                if (addressComponent[i].types.includes("postal_code")) {
+                  console.log("inside if");
+
+                  console.log(addressComponent[i].long_name);
+                  locationJson["postcode"] = addressComponent[i].long_name;
+                } else if (addressComponent[i].types.includes("country")) {
+                  console.log(addressComponent[i].long_name);
+
+                  locationJson["country"] = addressComponent[i].long_name;
+                } else if (
+                  addressComponent[i].types.includes(
+                    "administrative_area_level_1"
+                  )
+                ) {
+                  console.log(addressComponent[i].long_name);
+
+                  locationJson["state"] = addressComponent[i].long_name;
+                } else if (
+                  addressComponent[i].types.includes(
+                    "administrative_area_level_3"
+                  )
+                ) {
+                  console.log(addressComponent[i].long_name);
+
+                  locationJson["district"] = addressComponent[i].long_name;
+                } else if (addressComponent[i].types.includes("locality")) {
+                  console.log(addressComponent[i].long_name);
+
+                  locationJson["city"] = addressComponent[i].long_name;
+                }
+              }
+            }
+
+            console.log("formattedAddressArray", locationJson);
+          });
+      });
     } else {
       setLocation(storedLocation);
     }
-    // -----------------------------------------
   }, []);
 
   useEffect(() => {
     if (redeemCashbackData) {
-      setShowRedeemButton(false);
+      setShowRedeemButton(true);
       console.log("redeemCashbackData", redeemCashbackData);
       if (redeemCashbackData.success) {
         handleCashbackRedemption();
@@ -261,7 +284,7 @@ const OtpVerification = ({ navigation, route }) => {
       // setMessage(redeemCashbackData.message)
     } else if (redeemCashbackError) {
       console.log("redeemCashbackError", redeemCashbackError);
-      setShowRedeemButton(false);
+      setShowRedeemButton(true);
       setError(true);
       setMessage(redeemCashbackError.data.message);
     }
@@ -297,13 +320,11 @@ const OtpVerification = ({ navigation, route }) => {
     if (verifyOtpForNormalUseData) {
       console.log("Verify Otp", verifyOtpForNormalUseData);
       if (verifyOtpForNormalUseData.success) {
-        setShowRedeemButton(true);
       }
     } else if (verifyOtpForNormalUseError) {
       console.log("verifyOtpForNormalUseError", verifyOtpForNormalUseError);
       setError(true);
-      setShowRedeemButton(false)
-      setMessage(t("Please Enter The Correct OTP"));
+      setMessage("Please Enter The Correct OTP");
     }
   }, [verifyOtpForNormalUseData, verifyOtpForNormalUseError]);
 
@@ -312,12 +333,12 @@ const OtpVerification = ({ navigation, route }) => {
       console.log("redeemGiftsData", redeemGiftsData);
       setSuccess(true);
       setMessage(redeemGiftsData.message);
-      setShowRedeemButton(false);
+      setShowRedeemButton(true);
     } else if (redeemGiftsError) {
       console.log("redeemGiftsError", redeemGiftsError);
       setMessage(redeemGiftsError.data.message);
       setError(true);
-      setShowRedeemButton(false);
+      setShowRedeemButton(true);
     }
   }, [redeemGiftsError, redeemGiftsData]);
 
@@ -345,7 +366,7 @@ const OtpVerification = ({ navigation, route }) => {
     if (value.length === 6) {
       setOtp(value);
       console.log("From Verify Otp", value);
-      // setShowRedeemButton(false);
+      setShowRedeemButton(true);
       handleOtpSubmission(value);
     }
   };
@@ -379,14 +400,15 @@ const OtpVerification = ({ navigation, route }) => {
       );
       const token = credentials.username;
       if (type === "Gift") {
-        let tempID = [];
+        
+        if (schemeType == "yearly") {
+          let tempID = [];
         cart &&
           cart.map((item, index) => {
             tempID.push(item.gift_id);
           });
         console.log("tempID", tempID, userData, address);
 
-       
           const data = {
             user_type_id: String(userData.user_type_id),
             user_type: userData.user_type,
@@ -397,7 +419,6 @@ const OtpVerification = ({ navigation, route }) => {
             app_user_id: String(userData.id),
             remarks: "demo",
             type: "point",
-            address:address,
             address_id: address.id,
           };
           const params = {
@@ -405,11 +426,48 @@ const OtpVerification = ({ navigation, route }) => {
             data: data,
           };
           redeemGiftsFunc(params);
-       
+        } else {
+          let tempID = [];
+        cart &&
+          cart.map((item, index) => {
+            tempID.push(item.id);
+          });
+        console.log("tempID", tempID, userData, address);
+
+          const data = {
+            scheme_id: schemeID,
+            address: address,
+            platform_id: Platform.OS == "ios" ? 1 : 2,
+            platform: Platform.OS,
+            gift_ids: tempID,
+          };
+          const params = {
+            token: token,
+            data: data,
+          };
+          console.log("periodic schme redemption params", JSON.stringify(params) )
+          redeemSchemeApiFunc(params);
+        }
       } else if (type === "Cashback") {
-        
+        if (walletBalance < cashConversion) {
+          const params = {
+            data: {
+              user_type_id: userData.user_type_id,
+              user_type: userData.user_type,
+              platform_id: 1,
+              platform: "mobile",
+              points: Number(pointsConversion),
+              approved_by_id: 1,
+              app_user_id: userData.id,
+              remarks: "demo",
+            },
+            token: token,
+          };
+          redeemCashbackFunc(params);
+          console.log("Cashbackparams", params);
+        } else {
           handleCashbackRedemption();
-        
+        }
       } else if (type === "Coupon") {
         const params = {
           data: {
@@ -521,7 +579,7 @@ const OtpVerification = ({ navigation, route }) => {
             modalClose={modalClose}
             message={message}
             openModal={error}
-            // navigateTo="Passbook"
+            navigateTo="Dashboard"
           ></ErrorModal>
         )}
         {success && (
@@ -530,7 +588,7 @@ const OtpVerification = ({ navigation, route }) => {
             title={"Thanks"}
             message={message}
             openModal={success}
-            navigateTo="RedeemedHistory"
+            navigateTo="Dashboard"
           ></MessageModal>
         )}
       </View>

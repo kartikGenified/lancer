@@ -12,20 +12,22 @@ import * as Keychain from "react-native-keychain";
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
 import { useIsFocused } from "@react-navigation/native";
 import { addAddress } from "../../../redux/slices/redemptionAddressSlice";
-import { useTranslation } from "react-i18next";
 const ListAddress = ({ navigation ,route}) => {
   const [selectedIndex, setSelectedIndex] = useState();
   const [selectedAddress, setSelectedAddress] = useState();
   const [addressList, setAddressList] = useState();
   const focused = useIsFocused()
   const dispatch = useDispatch()
-  const {t} = useTranslation()
   const schemeType = route.params?.schemeType
   const schemeID = route.params?.schemeID
+  const cart = route.params?.cart
+  const schemeGiftCatalogue = route.params?.schemeGiftCatalogue
+  console.log("list adress navigation params",schemeType,schemeID,schemeGiftCatalogue,cart)
   const ternaryThemeColor = useSelector(
     (state) => state.apptheme.ternaryThemeColor
   )
-   
+    ? useSelector((state) => state.apptheme.ternaryThemeColor)
+    : "grey";
   const [
     getAllAddressFunc,
     { data: getAllAddressData, error: getAllAddressError },
@@ -357,23 +359,23 @@ const ListAddress = ({ navigation ,route}) => {
         >
           <PoppinsTextLeftMedium
             style={{ color: "black", fontSize: 16, marginLeft: 10 }}
-            content={`${t("Address")} : ${address}`}
+            content={`Address : ${address}`}
           />
           <PoppinsTextMedium
             style={{ color: "black", fontSize: 16, marginLeft: 10 }}
-            content={`${t("City")} : ${city}`}
+            content={`City : ${city}`}
           />
           <PoppinsTextMedium
             style={{ color: "black", fontSize: 16, marginLeft: 10 }}
-            content={`${t("District")} : ${district}`}
+            content={`District : ${district}`}
           />
           <PoppinsTextMedium
             style={{ color: "black", fontSize: 16, marginLeft: 10 }}
-            content={`${t("State")} : ${state}`}
+            content={`State : ${state}`}
           />
           <PoppinsTextMedium
             style={{ color: "black", fontSize: 16, marginLeft: 10 }}
-            content={`${t("Pincode")} : ${pincode}`}
+            content={`Pincode : ${pincode}`}
           />
         </View>
   
@@ -445,7 +447,7 @@ const ListAddress = ({ navigation ,route}) => {
           ></Image>
         </TouchableOpacity>
         <PoppinsTextMedium
-          content={t("Added Address")}
+          content="Added Address"
           style={{
             marginLeft: 10,
             fontSize: 16,
@@ -500,13 +502,13 @@ const ListAddress = ({ navigation ,route}) => {
       >
         <TouchableOpacity style={{height:40,width:120,backgroundColor:ternaryThemeColor,alignItems:'center',justifyContent:'center',borderRadius:4,position:'absolute',left:20}} onPress={()=>{
           if(selectedAddress){
-            navigation.replace('OtpVerification',{type:"Gift",schemeType:schemeType,schemeID:schemeID})
+            navigation.navigate('OtpVerification',{type:"Gift",schemeType:schemeType,schemeID:schemeID})
           }
           else{
-            alert(t("Please select an address first"))
+            alert("Please select an address first")
           }
         }}>
-          <PoppinsTextMedium style={{fontSize:18,color:'white',fontWeight:'700'}} content={t("Select")}></PoppinsTextMedium>
+          <PoppinsTextMedium style={{fontSize:18,color:'white',fontWeight:'700'}} content="Select"></PoppinsTextMedium>
 
         </TouchableOpacity>
         <View
@@ -519,12 +521,12 @@ const ListAddress = ({ navigation ,route}) => {
           }}
         >
           <PoppinsText
-            content={t("Add Address")}
+            content="Add Address"
             style={{ color: ternaryThemeColor, fontSize: 16 }}
           ></PoppinsText>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("AddAddress");
+              navigation.navigate("AddAddress",{type:"Gift",schemeType:schemeType,schemeID:schemeID});
             }}
             style={{
               backgroundColor: "#DDDDDD",

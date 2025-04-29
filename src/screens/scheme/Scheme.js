@@ -9,8 +9,7 @@ import {
   Linking,
   Text,
   Modal,
-  Alert
-
+  Alert,
 } from "react-native";
 import Video from "react-native-video";
 import { useSelector } from "react-redux";
@@ -24,7 +23,7 @@ import Logo from "react-native-vector-icons/AntDesign";
 import moment from "moment";
 import DatePicker from "react-native-date-picker";
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
-import Cancel from 'react-native-vector-icons/MaterialIcons'
+import Cancel from "react-native-vector-icons/MaterialIcons";
 
 export default function Scheme({ navigation }) {
   const [scheme, setScheme] = useState([]);
@@ -66,20 +65,18 @@ export default function Scheme({ navigation }) {
     },
   ] = useCheckActiveSchemeMutation();
 
- 
   useEffect(() => {
     const getToken = async () => {
       const credentials = await Keychain.getGenericPassword();
       const token = credentials.username;
-      const startDate = moment(new Date()).format("YYYY-MM-DD")
+      const startDate = moment(new Date()).format("YYYY-MM-DD");
       const params = {
-        token:token,
-        endDate:startDate
-      }
+        token: token,
+        endDate: startDate,
+      };
       checkAllSchemeFunc(params);
     };
     getToken();
-
   }, []);
 
   useEffect(() => {
@@ -110,28 +107,25 @@ export default function Scheme({ navigation }) {
         console.log("Scheme Start:", item.scheme_start);
         console.log("Scheme End:", item.scheme_end);
         console.log("Today:", moment().format("YYYY-MM-DD"));
-  
-        const start = moment(item.scheme_start).isSameOrBefore(moment(), 'day');
-        const end = moment(item.scheme_end).isSameOrAfter(moment(), 'day');
-  
+
+        const start = moment(item.scheme_start).isSameOrBefore(moment(), "day");
+        const end = moment(item.scheme_end).isSameOrAfter(moment(), "day");
+
         console.log("Start Valid:", start);
         console.log("End Valid:", end);
       });
-  
+
       const currentScheme = checkAllSchemeData.body.filter((item) => {
         return (
-          moment(item.scheme_start).isSameOrBefore(moment(), 'day') &&
-          moment(item.scheme_end).isSameOrAfter(moment(), 'day')
+          moment(item.scheme_start).isSameOrBefore(moment(), "day") &&
+          moment(item.scheme_end).isSameOrAfter(moment(), "day")
         );
       });
-  
+
       console.log("✅ Filtered currentScheme:", currentScheme);
       setActiveScheme(currentScheme);
     }
   }, [checkAllSchemeData]);
-  
-
- 
 
   useEffect(() => {
     if (checkActiveSchemeData) {
@@ -282,13 +276,21 @@ export default function Scheme({ navigation }) {
   };
 
   const SchemeComponent = (props) => {
-    const [modalVisible, setModalVisible] = useState(false)
+    const [modalVisible, setModalVisible] = useState(false);
     const image = props.image;
     const name = props.name;
     const worth = props.worth;
     const earnedPoints = props?.data?.point_earned;
     const coin = props.coin;
-  
+
+    const today = moment().startOf("day");
+    const redeemStart = moment(props.data.redeem_start).startOf("day");
+    const redeemEnd = moment(props.data.redeem_end).startOf("day");
+
+    const isRedeemAvailable =
+      today.isSameOrAfter(redeemStart) && today.isSameOrBefore(redeemEnd);
+
+    console.log("lsksldkmdkmd", props.data);
     return (
       <View
         style={{
@@ -302,52 +304,54 @@ export default function Scheme({ navigation }) {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "row",
-          paddingBottom:10
+          paddingBottom: 10,
         }}
       >
-         <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <Image
-              style={{
-                height: 300,
-                width: 300,
-                resizeMode: "contain",
-                borderRadius: 10,
-              }}
-              source={{ uri: props.data?.image }}
-            ></Image>
-            <TouchableOpacity style={{position:'absolute', top:0,right:0}} onPress={()=>{
-              setModalVisible(false)
-            }}>
-              <Cancel name="cancel" size = {40} color="#FF3436"></Cancel>
-            </TouchableOpacity>
-            
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Image
+                style={{
+                  height: 300,
+                  width: 300,
+                  resizeMode: "contain",
+                  borderRadius: 10,
+                }}
+                source={{ uri: props.data?.image }}
+              ></Image>
+              <TouchableOpacity
+                style={{ position: "absolute", top: 0, right: 0 }}
+                onPress={() => {
+                  setModalVisible(false);
+                }}
+              >
+                <Cancel name="cancel" size={40} color="#FF3436"></Cancel>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </Modal>
-
+        </Modal>
 
         <View
           style={{
             width: "36%",
             height: "100%",
-            
+
             borderColor: "#DDDDDD",
             alignItems: "center",
             justifyContent: "flex-start",
           }}
         >
-          <TouchableOpacity onPress={()=>{
-            setModalVisible(true)
-          }}
+          <TouchableOpacity
+            onPress={() => {
+              setModalVisible(true);
+            }}
             style={{
               height: 80,
               width: 80,
@@ -377,38 +381,47 @@ export default function Scheme({ navigation }) {
               marginTop: 20,
             }}
           >
-            <TouchableOpacity
-              onPress={() => {
-                
-                if ((props.data.redeem_start<= moment(new Date()).format("YYYY-MM-DD")) && (moment(new Date()).format("YYYY-MM-DD")<= props.data.redeem_end)) {
+            {isRedeemAvailable && (
+              <TouchableOpacity
+                onPress={() => {
                   navigation.navigate("RedeemGifts", {
-                    schemeType: 'quaterly',
+                    schemeType: "quaterly",
                     schemeGiftCatalogue: props.data?.gift_catalogue,
                     schemeID: props.data?.id,
-                    pointBalance : props?.data?.point_balance
+                    pointBalance: props?.data?.point_balance,
                   });
-                  console.log("schemeID",props.data?.id)
-                } else {
-                  console.log("Redemption date",new Date(props.data.redeem_start).getTime(),new Date(props.data.redeem_end).getTime())
-                  alert(`Redemption window start date ${moment(props.data.redeem_start).format('DD-MM-YYYY')} ,window end date ${moment(props.data.redeem_end).format("DD-MM-YYYY'")}`);
-                }
-              }}
-              style={{
-                height: 30,
-                width: "90%",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: secondaryThemeColor,
-                borderRadius: 20,
-              }}
-            >
-              <PoppinsTextMedium
-                content="Redeem"
-                style={{ color: props.data.states?.includes(location.state) ? "white" : 'black', fontWeight: "800", fontSize: 15 }}
-              ></PoppinsTextMedium>
-            </TouchableOpacity>
+                  console.log("schemeID", props.data?.id);
+                }}
+                style={{
+                  height: 30,
+                  width: "90%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: secondaryThemeColor,
+                  borderRadius: 20,
+                }}
+              >
+                <PoppinsTextMedium
+                  content="Redeem"
+                  style={{
+                    color: props.data.states?.includes(location.state)
+                      ? "white"
+                      : "black",
+                    fontWeight: "800",
+                    fontSize: 15,
+                  }}
+                />
+              </TouchableOpacity>
+            )}
+
             <TouchableOpacity
-              onPress={() => { props.data?.pdf ? navigation.navigate("PdfComponent", { pdf: props.data?.pdf }) : alert("Scheme PDF is not available yet") }}
+              onPress={() => {
+                props.data?.pdf
+                  ? navigation.navigate("PdfComponent", {
+                      pdf: props.data?.pdf,
+                    })
+                  : alert("Scheme PDF is not available yet");
+              }}
               style={{
                 height: 30,
                 width: "90%",
@@ -416,7 +429,7 @@ export default function Scheme({ navigation }) {
                 justifyContent: "center",
                 backgroundColor: "#34a847",
                 borderRadius: 20,
-                marginTop: 8
+                marginTop: 8,
               }}
             >
               <PoppinsTextMedium
@@ -425,7 +438,12 @@ export default function Scheme({ navigation }) {
               ></PoppinsTextMedium>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { navigation.navigate("SchemeHistory", { schemeID: props.data?.id, item:props.data }) }}
+              onPress={() => {
+                navigation.navigate("SchemeHistory", {
+                  schemeID: props.data?.id,
+                  item: props.data,
+                });
+              }}
               style={{
                 height: 30,
                 width: "90%",
@@ -433,11 +451,11 @@ export default function Scheme({ navigation }) {
                 justifyContent: "center",
                 backgroundColor: "#000000",
                 borderRadius: 20,
-                marginTop: 8
+                marginTop: 8,
               }}
             >
               <PoppinsTextMedium
-                content="History"
+                content="Scan History"
                 style={{ color: "white", fontWeight: "800", fontSize: 15 }}
               ></PoppinsTextMedium>
             </TouchableOpacity>
@@ -457,7 +475,7 @@ export default function Scheme({ navigation }) {
             style={{ color: "white", fontSize: 16, fontWeight: "700" }}
             content={name}
           ></PoppinsTextMedium>
-  
+
           <View
             style={{
               width: "90%",
@@ -467,7 +485,7 @@ export default function Scheme({ navigation }) {
               borderBottomWidth: 1,
               borderColor: "white",
               flexDirection: "row",
-              paddingBottom:6
+              paddingBottom: 6,
             }}
           >
             <PoppinsTextLeftMedium
@@ -514,7 +532,7 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft: 10
+                marginLeft: 10,
               }}
               content={moment(props.data?.scheme_start).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
@@ -542,7 +560,7 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft: 10
+                marginLeft: 10,
               }}
               content={moment(props.data?.scheme_end).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
@@ -570,7 +588,7 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft: 10
+                marginLeft: 10,
               }}
               content={moment(props.data?.redeem_start).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
@@ -598,7 +616,7 @@ export default function Scheme({ navigation }) {
                 color: "white",
                 fontSize: 12,
                 fontWeight: "500",
-                marginLeft: 10
+                marginLeft: 10,
               }}
               content={moment(props.data?.redeem_end).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>
@@ -640,7 +658,7 @@ export default function Scheme({ navigation }) {
       </View>
     );
   };
-  
+
   // const handleCurrentData=()=>{
   //   const currentScheme = checkAllSchemeData?.body?.filter((item,index)=>{
   //     if(((item?.scheme_start<= moment(new Date()).format("YYYY-MM-DD")) && ( moment(new Date()).format("YYYY-MM-DD")<= item?.scheme_end)))
@@ -652,16 +670,17 @@ export default function Scheme({ navigation }) {
 
   const handleCurrentData = () => {
     const currentScheme = checkAllSchemeData?.body?.filter((item) => {
-      const isStartValid = moment(item.scheme_start).isSameOrBefore(moment(), 'day');
-      const isEndValid = moment(item.scheme_end).isSameOrAfter(moment(), 'day');
+      const isStartValid = moment(item.scheme_start).isSameOrBefore(
+        moment(),
+        "day"
+      );
+      const isEndValid = moment(item.scheme_end).isSameOrAfter(moment(), "day");
       return isStartValid && isEndValid;
     });
-  
+
     setActiveScheme(currentScheme);
     console.log("✅ current scheme (filtered):", currentScheme);
   };
-  
-
 
   // const handlePreviousData=()=>{
   //   const currentScheme = checkAllSchemeData?.body?.filter((item,index)=>{
@@ -674,13 +693,12 @@ export default function Scheme({ navigation }) {
 
   const handlePreviousData = () => {
     const currentScheme = checkAllSchemeData?.body?.filter((item) => {
-      return moment().isAfter(moment(item.scheme_end), 'day');
+      return moment().isAfter(moment(item.scheme_end), "day");
     });
-  
+
     setActiveScheme(currentScheme);
     console.log("📦 previous schemes (filtered):", currentScheme);
   };
-  
 
   const FilterComp = (props) => {
     const [color, setColor] = useState("#F0F0F0");
@@ -864,14 +882,14 @@ export default function Scheme({ navigation }) {
               activeScheme.map((item, index) => {
                 return (
                   <SchemeComponent
-                  data={item}
-                  key={index}
-                  name={item.name}
-                  worth={"10000"}
-                  coin={10}
-                  image={item?.gift_catalogue?.[0]?.images?.[0]} // ✅ better
-                  earnedPoints={item?.point_earned}
-                />
+                    data={item}
+                    key={index}
+                    name={item.name}
+                    worth={"10000"}
+                    coin={10}
+                    image={item?.gift_catalogue?.[0]?.images?.[0]} // ✅ better
+                    earnedPoints={item?.point_earned}
+                  />
                 );
               })}
           </View>
@@ -883,17 +901,17 @@ export default function Scheme({ navigation }) {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 22,
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -908,18 +926,18 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: '#F194FF',
+    backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: "#2196F3",
   },
   textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });

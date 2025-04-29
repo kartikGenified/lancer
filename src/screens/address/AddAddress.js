@@ -16,7 +16,7 @@ import { getCurrentLocation } from "../../utils/getCurrentLocation";
 import { GoogleMapsKey } from "@env";
 import { useTranslation } from "react-i18next";
 
-const AddAddress = ({ navigation }) => {
+const AddAddress = ({ navigation, route }) => {
   const [message, setMessage] = useState();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -136,6 +136,7 @@ const AddAddress = ({ navigation }) => {
 
   const handleFetchPincode = (data) => {
     console.log("pincode is", data);
+    
     getLocationFromPinCode(data);
   };
   const modalClose = () => {
@@ -378,6 +379,7 @@ const AddAddress = ({ navigation }) => {
       )}
       {success && (
         <MessageModal
+          params = {route.params}
           modalClose={modalClose}
           title={"Thanks"}
           message={message}

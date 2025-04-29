@@ -50,7 +50,8 @@ const CartList = ({ navigation, route }) => {
   const userData = useSelector(state => state.appusersdata.userData);
   const schemeType = route.params?.schemeType
   const schemeID = route.params?.schemeID
-  console.log('userdata', route.params.cart);
+  const schemeGiftCatalogue = route.params?.schemeGiftCatalogue
+  console.log('navigationParams', route.params);
   const height = Dimensions.get('window').height
 
   console.log("cart is",route.params.cart)
@@ -64,7 +65,7 @@ const CartList = ({ navigation, route }) => {
     if(cart.length===0)
     {
       setError(true)
-      setMessage(t("Cart cannot be empty"))
+      setMessage("Cart cannot be empty")
     }
     else{
       let tempID = []
@@ -78,7 +79,9 @@ const CartList = ({ navigation, route }) => {
         navigation.replace("ListAddress", {
           schemeType:schemeType,
           cart: cart,
-          schemeID:schemeID
+          schemeID:schemeID,
+          schemeGiftCatalogue:schemeGiftCatalogue
+          
         })
     }
        // const credentials = await Keychain.getGenericPassword();
@@ -150,7 +153,7 @@ const CartList = ({ navigation, route }) => {
         {!redeem && (
           <>
             <PoppinsTextMedium
-      content={t("Redeem")}
+              content="Redeem"
               style={{ color: 'white', fontWeight: '700' }}></PoppinsTextMedium>
             <Image
               style={{
@@ -233,7 +236,7 @@ const CartList = ({ navigation, route }) => {
           }}>
           <PoppinsTextMedium
             style={{ color: 'white', fontWeight: '700' }}
-            content={t("Cancel")}></PoppinsTextMedium>
+            content="Cancel"></PoppinsTextMedium>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => { handleGiftRedemption() }}
@@ -248,7 +251,7 @@ const CartList = ({ navigation, route }) => {
           }}>
           <PoppinsTextMedium
             style={{ color: 'white', fontWeight: '700' }}
-            content={t("Confirm")}></PoppinsTextMedium>
+            content="Confirm"></PoppinsTextMedium>
         </TouchableOpacity>
       </View>
     );
@@ -275,7 +278,7 @@ const CartList = ({ navigation, route }) => {
           borderColor: "#DDDDDD",
 
         }}>
- <PoppinsTextMedium style={{ color: '#292626', fontSize: 16, fontWeight: '700' }} content={`${t("Total Points Consumed")} :`}></PoppinsTextMedium>
+        <PoppinsTextMedium style={{ color: '#292626', fontSize: 16, fontWeight: '700' }} content="Total Points Consumed :"></PoppinsTextMedium>
         <View
           style={{
             alignItems: 'center',
@@ -379,7 +382,7 @@ const CartList = ({ navigation, route }) => {
                 fontWeight: '700',
                 marginLeft: 10,
               }}
-              content={`${t("Points")} : ${points}`}></PoppinsTextMedium>
+              content={`Points : ${points}`}></PoppinsTextMedium>
           </LinearGradient>
           <TouchableOpacity
             onPress={() => {
@@ -442,7 +445,6 @@ const CartList = ({ navigation, route }) => {
           modalClose={modalClose}
           message={message}
           openModal={error}
-          warning= {true}
           ></ErrorModal>
       )}
       {success && (
