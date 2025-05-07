@@ -378,7 +378,7 @@ const RedeemRewardHistory = ({navigation}) => {
                 <TouchableOpacity onPress={()=>{navigation.goBack()}}>
             <Image style={{height:30,width:30,resizeMode:'contain'}} source={require('../../../assets/images/blackBack.png')}></Image>
                 </TouchableOpacity>
-            <PoppinsTextMedium content ={t("Redeem rewards")} style={{marginLeft:10,fontSize:18,fontWeight:'700',color:'white'}}></PoppinsTextMedium>
+            <PoppinsTextMedium content ={t("Redeem Rewards")} style={{marginLeft:10,fontSize:18,fontWeight:'700',color:'white'}}></PoppinsTextMedium>
             {/* <TouchableOpacity style={{marginLeft:'50%'}}>
             <Image style={{height:30,width:30,resizeMode:'contain'}} source={require('../../../assets/images/notificationOn.png')}></Image>
             </TouchableOpacity> */}
@@ -420,11 +420,11 @@ const RedeemRewardHistory = ({navigation}) => {
            {showWheel &&  <RedeemRewardDataBox navigation = {navigation} header="Total Spins"  data="5000" image={require('../../../assets/images/wheel.png')} ></RedeemRewardDataBox>
            }
 
-            {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("points balance")}  data={userPointData.body.point_balance} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
+            {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Points Balance")}  data={userPointData.body.point_balance} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
 
             {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Redeem Points")}  data={userPointData.body.point_redeemed} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
 
-            {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Reserved Points")}  data={userPointData.body.point_reserved} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
+            {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Points Expiring Soon")}  data={userPointData.body.point_reserved} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
 
 
             </ScrollView>

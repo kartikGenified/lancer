@@ -81,7 +81,7 @@ const Dashboard = ({ navigation }) => {
   const [success, setSuccess] = useState(false);
   const [hide, setHide] = useState(true);
   const [campaignData, setCaimpaignData] = useState(null);
-  const [showCampaign, setShowCampaign] = useState()
+  const [showCampaign, setShowCampaign] = useState(true)
   const [error, setError] = useState(false);
   const [walkThrough, setWalkThrough] = useState(false);
   const stepId = useSelector((state) => state.walkThrough.stepId);
@@ -89,6 +89,8 @@ const Dashboard = ({ navigation }) => {
 
   const pointsRef = useRef(0);
   const randomNoRef = useRef(0);
+
+  
 
   console.log("timeeeeee", date, time, month, year)
 
@@ -263,7 +265,13 @@ const Dashboard = ({ navigation }) => {
   useEffect(() => {
     if (getAppCampaignData) {
       console.log("getAppCampaignData", getAppCampaignData);
-      setHide(getAppCampaignData?.body?.data?.length == 0);
+      if(getAppCampaignData?.body?.data?.length == 0){
+        setHide(true);
+      }
+      else{
+        setHide(false);
+      }
+      console.log("hdjdnjncjdnd",hide)
       setCaimpaignData(getAppCampaignData);
     } else if (getAppCampaignError) {
       console.log("getAppCampaignIsError", getAppCampaignIsError);
@@ -642,7 +650,7 @@ const Dashboard = ({ navigation }) => {
           <View style={{ height: 200, width: "100%", marginBottom: 20 }}>
             {bannerArray && <Banner images={bannerArray}></Banner>}
 
-            {showCampaign && <CampaignVideoModal dontShow = {dontShow} isVisible={CampainVideoVisible} onClose={()=>{
+            {!hide && <CampaignVideoModal dontShow = {dontShow} isVisible={CampainVideoVisible} onClose={()=>{
               setCmpainVideoVisible(false)
             }} />}
           </View>

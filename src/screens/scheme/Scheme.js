@@ -193,7 +193,6 @@ export default function Scheme({ navigation }) {
           <TouchableOpacity
             style={{
               backgroundColor: ternaryThemeColor,
-              paddingLeft: 10,
               borderRadius: 6,
               paddingRight: 10,
               padding: 6,
@@ -539,7 +538,7 @@ export default function Scheme({ navigation }) {
           </View>
           <View
             style={{
-              width: "90%",
+              width: "95%",
               marginTop: 4,
               alignItems: "flex-start",
               justifyContent: "flex-start",
@@ -572,6 +571,8 @@ export default function Scheme({ navigation }) {
               alignItems: "flex-start",
               justifyContent: "flex-start",
               flexDirection: "row",
+              flexWrap:'wrap'
+
             }}
           >
             <PoppinsTextLeftMedium
@@ -589,6 +590,8 @@ export default function Scheme({ navigation }) {
                 fontSize: 12,
                 fontWeight: "500",
                 marginLeft: 10,
+                textAlign: "left",
+
               }}
               content={moment(props.data?.redeem_start).format("DD-MM-YYYY")}
             ></PoppinsTextMedium>

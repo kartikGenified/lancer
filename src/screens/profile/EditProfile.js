@@ -87,6 +87,14 @@ const EditProfile = ({ navigation, route }) => {
   // useEffect(()=>{
   //   route.params.savedImage!==undefined && setFilename(route.params.savedImage)
   // },[route.params?.savedImage])
+
+  useEffect(()=>{
+    const formFields = route.params?.formFields;
+    const formValues = route.params?.formValues;
+
+    console.log("form k fields and values", formValues)
+  },[])
+
   useEffect(() => {
     if (updateProfileData) {
       console.log("updateProfileData", updateProfileData);
