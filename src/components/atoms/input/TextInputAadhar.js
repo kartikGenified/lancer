@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View, StyleSheet,TextInput,Modal,Pressable,Text,Image,Keyboard, ActivityIndicator} from 'react-native';
+import {View, StyleSheet,TextInput,Modal,Pressable,Text,Image,Keyboard} from 'react-native';
 import PoppinsTextMedium from '../../electrons/customFonts/PoppinsTextMedium';
 import { useSendAadharOtpMutation } from '../../../apiServices/verification/AadharVerificationApi';
 import { useVerifyAadharMutation } from '../../../apiServices/verification/AadharVerificationApi';
@@ -19,7 +19,7 @@ const TextInputAadhar = (props) => {
     const [keyboardShow, setKeyboardShow] = useState(false)
     const [showLoading, setShowLoading] = useState(false)
     const {t}  = useTranslation() 
-
+    const accessLabel = props.accessLabel
     const placeHolder = props.placeHolder
     const required = props.required
     let displayText = props.placeHolder
@@ -185,10 +185,7 @@ const TextInputAadhar = (props) => {
             <View style={{alignItems:"center",justifyContent:'center',backgroundColor:'white',position:"absolute",top:-15,left:16}}>
                 <PoppinsTextMedium style={{color:"#919191",padding:4,fontSize:18}} content = {t(label)}></PoppinsTextMedium>
             </View>
-            <TextInput editable={otpSent ? false : true} maxLength={12} onSubmitEditing={(text)=>{handleInputEnd()}} onEndEditing={(text)=>{handleInputEnd()}} style={{height:50,width:'80%',alignItems:"center",justifyContent:"center",fontWeight:'500',color:'black',fontSize:16,position:'absolute',left:14}} placeholderTextColor="grey" onChangeText={(text)=>{handleInput(text)}} value={value} placeholder={required ?  `${placeHolder} *` : `${placeHolder}`}></TextInput>
-            {sendAadharOtpIsLoading && <View style={{alignItems:'center',justifyContent:'center',width:'20%',position:'absolute',right:0}}>
-            <ActivityIndicator color={ternaryThemeColor} size={20} ></ActivityIndicator>
-            </View> }
+            <TextInput accessibilityLabel={accessLabel} maxLength={12} onSubmitEditing={(text)=>{handleInputEnd()}} onEndEditing={(text)=>{handleInputEnd()}} style={{height:50,width:'80%',alignItems:"center",justifyContent:"center",fontWeight:'500',color:'black',fontSize:16,position:'absolute',left:14}} placeholderTextColor="grey" onChangeText={(text)=>{handleInput(text)}} value={value} placeholder={required ?  `${placeHolder} *` : `${placeHolder}`}></TextInput>
             {aadharVerified && <View style={{alignItems:'center',justifyContent:'center',width:'20%',position:'absolute',right:0}}>
               <Image style={{height:30,width:30,resizeMode:'contain'}} source={require('../../../../assets/images/greenTick.png')}></Image>
             </View>}
@@ -202,7 +199,7 @@ const TextInputAadhar = (props) => {
           otpSent && 
           
           <View style={{width:'100%',alignItems:'flex-start',justifyContent:'center'}}>
-            <PoppinsTextMedium style={{color:"green",padding:4,fontSize:14,marginLeft:24}} content ={t("OTP sent to your aadhaar linked mobile number ")}></PoppinsTextMedium>
+            <PoppinsTextMedium style={{color:ternaryThemeColor,padding:4,fontSize:14,marginLeft:24}} content ={t("OTP Sent")}></PoppinsTextMedium>
           </View>
 
         }

@@ -35,7 +35,8 @@ const DashboardMenuBox=(props)=>{
             navigation.navigate('FAQ')
         }
         else if(data.toLowerCase() === "scheme"){
-            navigation.navigate("EnableLocationScreen",{navigateTo:"Scheme"})
+            // navigation.navigate("EnableLocationScreen",{navigateTo:"Scheme"})
+            navigation.navigate("Scheme")
         }
         else if(data.toLowerCase() === "bank details" || data.toLowerCase() === "bank account"){
             navigation.navigate('BankAccounts')

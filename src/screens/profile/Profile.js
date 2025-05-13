@@ -510,7 +510,7 @@ const Profile = ({ navigation }) => {
               marginLeft: 50,
             }}
           >
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => {
                 navigation.navigate("EditProfile", {
                   formFields: formFields,
@@ -530,7 +530,7 @@ const Profile = ({ navigation }) => {
               }}
             >
               <Edit name="edit" size={20} color={ternaryThemeColor}></Edit>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => {
                 deleteID();
@@ -791,11 +791,11 @@ const Profile = ({ navigation }) => {
                     title={"Change Language"}
                     image={require("../../../assets/images/language.png")}
                   ></ProfileBox> */}
-                  <ProfileBox
+                  {/* <ProfileBox
                     buttonTitle={"View"}
                     title="Check Passbook"
                     image={require("../../../assets/images/passbook_icon.png")}
-                  ></ProfileBox>
+                  ></ProfileBox> */}
                 </ScrollView>
               </View>
             )}

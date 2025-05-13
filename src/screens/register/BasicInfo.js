@@ -506,100 +506,69 @@ const BasicInfo = ({ navigation, route }) => {
   };
   getData()
 
-  const handleChildComponentData = data => {
-   console.log("handleChildComponentData data",data)
+  const handleChildComponentData = (data) => {
     // setOtpVisible(true)
-    if(data.label == "dealer_name")
-    {
-      setMappedUserData(data.data)
-    }
-    if(data.label === "map_user_type")
-    {
-      setMappedUserType(data.value)
-      
-    }
     if (data?.name === "name") {
-      setUserName(data?.value)
+      setUserName(data?.value);
     }
     // console.log("isValidEmail", isValidEmail(data.value))
 
     if (data?.name === "email") {
       console.log("from text input", data?.name);
 
-      console.log("isValidEmail", isValidEmail(data?.value), isValid)
-
+      console.log("isValidEmail", isValidEmail(data?.value), isValid);
     }
-    if(data?.name=== "aadhar")
-    {
-      console.log("aadhar input returned", data?.value?.length,data,aadhaarVerified)
-      if(data?.value?.length>0)
-      {
-        setAadhaarEntered(true)
-      }
-      else if(data?.value?.length == 0)
-      {
-        setAadhaarEntered(false)
-      }
-    }
-    if(data?.name=== "pan")
-    {
-      if(data?.value?.length>0)
-      {
-        setPanEntered(true)
-      }
-      else if(data?.value?.length == 0)
-      {
-        setPanEntered(false)
+    if (data?.name === "aadhar") {
+      console.log(
+        "aadhar input returned",
+        data?.value?.length,
+        data,
+        aadhaarVerified
+      );
+      if (data?.value?.length > 0) {
+        setAadhaarEntered(true);
+      } else if (data?.value?.length == 0) {
+        setAadhaarEntered(false);
       }
     }
-    if(data?.name=== "gstin")
-    {
-      if(data?.value?.length>0)
-      {
-        setGstEntered(true)
-      }
-      else if(data?.value?.length == 0)
-      {
-        setGstEntered(false)
+    if (data?.name === "pan") {
+      if (data?.value?.length > 0) {
+        setPanEntered(true);
+      } else if (data?.value?.length == 0) {
+        setPanEntered(false);
       }
     }
-
-
+    // if(data?.name === "pincode")
+    // {
+    //   if(data?.value?.length<6)
+    //   {
+    //     setIsCorrectPincode(false)
+    //   }
+    // }
+    if (data?.name === "gstin") {
+      if (data?.value?.length > 0) {
+        setGstEntered(true);
+      } else if (data?.value?.length == 0) {
+        setGstEntered(false);
+      }
+    }
 
     if (data?.name === "mobile") {
-      const reg = '^([0|+[0-9]{1,5})?([6-9][0-9]{9})$';
-      const mobReg = new RegExp(reg)
+      const reg = "^([0|+[0-9]{1,5})?([6-9][0-9]{9})$";
+      const mobReg = new RegExp(reg);
       if (data?.value?.length === 10) {
-        if(mobReg.test(data?.value))
-      {
-      setUserMobile(data?.value)
-      }
-      else{
-        setError(true)
-        setMessage(t("Please enter a valid mobile number"))
+        if (mobReg.test(data?.value)) {
+          setUserMobile(data?.value);
+        } else {
+          setError(true);
+          setMessage(t("Please enter a valid mobile number"));
+        }
       }
     }
-
-    }
-
-    if (data.name == "dealer_name") {
-      if(data.value =="Other"){
-        setShowDistributorInput(true);
-      }
-      else{
-        setShowDistributorInput(false);
-        setDistributorName(data.value);
-        setDistributorId(data.id)
-        setDistributorMobile(data.mobile)
-        console.log("Data dis", data);
-      }
-      
-    }
-
     // Update the responseArray state with the new data
-    setResponseArray(prevArray => {
+    setResponseArray((prevArray) => {
       const existingIndex = prevArray.findIndex(
-        item => item.name === data.name,
+        (item) => item.name === data.name
       );
 
       if (existingIndex !== -1) {
@@ -616,11 +585,12 @@ const BasicInfo = ({ navigation, route }) => {
       }
     });
   };
-
   console.log("responseArray", responseArray)
   const modalClose = () => {
     setError(false);
   };
+
+  
 
   const getLocationFromPinCode =  (pin) => {
     console.log("getting location from pincode",pin)
@@ -678,7 +648,9 @@ const BasicInfo = ({ navigation, route }) => {
   }
 
   const panVerified =(bool)=>{
+    console.log("my pan bool", bool)
     setPansVerified(bool)
+
   }
 
 
@@ -792,9 +764,16 @@ const BasicInfo = ({ navigation, route }) => {
 // };
 
 const handleRegistrationFormSubmission = () => {
-  console.log("handleRegistrationFormSubmission", responseArray,aadhaarRequired,panRequired,gstinRequired);
+  let continueFormSubmission =false;
+  console.log(
+    "handleRegistrationFormSubmission",
+    responseArray,
+    aadhaarRequired,
+    panRequired,
+    gstinRequired
+  );
   const inputFormData = {};
-  let isFormValid = true; 
+  let isFormValid = true;
   let missingParam = "";
 
   inputFormData["user_type"] = userType;
@@ -806,170 +785,169 @@ const handleRegistrationFormSubmission = () => {
   // Create a map for quick lookup of responseArray fields
   const responseMap = new Map();
   for (let i = 0; i < responseArray.length; i++) {
-      responseMap.set(responseArray[i].name, responseArray[i].value);
+    responseMap.set(responseArray[i].name, responseArray[i].value);
   }
-console.log("responseMap",responseMap)
+  console.log("responseMap", responseMap);
   // Check for required fields and missing values
   for (let i = 0; i < registrationForm.length; i++) {
-      const field = registrationForm[i];
-      console.log("Field", field)
-      if (field.required) {
-          const value = responseMap.get(field.name);
-          console.log("didnt get value for",value,field.name)
-          if (!value) {
-              isFormValid = false;
-              missingParam = field.label;
-              break;
-          }
-          if (field.name === "pincode" && value.length !== 6) {
-              isFormValid = false;
-              missingParam = "Pincode must be exactly 6 digits";
-              break;
-          }
+    const field = registrationForm[i];
+    console.log("Field", field);
+    if (field.required) {
+      const value = responseMap.get(field.name);
+      console.log("didnt get value for", value, field.name);
+      if (!value) {
+        isFormValid = false;
+        missingParam = field.label;
+        break;
       }
+      if (field.name === "pincode" && value.length !== 6) {
+        isFormValid = false;
+        missingParam = "Pincode must be exactly 6 digits";
+        break;
+      }
+    }
   }
 
   console.log("missing params", missingParam);
 
   // Populate inputFormData with responseArray values
   for (let i = 0; i < responseArray.length; i++) {
-      inputFormData[responseArray[i].name] = responseArray[i].value;
+    inputFormData[responseArray[i].name] = responseArray[i].value;
   }
-  inputFormData["login_type"] = navigatingFrom == "OtpLogin" ? "otp" : 'uidp'
-  inputFormData["language"] = preferedLanguage
-  inputFormData["app_version"] = appVersion
-  inputFormData["distributor_name"] = String(distributorName);
-  inputFormData["distributor_mobile"] = distributorMobile!= undefined ? String(distributorMobile) : null;
-  inputFormData["distributor_user_id"] = distributorId!= undefined  ? String(distributorId) : null
+  inputFormData["login_type"] = navigatingFrom == "OtpLogin" ? "otp" : "uidp";
+  inputFormData["language"] = preferedLanguage;
+
   const body = inputFormData;
   console.log("registration output", body);
 
   if (otpVerified) {
-      const keys = Object.keys(body);
-      const values = Object.values(body);
+    const keys = Object.keys(body);
+    const values = Object.values(body);
 
-      if (keys.includes('pincode') && !isCorrectPincode) {
-          setError(true);
-          setMessage(t("Pincode must be verified first"));
-          return;
-      }
-
-      if (keys.includes('email')) {
-          const index = keys.indexOf('email');
-          if (isValidEmail(values[index])) {
-              if (isFormValid) {
-                console.log("registerUserFuncqwerty",body)
-                  if(aadhaarRequired && !aadhaarVerified)
-                  {
-                    alert("aadhar is not verified")
-                  }
-                  else{
-                    if(aadhaarEntered && !aadhaarVerified)
-                    {
-                      alert("aadhar is not verified")
-                    }
-                    else{
-                      if(panRequired && !pansVerified)
-                    {
-                      alert("pan is not verified")
-                    }
-                    else{
-                      if(panEntered && !pansVerified)
-                      {
-                      alert("pan is not verified")
-                      }
-                      else{
-                        if(gstinRequired && !gstVerified)
-                        {
-                          alert("gstin is not verified")
-                        }
-                        else{
-                          if(gstEntered && !gstVerified)
-                          {
-                          alert("gstin is not verified")
-                          }
-                          else{
-                            console.log("aadhar fields required, verified",aadhaarRequired,aadhaarVerified )
-                            console.log("pan fields required, verified",panRequired,pansVerified )
-                            console.log("gstin fields required, verified",gstinRequired,gstVerified )
-
-
-                          registerUserFunc(body);
-                          }
-                          
-  
-                        }
-                      }
-                     
-                    }
-
-                    }
-                    
-                  }
+    if (keys.includes("pincode")) {
+      if(!isCorrectPincode){
+        setError(true);
+        setMessage(t("Pincode must be verified first"));
+        return  
+    }
+  }
+    if (keys.includes("email")) {
+      const index = keys.indexOf("email");
+      if (isValidEmail(values[index]) || values[index].length == 0) {
+        if (isFormValid) {
+          console.log("registerUserFuncqwerty", body);
+          if (aadhaarRequired && !aadhaarVerified) {
+            alert("aadhar is not verified");
+          } else {
+            if (aadhaarEntered && !aadhaarVerified) {
+              alert("aadhar is not verified");
+            } else {
+              if (panRequired && !pansVerified) {
+                alert("pan is not verified");
               } else {
-                  setError(true);
-                  setMessage(missingParam);
+                if (panEntered && !pansVerified) {
+                  alert("pan is not verified");
+                } else {
+                  if (gstinRequired && !gstVerified) {
+                    alert("gstin is not verified");
+                  } else {
+                    if (gstEntered && !gstVerified) {
+                      alert("gstin is not verified");
+                    } else {
+                      console.log(
+                        "pan status asjhdghgas",
+                        panRequired,
+                        panEntered,
+                        pansVerified
+                      );
+                      console.log(
+                        "gstin status hjsahdjhas",
+                        gstinRequired,
+                        gstEntered,
+                        gstVerified
+                      );
+                      console.log(
+                        "aadhar status hjasdashgh",
+                        aadhaarRequired,
+                        aadhaarEntered,
+                        aadhaarVerified
+                      );
+                        
+                          registerUserFunc(body);
+                       
+                    }
+                  }
+                }
               }
-          } else {
-              setError(true);
-              setMessage(t("Email isn't verified"));
+            }
           }
+        } else {
+          setError(true);
+          setMessage(missingParam);
+        }
       } else {
-          if (isFormValid) {
-            console.log("registerUserFuncqwerty",body)
-            if(aadhaarRequired && !aadhaarVerified)
-                  {
-                    alert("aadhar is not verified")
-                  }
-                  else{
-                    if(aadhaarEntered && !aadhaarVerified)
-                    {
-                      alert("aadhar is not verified")
-                    }
-                    else{
-                      if(panRequired && !pansVerified)
-                    {
-                      alert("pan is not verified")
-                    }
-                    else{
-                      if(panEntered && !pansVerified)
-                      {
-                      alert("pan is not verified")
-                      }
-                      else{
-                        if(gstinRequired && !gstVerified)
-                        {
-                          alert("gstin is not verified")
-                        }
-                        else{
-                          if(gstEntered && !gstVerified)
-                          {
-                          alert("gstin is not verified")
-                          }
-                          else{
-                            console.log("aadhar fields required, verified",aadhaarRequired,aadhaarVerified )
-                            console.log("pan fields required, verified",panRequired,pansVerified )
-                            console.log("gstin fields required, verified",gstinRequired,gstVerified )
-                            registerUserFunc(body);
-                          }
-                          
-  
-                        }
-                      }
-                     
-                    }
-
-                    }
-                    
-                  }
-          } else {
-              setError(true);
-              setMessage(missingParam);
-          }
+        console.log("emailasdbvashjvhdvashvhdv", values[index]);
+        setError(true);
+        setMessage(t("Email isn't verified"));
       }
+    } else {
+      if (isFormValid) {
+        console.log("registerUserFuncqwerty", body);
+        if (aadhaarRequired && !aadhaarVerified) {
+          alert("aadhar is not verified");
+        } else {
+          if (aadhaarEntered && !aadhaarVerified) {
+            alert("aadhar is not verified");
+          } else {
+            if (panRequired && !pansVerified) {
+              alert("pan is not verified");
+            } else {
+              if (panEntered && !pansVerified) {
+                alert("pan is not verified");
+              } else {
+                if (gstinRequired && !gstVerified) {
+                  alert("gstin is not verified");
+                } else {
+                  if (gstEntered && !gstVerified) {
+                    alert("gstin is not verified");
+                  } else {
+                    console.log(
+                      "pan status asjhdghgas",
+                      panRequired,
+                      panEntered,
+                      pansVerified
+                    );
+                    console.log(
+                      "gstin status hjsahdjhas",
+                      gstinRequired,
+                      gstEntered,
+                      gstVerified
+                    );
+                    console.log(
+                      "aadhar status hjasdashgh",
+                      aadhaarRequired,
+                      aadhaarEntered,
+                      aadhaarVerified
+                    );
+                    console.log("pin code status", isCorrectPincode);
+                    
+                      registerUserFunc(body);
+
+                   
+                  }
+                }
+              }
+            }
+          }
+        }
+      } else {
+        setError(true);
+        setMessage(missingParam);
+      }
+    }
   } else {
-      setError(true);
-      setMessage(t("Otp isn't verified yet"));
+    setError(true);
+    setMessage(t("Otp isn't verified yet"));
   }
 
   console.log("responseArraybody", body);
@@ -1198,34 +1176,36 @@ console.log("responseMap",responseMap)
                   console.log("aadhar")
                   return (
                     <TextInputAadhar
-                      required={item.required}
-                      jsonData={item}
-                      key={index}
-                      verified={addharVerified}
-                      handleData={handleChildComponentData}
-                      placeHolder={item.name}
-                      displayText = {t(item.name.toLowerCase().trim())}
-                      label={item.label}
-                    >
-                      {' '}
-                    </TextInputAadhar>
+                    accessLabel={String(index)}
+                    required={item.required}
+                    jsonData={item}
+                    key={index}
+                    verified={addharVerified}
+                    handleData={handleChildComponentData}
+                    placeHolder={item.name}
+                    displayText={t(item.name.toLowerCase().trim())}
+                    label={item.label}
+                  >
+                    {" "}
+                  </TextInputAadhar>
                   );
                 }
                 else if (item.name === 'pan') {
                   console.log("pan")
                   return (
                     <TextInputPan
-                      required={item.required}
-                      jsonData={item}
-                      key={index}
-                      handleData={handleChildComponentData}
-                      placeHolder={item.name}
-                      label={item.label}
-                      displayText={item.name}
-                      panVerified = {panVerified}
-                    >
-                      {' '}
-                    </TextInputPan>
+                    accessLabel={String(index)}
+                    required={item.required}
+                    jsonData={item}
+                    key={index}
+                    handleData={handleChildComponentData}
+                    placeHolder={item.name}
+                    label={item.label}
+                    displayText={item.name}
+                    panVerified={panVerified}
+                  >
+                    {" "}
+                  </TextInputPan>
                   );
                 }
                 else if (item.name === 'gstin') {
