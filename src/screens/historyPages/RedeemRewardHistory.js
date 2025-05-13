@@ -36,19 +36,19 @@ const RedeemRewardHistory = ({navigation}) => {
         : 'grey';
 
     useEffect(()=>{
-        if(workflowProgram.includes("Static Coupon") || workflowProgram.includes("static coupon"))
+        if(workflowProgram?.includes("Static Coupon") || workflowProgram?.includes("static coupon"))
         {
             setShowCoupons(true)
         }
-         if(workflowProgram.includes("Wheel") || workflowProgram.includes("wheel"))
+         if(workflowProgram?.includes("Wheel") || workflowProgram?.includes("wheel"))
         {
             setShowWheel(true)
         }
-         if(workflowProgram.includes("Points On Product") || workflowProgram.includes("points on product"))
+         if(workflowProgram?.includes("Points On Product") || workflowProgram?.includes("points on product"))
         {
             setShowPoints(true)
         }
-         if(workflowProgram.includes("Cashback") || workflowProgram.includes("cashback"))
+         if(workflowProgram?.includes("Cashback") || workflowProgram?.includes("cashback"))
         {
             setShowCashback(true)
         }
@@ -424,7 +424,7 @@ const RedeemRewardHistory = ({navigation}) => {
 
             {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Redeem Points")}  data={userPointData.body.point_redeemed} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
 
-            {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Points Expiring Soon")}  data={userPointData.body.point_reserved} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>}
+            {/* {showPoints && userPointData &&  <RedeemRewardDataBox navigation = {navigation} header={t("Points Expiring Soon")}  data={userPointData.body.point_reserved} image={require('../../../assets/images/points.png')} ></RedeemRewardDataBox>} */}
 
 
             </ScrollView>
